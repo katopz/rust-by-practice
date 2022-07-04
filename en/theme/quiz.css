@@ -1,0 +1,15 @@
+.hint {
+  background-color: dimgrey;
+  border: none;
+  border-radius: 0.3em;
+  padding: 0.3em;
+  font-size: x-small;
+  font-weight: 600;
+  color: darkgray;
+  cursor: pointer;
+  user-select: none;
+}
+
+.hint:hover {
+  color: beige;
+}
