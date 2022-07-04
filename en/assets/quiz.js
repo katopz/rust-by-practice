@@ -23,7 +23,7 @@ window.onload = function () {
     e.id = `hint_${i}`
     let editor = window.editors[i]
 
-    e.solve = (answers) => {
+    e.solveUnder = (answers) => {
       editor.session.setValue(editor.session.getValue().replace(/(__)/g, () => answers.shift()))
     }
 
@@ -34,6 +34,7 @@ window.onload = function () {
         let answer = atob(answers[2])
 
         editor.session.insert({ row, column }, answer)
+        editor.session.addMarker(new ace.Range(row, column, row, column + answer.length), "ace_step", "line", false)
       })
     }
 

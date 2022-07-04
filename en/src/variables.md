@@ -32,7 +32,7 @@ fn main() {
 }
 ```
 
-<button class="hint" onclick="solve(['mut x','x'])">💡 HINT</button>
+<button class="hint" onclick="this.solveUnder(['mut x','x'])">💡 HINT</button>
 
 ### Scope
 
@@ -67,7 +67,7 @@ fn main() {
 `
 </script>
 
-<button class="hint" onclick="solveAll(answer)">💡 HINT</button>
+<button class="hint" onclick="this.solveAll(answer)">💡 HINT</button>
 
 4. 🌟🌟
 
