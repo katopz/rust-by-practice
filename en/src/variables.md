@@ -16,7 +16,9 @@ fn main() {
 }
 ```
 
-<button class="hint" onclick='this.solveAt([3,14,"ID0gNQ=="])'>💡 HINT</button>
+<script>let answers_1 = [[3,14," = 5"]]</script>
+
+<button class="hint" onclick="this.solveAt(...answers_1)">💡 HINT</button>
 
 2. 🌟 Use `mut` to mark a variable as mutable.
 
@@ -32,7 +34,9 @@ fn main() {
 }
 ```
 
-<button class="hint" onclick="this.solveUnder(['mut x','x'])">💡 HINT</button>
+<script>let answers_2 = ["mut x","x"]</script>
+
+<button class="hint" onclick="this.solveUnder(...answers_2)">💡 HINT</button>
 
 ### Scope
 
@@ -54,7 +58,7 @@ fn main() {
 ```
 
 <script>
-    let answer = `
+    let answer_3 = `
 // Fix the error below with least amount of modification
 fn main() {
     let x: i32 = 10;
@@ -67,7 +71,7 @@ fn main() {
 `
 </script>
 
-<button class="hint" onclick="this.solveAll(answer)">💡 HINT</button>
+<button class="hint" onclick="this.solveAll(answer_3)">💡 HINT</button>
 
 4. 🌟🌟
 
@@ -82,6 +86,23 @@ fn define_x() {
     let x = "hello";
 }
 ```
+
+<script>
+    let answer_4 = `
+// Fix the error with the use of define_x
+fn main() {
+    let x = define_x();
+    println!("{}, world", x);
+}
+
+fn define_x() -> String {
+    let x = "hello".to_string();
+    x
+}
+`
+</script>
+
+<button class="hint" onclick="this.solveAll(answer_4)">💡 HINT</button>
 
 ### Shadowing
 
