@@ -57,8 +57,7 @@ fn main() {
 }
 ```
 
-<script>
-    let answer_3 = `
+<script>let answers_3 = `
 // Fix the error below with least amount of modification
 fn main() {
     let x: i32 = 10;
@@ -68,10 +67,9 @@ fn main() {
     }
     println!("The value of x is {}", x);
 }
-`
-</script>
+`</script>
 
-<button class="hint" onclick="this.solveAll(answer_3)">💡 HINT</button>
+<button class="hint" onclick="this.solveAll(answers_3)">💡 HINT</button>
 
 4. 🌟🌟
 

@@ -1,6 +1,6 @@
 window.onload = function () {
   // Assume edit mode
-  if (window.location.hostname !== 'localhost') return
+  if (window.location.hostname !== 'localhost' && window.location.hostname !== '[::1]') return
 
   window.editors.forEach((editor, i) => {
     editor.type = editor.session.getValue().indexOf('__') > 0 ? 'under' : 'at'
@@ -9,18 +9,30 @@ window.onload = function () {
       const { row, column } = this.selection.getSelectionAnchor()
       const text = this.getCopyText()
 
-      // at | under
-      if (editor.type === 'at') {
-        this.solutions.push(JSON.stringify([row, column, text]))
-      } else {
-        this.solutions.push(JSON.stringify(text))
+      // all
+      if (row === 0 && column === 0) {
+        editor.type = 'all'
       }
 
-      const fn = editor.type === 'at' ? 'solveAt' : 'solveUnder'
+      // all | at | under
+      let solution = `\`${text}\``
+      let fn = 'solveAll'
+      switch (editor.type) {
+        case 'at':
+          this.solutions.push(JSON.stringify([row, column, text]))
+          solution = `[${this.solutions}]`
+          fn = 'solveAt'
+          break
+        case 'under':
+          this.solutions.push(JSON.stringify(text))
+          solution = `[${this.solutions}]`
+          fn = 'solveUnder'
+          break
+      }
 
       // Copy
-      navigator.clipboard.writeText(`<script>let answers_${i} = [${this.solutions}]</script>
-<button class="hint" onclick="this.${fn}(...answers_${i})">💡 HINT</button>`)
+      navigator.clipboard.writeText(`<script>let answers_${i + 1} = ${solution}</script>
+<button class="hint" onclick="this.${fn}(${(editor.type = 'all' ? '' : '...')}answers_${i + 1})">💡 HINT</button>`)
 
       // super
       this.commands.exec('cut', this)
