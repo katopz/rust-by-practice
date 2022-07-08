@@ -49,9 +49,10 @@ window.onload = function () {
       editor.findAll('__')
       const ranges = editor.getSelection().getAllRanges()
       ranges.forEach((range, i) => {
-        const { row, column } = range.cursor
+        const { start, end } = range
+        const { row, column } = { row: Math.min(start.row, end.row), column: Math.min(start.column, end.column) }
         const answer = arguments[i]
-        editor.session.addMarker(new ace.Range(row, column - 2, row, column - 2 + answer.length), 'ace_step', 'line', false)
+        editor.session.addMarker(new ace.Range(row, column, row, column + answer.length), 'ace_step', 'line', false)
       })
 
       editor.session.setValue(editor.session.getValue().replace(/(__)/g, () => arguments.shift()))
