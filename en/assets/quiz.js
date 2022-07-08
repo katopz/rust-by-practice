@@ -32,7 +32,7 @@ window.onload = function () {
 
       // Copy
       navigator.clipboard.writeText(`<script>let answers_${i + 1} = ${solution}</script>
-<button class="hint" onclick="this.${fn}(${(editor.type = 'all' ? '' : '...')}answers_${i + 1})">💡 HINT</button>`)
+<button class="hint" onclick="this.${fn}(${editor.type === 'all' ? '' : '...'}answers_${i + 1})">💡 HINT</button>`)
 
       // super
       this.commands.exec('cut', this)
