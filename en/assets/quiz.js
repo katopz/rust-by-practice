@@ -3,6 +3,7 @@ window.onload = function () {
   if (window.location.hostname !== 'localhost' && window.location.hostname !== '[::1]') return
 
   window.editors.forEach((editor, i) => {
+    editor.raw = editor.session.getValue()
     editor.type = editor.session.getValue().indexOf('__') > 0 ? 'under' : 'at'
     editor.solutions = []
     // editor.replaces = []
@@ -60,6 +61,10 @@ window.onload = function () {
     let editor = window.editors[parseInt(e.id.split('_')[1]) - 1]
 
     e.solveUnder = (...arguments) => {
+      // restore
+      editor.session.setValue(editor.raw)
+
+      // get __ position
       editor.findAll('__')
       const ranges = editor.getSelection().getAllRanges()
       ranges.forEach((range, i) => {
@@ -73,6 +78,10 @@ window.onload = function () {
     }
 
     e.solveAt = (...arguments) => {
+      // restore
+      editor.session.setValue(editor.raw)
+
+      // insert
       arguments.forEach((answers) => {
         const [row, column, answer] = answers
         editor.session.insert({ row, column }, answer)
