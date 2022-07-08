@@ -5,6 +5,17 @@ window.onload = function () {
   window.editors.forEach((editor, i) => {
     editor.type = editor.session.getValue().indexOf('__') > 0 ? 'under' : 'at'
     editor.solutions = []
+    // editor.replaces = []
+    // editor.onCopy = function () {
+    //   const { start, end } = this.getSelectionRange()
+    //   const a = { row: Math.min(start.row, end.row), column: Math.min(start.column, end.column) }
+    //   const b = { row: Math.max(start.row, end.row), column: Math.max(start.column, end.column) }
+    //   editor.replaces.push({ start: a, end: b })
+
+    //   console.log(editor.replaces)
+    //   editor.type = 'replace'
+    // }
+
     editor.onCut = function () {
       const { start, end } = this.getSelectionRange()
       const { row, column } = { row: Math.min(start.row, end.row), column: Math.min(start.column, end.column) }
@@ -15,9 +26,8 @@ window.onload = function () {
       if (row === 0 && column === 0) {
         editor.type = 'all'
       }
-      console.log(row, column)
 
-      // all | at | under
+      // all | at | under | replace
       let solution = '`' + text + '`'
       let fn = 'solveAll'
       switch (editor.type) {
@@ -31,19 +41,23 @@ window.onload = function () {
           solution = `[${this.solutions}]`
           fn = 'solveUnder'
           break
+        case 'replace':
+          this.solutions.push(JSON.stringify([row, column, text]))
+          solution = `[${this.solutions}]`
+          fn = 'solveReplace'
+          break
       }
 
       // Copy
       navigator.clipboard.writeText(`<script>let answers_${i + 1} = ${solution}</script>
-<button class="hint" onclick="this.${fn}(${editor.type === 'all' ? '' : '...'}answers_${i + 1})">💡 HINT</button>`)
+<button class="hint" id="hint_${i + 1}" onclick="this.${fn}(${editor.type === 'all' ? '' : '...'}answers_${i + 1})">💡 HINT</button>`)
 
       // super
       this.commands.exec('cut', this)
     }.bind(editor)
   })
-  ;[...document.querySelectorAll('.hint')].forEach((e, i) => {
-    e.id = `hint_${i}`
-    let editor = window.editors[i]
+  ;[...document.querySelectorAll('.hint')].forEach((e) => {
+    let editor = window.editors[parseInt(e.id.split('_')[1]) - 1]
 
     e.solveUnder = (...arguments) => {
       editor.findAll('__')
