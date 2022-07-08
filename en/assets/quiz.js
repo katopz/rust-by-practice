@@ -95,6 +95,15 @@ window.onload = function () {
         const [row, column, answer] = answers
         editor.session.insert({ row, column }, answer)
         editor.session.addMarker(new ace.Range(row, column, row, column + answer.length), 'ace_step', 'line', false)
+
+        // More highlight for newline
+        const newlines = answer.split('\n')
+        let j = 0
+        let k = 0
+        while (newlines[j++] === '') k++
+        if (k > 0) {
+          editor.session.addMarker(new ace.Range(row + k, 0, row + k, 0 + answer.length), 'ace_step', 'line', false)
+        }
       })
     }
 
@@ -108,6 +117,15 @@ window.onload = function () {
         editor.session.replace(removes[i], '')
         editor.session.insert({ row, column }, answer)
         editor.session.addMarker(new ace.Range(row, column, row, column + answer.length), 'ace_step', 'line', false)
+
+        // More highlight for newline
+        const newlines = answer.split('\n')
+        let j = 0
+        let k = 0
+        while (newlines[j++] === '') k++
+        if (k > 0) {
+          editor.session.addMarker(new ace.Range(row + k, 0, row + k, 0 + answer.length), 'ace_step', 'line', false)
+        }
       })
     }
 
