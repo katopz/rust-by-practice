@@ -18,7 +18,7 @@ fn main() {
 
 <script>let answers_1 = [[3,14," = 5"]]</script>
 
-<button class="hint" onclick="this.solveAt(...answers_1)">💡 HINT</button>
+<button class="hint" id="hint_1" onclick="this.solveAt(...answers_1)">💡 HINT</button>
 
 2. 🌟 Use `mut` to mark a variable as mutable.
 
@@ -36,7 +36,7 @@ fn main() {
 
 <script>let answers_2 = ["mut x","x"]</script>
 
-<button class="hint" onclick="this.solveUnder(...answers_2)">💡 HINT</button>
+<button class="hint" id="hint_2" onclick="this.solveUnder(...answers_2)">💡 HINT</button>
 
 ### Scope
 
@@ -69,7 +69,7 @@ fn main() {
 }
 `</script>
 
-<button class="hint" onclick="this.solveAll(answers_3)">💡 HINT</button>
+<button class="hint" id="hint_3" onclick="this.solveAll(answers_3)">💡 HINT</button>
 
 4. 🌟🌟
 
@@ -98,7 +98,7 @@ fn define_x() -> String {
 }
 `</script>
 
-<button class="hint" onclick="this.solveAll(answers_4)">💡 HINT</button>
+<button class="hint" id="hint_4" onclick="this.solveAll(answers_4)">💡 HINT</button>
 
 ### Shadowing
 
@@ -139,7 +139,7 @@ fn main() {
 }
 `</script>
 
-<button class="hint" onclick="this.solveAll(answers_5)">💡 HINT</button>
+<button class="hint" id="hint_5" onclick="this.solveAll(answers_5)">💡 HINT</button>
 
 6. 🌟🌟
 
@@ -164,7 +164,7 @@ fn main() {
 
 <script>let answers_6 = [[7,4,"// "]]</script>
 
-<button class="hint" onclick="this.solveAt(...answers_6)">💡 HINT</button>
+<button class="hint" id="hint_6" onclick="this.solveAt(...answers_6)">💡 HINT</button>
 
 ### Unused variables
 
@@ -183,7 +183,7 @@ fn main() {
 
 <script>let answers_7 = [[2,8,"_"]]</script>
 
-<button class="hint" onclick="this.solveAt(...answers_7)">💡 HINT</button>
+<button class="hint" id="hint_7" onclick="this.solveAt(...answers_7)">💡 HINT</button>
 
 ### Destructuring
 
@@ -207,7 +207,7 @@ fn main() {
 
 <script>let answers_8 = [[3,9,"mut "]]</script>
 
-<button class="hint" onclick="this.solveAt(...answers_8)">💡 HINT</button>
+<button class="hint" id="hint_8" onclick="this.solveAt(...answers_8)">💡 HINT</button>
 
 ### Destructuring assignments
 
@@ -232,6 +232,6 @@ fn main() {
 
 <script>let answers_9 = ["[3, 2]"]</script>
 
-<button class="hint" onclick="this.solveUnder(...answers_9)">💡 HINT</button>
+<button class="hint" id="hint_9" onclick="this.solveUnder(...answers_9)">💡 HINT</button>
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it
