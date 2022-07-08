@@ -57,21 +57,9 @@ fn main() {
 }
 ```
 
-<script>let answers_3 = `
-// Fix the error below with least amount of modification
-fn main() {
-    let x: i32 = 10;
-    {
-        let y: i32 = 5;
-        println!("The value of x is {} and value of y is {}", x, y);
-    }
-    println!("The value of x is {}", x);
-}
-`</script>
+<script>let answers_3 = [[8,34,"\", x",[{"start":{"row":8,"column":34},"end":{"row":8,"column":62}}]]]</script>
 
-<button class="hint" id="hint_3" onclick="this.solveAll(answers_3)">💡 HINT</button>
-
-<!-- TODO: REPLACE -->
+<button class="hint" id="hint_3" onclick="this.solveReplace(...answers_3)">💡 HINT</button>
 
 4. 🌟🌟
 
@@ -87,37 +75,9 @@ fn define_x() {
 }
 ```
 
-<script>let answers_4_a = `
-// Fix the error with the use of define_x
-fn main() {
-    let x = define_x();
-    println!("{}, world", x);
-}
+<script>let answers_4 = [[2,11,"\n    let x = define_x();"],[7,14,"-> String "],[8,19,".to_string()"],[8,32,"\n    x"]]</script>
 
-fn define_x() -> String {
-    let x = "hello".to_string();
-    x
-}
-`</script>
-
-<script>let answers_4_b = `
-// Fix the error with the use of define_x
-fn main() {
-    let x = define_x();
-    println!("{:?}, world", x);
-}
-
-fn define_x() -> &'static str {
-    let x = "hello";
-    x
-}
-`</script>
-
-<span>
-<button class="hint" id="hint_4_a" onclick="this.solveAll(answers_4_a)">💡 HINT 1</button>
-<button class="hint" id="hint_4_b" onclick="this.solveAll(answers_4_b)">💡 HINT 2</button>
-</span>
-<!-- TODO: REPLACE -->
+<button class="hint" id="hint_4" onclick="this.solveAt(...answers_4)">💡 HINT</button>
 
 ### Shadowing
 
@@ -142,25 +102,9 @@ fn main() {
 }
 ```
 
-<script>let answers_5 = `
-// Only modify \`assert_eq!\` to make the \`println!\` work(print \`42\` in terminal)
-fn main() {
-    let x: i32 = 5;
-    {
-        let x = 12;
-        assert_eq!(x, 12);
-    }
+<script>let answers_5 = [[6,22,"12",[{"start":{"row":6,"column":22},"end":{"row":6,"column":23}}]],[9,18,"5",[{"start":{"row":6,"column":22},"end":{"row":6,"column":23}},{"start":{"row":9,"column":18},"end":{"row":9,"column":20}}]]]</script>
 
-    assert_eq!(x, 5);
-
-    let x = 42;
-    println!("{}", x); // Prints "42".
-}
-`</script>
-
-<button class="hint" id="hint_5" onclick="this.solveAll(answers_5)">💡 HINT</button>
-
-<!-- TODO: REPLACE -->
+<button class="hint" id="hint_5" onclick="this.solveReplace(...answers_5)">💡 HINT</button>
 
 6. 🌟🌟
 
@@ -206,8 +150,6 @@ fn main() {
 
 <button class="hint" id="hint_7" onclick="this.solveAt(...answers_7)">💡 HINT</button>
 
-<!-- TODO: MULTIPLE HINTS -->
-
 ### Destructuring
 
 8. 🌟🌟 We can use a pattern with `let` to destructure a tuple to separate variables.
@@ -231,8 +173,6 @@ fn main() {
 <script>let answers_8 = [[3,9,"mut "]]</script>
 
 <button class="hint" id="hint_8" onclick="this.solveAt(...answers_8)">💡 HINT</button>
-
-<!-- TODO: MULTIPLE HINTS -->
 
 ### Destructuring assignments
 
