@@ -71,6 +71,8 @@ fn main() {
 
 <button class="hint" onclick="this.solveAll(answers_3)">💡 HINT</button>
 
+<!-- TODO: REPLACE -->
+
 4. 🌟🌟
 
 ```rust,editable
@@ -99,6 +101,8 @@ fn define_x() -> String {
 `</script>
 
 <button class="hint" onclick="this.solveAll(answers_4)">💡 HINT</button>
+
+<!-- TODO: MULTIPLE HINTS -->
 
 ### Shadowing
 
@@ -140,6 +144,8 @@ fn main() {
 `</script>
 
 <button class="hint" onclick="this.solveAll(answers_5)">💡 HINT</button>
+
+<!-- TODO: REPLACE -->
 
 6. 🌟🌟
 
@@ -185,6 +191,8 @@ fn main() {
 
 <button class="hint" onclick="this.solveAt(...answers_7)">💡 HINT</button>
 
+<!-- TODO: MULTIPLE HINTS -->
+
 ### Destructuring
 
 8. 🌟🌟 We can use a pattern with `let` to destructure a tuple to separate variables.
@@ -208,6 +216,8 @@ fn main() {
 <script>let answers_8 = [[3,9,"mut "]]</script>
 
 <button class="hint" onclick="this.solveAt(...answers_8)">💡 HINT</button>
+
+<!-- TODO: MULTIPLE HINTS -->
 
 ### Destructuring assignments
 
