@@ -9,15 +9,16 @@ window.onload = function () {
       const { start, end } = this.getSelectionRange()
       const { row, column } = { row: Math.min(start.row, end.row), column: Math.min(start.column, end.column) }
 
-      const text = this.getCopyText()
+      const text = this.getCopyText().replace(/`/g, '\\`')
 
       // all
       if (row === 0 && column === 0) {
         editor.type = 'all'
       }
+      console.log(row, column)
 
       // all | at | under
-      let solution = `\`${text}\``
+      let solution = '`' + text + '`'
       let fn = 'solveAll'
       switch (editor.type) {
         case 'at':
