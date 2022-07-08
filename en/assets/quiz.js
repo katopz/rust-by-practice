@@ -13,6 +13,16 @@ window.onload = function () {
     }
   }
 
+  function removeAllMarker(editor) {
+    const prevMarkers = editor.session.getMarkers()
+    if (prevMarkers) {
+      const prevMarkersArr = Object.keys(prevMarkers)
+      for (let item of prevMarkersArr) {
+        editor.session.removeMarker(prevMarkers[item].id)
+      }
+    }
+  }
+
   window.editors.forEach((editor, i) => {
     editor.raw = editor.session.getValue()
     editor.type = editor.session.getValue().indexOf('__') > 0 ? 'under' : 'at'
@@ -27,32 +37,37 @@ window.onload = function () {
       editor.type = 'replace'
     }
 
-    editor.onCut = function () {
-      const { row, column } = getRoWColumnRange(this.getSelectionRange())
+    editor.on('focus', () => removeAllMarker(editor))
 
-      const text = this.getCopyText().replace(/`/g, '\\`')
+    editor.onCut = function () {
+      const range = this.getSelectionRange()
+      const { row, column } = getRoWColumnRange(range)
+      const raw_length = editor.session.getValue().length
+
+      const raw_copy_text = this.getCopyText()
+      const copy_text = raw_copy_text.replace(/`/g, '\\`')
 
       // all
-      if (row === 0 && column === 0) {
+      if (raw_length === raw_copy_text.length) {
         editor.type = 'all'
       }
 
       // all | at | under | replace
-      let solution = '`' + text + '`'
+      let solution = '`' + copy_text + '`'
       let fn = 'solveAll'
       switch (editor.type) {
         case 'at':
-          this.solutions.push(JSON.stringify([row, column, text]))
+          this.solutions.push(JSON.stringify([row, column, copy_text]))
           solution = `[${this.solutions}]`
           fn = 'solveAt'
           break
         case 'under':
-          this.solutions.push(JSON.stringify(text))
+          this.solutions.push(JSON.stringify(copy_text))
           solution = `[${this.solutions}]`
           fn = 'solveUnder'
           break
         case 'replace':
-          this.solutions.push(JSON.stringify([row, column, text, editor.removes]))
+          this.solutions.push(JSON.stringify([row, column, copy_text, editor.removes]))
           solution = `[${this.solutions}]`
           fn = 'solveReplace'
           break
@@ -89,6 +104,7 @@ window.onload = function () {
     e.solveAt = (...arguments) => {
       // restore
       editor.session.setValue(editor.raw)
+      removeAllMarker(editor)
 
       // insert
       arguments.forEach((answers) => {
@@ -110,6 +126,7 @@ window.onload = function () {
     e.solveReplace = (...arguments) => {
       // restore
       editor.session.setValue(editor.raw)
+      removeAllMarker(editor)
 
       // insert
       arguments.forEach((answers, i) => {
