@@ -85,8 +85,7 @@ fn define_x() {
 }
 ```
 
-<script>
-    let answer_4 = `
+<script>let answers_4 = `
 // Fix the error with the use of define_x
 fn main() {
     let x = define_x();
@@ -97,10 +96,9 @@ fn define_x() -> String {
     let x = "hello".to_string();
     x
 }
-`
-</script>
+`</script>
 
-<button class="hint" onclick="this.solveAll(answer_4)">💡 HINT</button>
+<button class="hint" onclick="this.solveAll(answers_4)">💡 HINT</button>
 
 ### Shadowing
 
@@ -120,10 +118,28 @@ fn main() {
 
     assert_eq!(x, 12);
 
-    let x =  42;
+    let x = 42;
     println!("{}", x); // Prints "42".
 }
 ```
+
+<script>let answers_5 = `
+// Only modify \`assert_eq!\` to make the \`println!\` work(print \`42\` in terminal)
+fn main() {
+    let x: i32 = 5;
+    {
+        let x = 12;
+        assert_eq!(x, 12);
+    }
+
+    assert_eq!(x, 5);
+
+    let x = 42;
+    println!("{}", x); // Prints "42".
+}
+`</script>
+
+<button class="hint" onclick="this.solveAll(answers_5)">💡 HINT</button>
 
 6. 🌟🌟
 
@@ -146,12 +162,13 @@ fn main() {
 }
 ```
 
+<script>let answers_6 = [[7,4,"// "]]</script>
+
+<button class="hint" onclick="this.solveAt(...answers_6)">💡 HINT</button>
+
 ### Unused variables
 
-1. Fix the warning below with :
-
-- 🌟 Only one solution
-- 🌟🌟 Two distinct solutions
+7. 🌟 Fix the warning below
 
 > Note: none of the solutions is to remove the line `let x = 1`
 
@@ -163,6 +180,10 @@ fn main() {
 
 // Warning: unused variable: `x`
 ```
+
+<script>let answers_7 = [[2,8,"_"]]</script>
+
+<button class="hint" onclick="this.solveAt(...answers_7)">💡 HINT</button>
 
 ### Destructuring
 
@@ -184,6 +205,10 @@ fn main() {
 }
 ```
 
+<script>let answers_8 = [[3,9,"mut "]]</script>
+
+<button class="hint" onclick="this.solveAt(...answers_8)">💡 HINT</button>
+
 ### Destructuring assignments
 
 Introduced in Rust 1.59: You can now use tuple, slice, and struct patterns as the left-hand side of an assignment.
@@ -204,5 +229,9 @@ fn main() {
     println!("Success!");
 }
 ```
+
+<script>let answers_9 = ["[3, 2]"]</script>
+
+<button class="hint" onclick="this.solveUnder(...answers_9)">💡 HINT</button>
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it
