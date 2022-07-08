@@ -15,7 +15,6 @@ window.onload = function () {
       if (row === 0 && column === 0) {
         editor.type = 'all'
       }
-      console.log(row, column)
 
       // all | at | under
       let solution = '`' + text + '`'
