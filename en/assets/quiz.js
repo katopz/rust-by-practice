@@ -6,7 +6,9 @@ window.onload = function () {
     editor.type = editor.session.getValue().indexOf('__') > 0 ? 'under' : 'at'
     editor.solutions = []
     editor.onCut = function () {
-      const { row, column } = this.selection.getSelectionAnchor()
+      const { start, end } = this.getSelectionRange()
+      const { row, column } = { row: Math.min(start.row, end.row), column: Math.min(start.column, end.column) }
+
       const text = this.getCopyText()
 
       // all
