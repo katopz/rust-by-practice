@@ -75,9 +75,14 @@ fn define_x() {
 }
 ```
 
-<script>let answers_4 = [[2,11,"\n    let x = define_x();"],[7,14,"-> String "],[8,19,".to_string()"],[8,32,"\n    x"]]</script>
+<script>let answers_4_a = [[2,11,"\n    let x = define_x();"],[7,14,"-> String "],[8,19,".to_string()"],[8,32,"\n    x"]]</script>
 
-<button class="hint" id="hint_4" onclick="this.solveAt(...answers_4)">💡 HINT</button>
+<script>let answers_4_b = [[2,11,"\n    let x = define_x();"],[4,15,":?"],[7,13," -> &'static str"],[8,20,"\n    x"]]</script>
+
+<span>
+<button class="hint" id="hint_4_a" onclick="this.solveAt(...answers_4_a)">💡 HINT 1</button>
+<button class="hint" id="hint_4_b" onclick="this.solveAt(...answers_4_b)">💡 HINT 2</button>
+</span>
 
 ### Shadowing
 
@@ -146,9 +151,14 @@ fn main() {
 // Warning: unused variable: `x`
 ```
 
-<script>let answers_7 = [[2,8,"_"]]</script>
+<script>let answers_7_a = [[2,8,"_"]]</script>
 
-<button class="hint" id="hint_7" onclick="this.solveAt(...answers_7)">💡 HINT</button>
+<script>let answers_7_b = [[1,0,"#[allow(unused_variables)]\n"]]</script>
+
+<span>
+<button class="hint" id="hint_7_a" onclick="this.solveAt(...answers_7_a)">💡 HINT 1</button>
+<button class="hint" id="hint_7_b" onclick="this.solveAt(...answers_7_b)">💡 HINT 2</button>
+</span>
 
 ### Destructuring
 
@@ -170,9 +180,14 @@ fn main() {
 }
 ```
 
-<script>let answers_8 = [[3,9,"mut "]]</script>
+<script>let answers_8_a = [[3,9,"mut "]]</script>
 
-<button class="hint" id="hint_8" onclick="this.solveAt(...answers_8)">💡 HINT</button>
+<script>let answers_8_b = [[4,4,"let x = 3;",[{"start":{"row":4,"column":4},"end":{"row":4,"column":11}}]]]</script>
+
+<span>
+<button class="hint" id="hint_8_a" onclick="this.solveAt(...answers_8_a)">💡 HINT 1</button>
+<button class="hint" id="hint_8_b" onclick="this.solveReplace(...answers_8_b)">💡 HINT 2</button>
+</span>
 
 ### Destructuring assignments
 
