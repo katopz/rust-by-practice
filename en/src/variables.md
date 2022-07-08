@@ -102,6 +102,7 @@ fn define_x() -> String {
 
 <button class="hint" onclick="this.solveAll(answers_4)">💡 HINT</button>
 
+<!-- TODO: REPLACE -->
 <!-- TODO: MULTIPLE HINTS -->
 
 ### Shadowing
