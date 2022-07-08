@@ -87,7 +87,7 @@ fn define_x() {
 }
 ```
 
-<script>let answers_4 = `
+<script>let answers_4_a = `
 // Fix the error with the use of define_x
 fn main() {
     let x = define_x();
@@ -100,10 +100,24 @@ fn define_x() -> String {
 }
 `</script>
 
-<button class="hint" id="hint_4" onclick="this.solveAll(answers_4)">💡 HINT</button>
+<script>let answers_4_b = `
+// Fix the error with the use of define_x
+fn main() {
+    let x = define_x();
+    println!("{:?}, world", x);
+}
 
+fn define_x() -> &'static str {
+    let x = "hello";
+    x
+}
+`</script>
+
+<span>
+<button class="hint" id="hint_4_a" onclick="this.solveAll(answers_4_a)">💡 HINT 1</button>
+<button class="hint" id="hint_4_b" onclick="this.solveAll(answers_4_b)">💡 HINT 2</button>
+</span>
 <!-- TODO: REPLACE -->
-<!-- TODO: MULTIPLE HINTS -->
 
 ### Shadowing
 

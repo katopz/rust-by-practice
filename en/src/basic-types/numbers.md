@@ -2,7 +2,7 @@
 
 ### Integer
 
-1. 🌟 
+1. 🌟
 
 > Tips: If we don't explicitly assign a type to a variable, then the compiler will infer one for us.
 
@@ -14,14 +14,33 @@ fn main() {
     let mut y: u32 = 5;
 
     y = x;
-    
-    let z = 10; // Type of z ? 
+
+    let z = 10; // Type of z ?
 
     println!("Success!");
 }
 ```
 
+<script>let answers_1 = `
+// Remove something to make it work
+fn main() {
+    let x: i32 = 5;
+    let mut y = 5;
+
+    y = x;
+    
+    let z = 10; // Type of z ? 
+
+    println!("Success!");
+}
+`</script>
+
+<button class="hint" id="hint_1" onclick="this.solveAll(answers_1)">💡 HINT</button>
+
+<!-- TODO: REPLACE -->
+
 2. 🌟
+
 ```rust,editable
 
 //  Fill the blank
@@ -32,7 +51,11 @@ fn main() {
 }
 ```
 
-3. 🌟🌟🌟  
+<script>let answers_2 = ["u16"]</script>
+
+<button class="hint" id="hint_2" onclick="this.solveUnder(...answers_2)">💡 HINT</button>
+
+3. 🌟🌟🌟
 
 > Tips: If we don't explicitly assign a type to a variable, then the compiler will infer one for us.
 
@@ -52,19 +75,44 @@ fn type_of<T>(_: &T) -> String {
 }
 ```
 
-4. 🌟🌟 
+<script>let answers_3 = `
+// Modify \`assert_eq!\` to make it work
+fn main() {
+    let x = 5;
+    assert_eq!("i32".to_string(), type_of(&x));
+
+    println!("Success!");
+}
+
+// Get the type of given variable, return a string representation of the type  , e.g "i8", "u8", "i32", "u32"
+fn type_of<T>(_: &T) -> String {
+    format!("{}", std::any::type_name::<T>())
+}
+`</script>
+
+<button class="hint" id="hint_3" onclick="this.solveAll(answers_3)">💡 HINT</button>
+
+<!-- TODO: REPLACE -->
+
+4. 🌟🌟
+
 ```rust,editable
 
 // Fill the blanks to make it work
 fn main() {
-    assert_eq!(i8::MAX, __); 
-    assert_eq!(u8::MAX, __); 
+    assert_eq!(i8::MAX, __);
+    assert_eq!(u8::MAX, __);
 
     println!("Success!");
 }
 ```
 
-5. 🌟🌟 
+<script>let answers_4 = ["127","255"]</script>
+
+<button class="hint" id="hint_4" onclick="this.solveUnder(...answers_4)">💡 HINT</button>
+
+5. 🌟🌟
+
 ```rust,editable
 
 // Fix errors and panics to make it work
@@ -75,7 +123,21 @@ fn main() {
 }
 ```
 
+<script>let answers_5 = `
+// Fix errors and panics to make it work
+fn main() {
+   let v1 = 247_u8 + 8;
+   let v2 = i8::checked_add(119, 8).unwrap();
+   println!("{},{}",v1,v2);
+}
+`</script>
+
+<button class="hint" onclick="this.solveAll(answers_5)">💡 HINT</button>
+
+<!-- TODO: REPLACE -->
+
 6. 🌟🌟
+
 ```rust,editable
 
 // Modify `assert!` to make it work
@@ -87,8 +149,22 @@ fn main() {
 }
 ```
 
+<script>let answers_6 = `
+// Modify \`assert!\` to make it work
+fn main() {
+    let v = 1_024 + 0xff + 0o77 + 0b1111_1111;
+    assert!(v == 1597);
+
+    println!("Success!");
+}
+`</script>
+
+<button class="hint" onclick="this.solveAll(answers_6)">💡 HINT</button>
+
+<!-- TODO: REPLACE -->
 
 ### Floating-Point
+
 7. 🌟
 
 ```rust,editable
@@ -103,7 +179,22 @@ fn main() {
 }
 ```
 
-1. 🌟🌟 Make it work in two distinct ways
+<script>let answers_7 = `
+//  Replace ? with your answer
+fn main() {
+    let x = 1_000.000_1; // f64
+    let y: f32 = 0.12; // f32
+    let z = 0.01_f64; // f64
+
+    println!("Success!");
+}
+`</script>
+
+<button class="hint" onclick="this.solveAll(answers_7)">💡 HINT</button>
+
+<!-- TODO:REPLACE -->
+
+8. 🌟🌟 Make it work in two distinct ways
 
 ```rust,editable
 
@@ -114,7 +205,21 @@ fn main() {
 }
 ```
 
+<script>let answers_8 = `
+fn main() {
+    assert!(0.1_f32+0.2_f32==0.3_f32);
+
+    println!("Success!");
+}
+`</script>
+
+<button class="hint" onclick="this.solveAll(answers_8)">💡 HINT</button>
+
+<!-- TODO: REPALCE -->
+<!-- TODO: MULTIPLE HINTS -->
+
 ### Range
+
 9. 🌟🌟 Two goals: 1. Modify `assert!` to make it work 2. Make `println!` output: 97 - 122
 
 ```rust,editable
@@ -132,7 +237,27 @@ fn main() {
 }
 ```
 
-10. 🌟🌟 
+<script>let answers_9 = `fn main() {
+    let mut sum = 0;
+    for i in -3..2 {
+        sum += i
+    }
+
+    assert!(sum == -5);
+
+    for c in 'a'..='z' {
+        println!("{}",c as u8);
+    }
+}
+`</script>
+
+<button class="hint" onclick="this.solveAll(answers_9)">💡 HINT</button>
+
+<!-- TODO: REPLACE -->
+<!-- TODO: SOLVE AT FOR THE SECOND SOLUTION -->
+
+10. 🌟🌟
+
 ```rust,editable
 
 // Fill the blanks
@@ -145,9 +270,14 @@ fn main() {
 }
 ```
 
+<script>let answers_10 = ["5","=5"]</script>
+
+<button class="hint" onclick="this.solveUnder(...answers_10)">💡 HINT</button>
+
 ### Computations
 
-11. 🌟 
+11. 🌟
+
 ```rust,editable
 
 // Fill the blanks and fix the errors
@@ -157,8 +287,8 @@ fn main() {
 
     // Integer subtraction
     assert!(1i32 - 2 == __);
-    assert!(1u8 - 2 == -1); 
-    
+    assert!(1u8 - 2 == -1);
+
     assert!(3 * 50 == __);
 
     assert!(9.6 / 3.2 == 3.0); // error ! make it work
