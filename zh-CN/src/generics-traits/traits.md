@@ -339,8 +339,7 @@ fn main() {
 
 7. 🌟🌟
 
-```rust, editable
-fn main() {
+```rust,editablefn main() {
     assert_eq!(sum(1, 2), 3);
 }
 

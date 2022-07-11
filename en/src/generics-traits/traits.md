@@ -342,8 +342,7 @@ When working with generics, the type parameters often must use traits as bounds 
 
 7. 🌟🌟
 
-```rust, editable
-fn main() {
+```rust,editablefn main() {
     assert_eq!(sum(1, 2), 3);
 }
 
