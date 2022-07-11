@@ -18,7 +18,7 @@ fn main() {
 }
 ```
 
-```rust
+```rust,answer
 // Make it work
 use std::mem::size_of_val;
 fn main() {
@@ -46,7 +46,7 @@ fn print_char(c : char) {
 }
 ```
 
-```rust
+```rust,answer
 // Make it work
 fn main() {
     let c1 = '中';
@@ -74,7 +74,7 @@ fn main() {
 }
 ```
 
-```rust
+```rust,answer
 // Make println! work
 fn main() {
     let _f: bool = false;
@@ -99,7 +99,7 @@ fn main() {
 }
 ```
 
-```rust
+```rust,answer
 // Make it work
 fn main() {
     let f = true;
@@ -135,7 +135,7 @@ fn explicitly_ret_unit() -> () {
 }
 ```
 
-```rust
+```rust,answer
 // Make it work, don't modify `implicitly_ret_unit` !
 fn main() {
     let v0: () = ();
@@ -169,7 +169,7 @@ fn main() {
 }
 ```
 
-```rust
+```rust,answer
 // Modify `4` in assert to make it work
 use std::mem::size_of_val;
 fn main() {

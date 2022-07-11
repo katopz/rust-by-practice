@@ -20,7 +20,7 @@ fn main() {
 }
 ```
 
-```rust
+```rust,answer
 // Remove something to make it work
 fn main() {
     let x: i32 = 5;
@@ -45,7 +45,7 @@ fn main() {
 }
 ```
 
-```rust
+```rust,answer
 //  Fill the blank
 fn main() {
     let v: u16 = 38_u8 as u16;
@@ -73,7 +73,7 @@ fn type_of<T>(_: &T) -> String {
 }
 ```
 
-```rust
+```rust,answer
 // Modify `assert_eq!` to make it work
 fn main() {
     let x = 5;
@@ -100,7 +100,7 @@ fn main() {
 }
 ```
 
-```rust
+```rust,answer
 // Fill the blanks to make it work
 fn main() {
     assert_eq!(i8::MAX, 127);
@@ -121,7 +121,7 @@ fn main() {
 }
 ```
 
-```rust
+```rust,answer
 // Fix errors and panics to make it work
 fn main() {
    let v1 = 247_u8 + 8;
@@ -142,7 +142,7 @@ fn main() {
 }
 ```
 
-```rust
+```rust,answer
 // Modify `assert!` to make it work
 fn main() {
     let v = 1_024 + 0xff + 0o77 + 0b1111_1111;
@@ -167,7 +167,7 @@ fn main() {
 }
 ```
 
-```rust
+```rust,answer
 //  Replace ? with your answer
 fn main() {
     let x = 1_000.000_1; // f64
@@ -188,7 +188,7 @@ fn main() {
 }
 ```
 
-```rust
+```rust,answer
 fn main() {
     assert!(0.1_f32+0.2_f32==0.3_f32);
 
@@ -196,7 +196,7 @@ fn main() {
 }
 ```
 
-```rust
+```rust,answer
 fn main() {
     assert!((0.1_f64+0.2-0.3).abs() < 0.001);
 
@@ -223,7 +223,7 @@ fn main() {
 }
 ```
 
-```rust
+```rust,answer
 fn main() {
     let mut sum = 0;
     for i in -3..2 {
@@ -251,7 +251,7 @@ fn main() {
 }
 ```
 
-```rust
+```rust,answer
 // Fill the blanks
 use std::ops::{Range, RangeInclusive};
 fn main() {
@@ -295,7 +295,7 @@ fn main() {
 }
 ```
 
-```rust
+```rust,answer
 // Fill the blanks and fix the errors
 fn main() {
     // Integer addition
