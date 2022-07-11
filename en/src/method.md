@@ -1,8 +1,8 @@
 # Associated functions & Methods
 
 ## Examples
-```rust,editable
-struct Point {
+
+```rust,editablestruct Point {
     x: f64,
     y: f64,
 }
@@ -116,9 +116,10 @@ fn main() {
 ## Exercises
 
 ### Method
-1. 🌟🌟 Methods are similar to functions: Declare with `fn`, have parameters and a return value.  Unlike functions, methods are defined within the context of a struct (or an enum or a trait object), and their first parameter is always `self`, which represents the instance of the struct the method is being called on.
-```rust,editable
-struct Rectangle {
+
+1. 🌟🌟 Methods are similar to functions: Declare with `fn`, have parameters and a return value. Unlike functions, methods are defined within the context of a struct (or an enum or a trait object), and their first parameter is always `self`, which represents the instance of the struct the method is being called on.
+
+```rust,editablestruct Rectangle {
     width: u32,
     height: u32,
 }
@@ -139,8 +140,7 @@ fn main() {
 
 2. 🌟🌟 `self` will take the ownership of current struct instance, however, `&self` will only borrow a reference from the instance.
 
-```rust,editable
-// Only fill in the blanks, DON'T remove any line!
+```rust,editable// Only fill in the blanks, DON'T remove any line!
 #[derive(Debug)]
 struct TrafficLight {
     color: String,
@@ -161,9 +161,10 @@ fn main() {
     println!("{:?}", light);
 }
 ```
-3. 🌟🌟 The `&self` is actually short for `self: &Self`. Within an `impl` block, the type `Self` is an alias for the type that the `impl` block is for. Methods must have a parameter named `self` of type `Self` for their first parameter, so Rust lets you abbreviate this with only the name `self` in the first parameter spot. 
-```rust,editable
-struct TrafficLight {
+
+3. 🌟🌟 The `&self` is actually short for `self: &Self`. Within an `impl` block, the type `Self` is an alias for the type that the `impl` block is for. Methods must have a parameter named `self` of type `Self` for their first parameter, so Rust lets you abbreviate this with only the name `self` in the first parameter spot.
+
+```rust,editablestruct TrafficLight {
     color: String,
 }
 
@@ -183,13 +184,11 @@ fn main() {
 }
 ```
 
-
 ### Associated functions
 
-4. 🌟🌟  All functions defined within an `impl` block are called associated functions because they’re associated with the type named after the `impl`. We can define associated functions that don’t have `self` as their first parameter (and thus are not methods) because they don’t need an instance of the type to work with.
+4. 🌟🌟 All functions defined within an `impl` block are called associated functions because they’re associated with the type named after the `impl`. We can define associated functions that don’t have `self` as their first parameter (and thus are not methods) because they don’t need an instance of the type to work with.
 
-```rust,editable
-#[derive(Debug)]
+```rust,editable#[derive(Debug)]
 struct TrafficLight {
     color: String,
 }
@@ -198,7 +197,7 @@ impl TrafficLight {
     // 1. Implement an assotiated function `new`,
     // 2. It will return a TrafficLight contains color "red"
     // 3. Must use `Self`, DONT use `TrafficLight` in fn signatures or body
-    pub fn new() 
+    pub fn new()
 
     pub fn get_state(&self) -> &str {
         &self.color
@@ -214,9 +213,10 @@ fn main() {
 ```
 
 ### Multiple `impl` blocks
-5. 🌟 Each struct is allowed to have multiple impl blocks. 
-```rust,editable
 
+5. 🌟 Each struct is allowed to have multiple impl blocks.
+
+```rust,editable
 struct Rectangle {
     width: u32,
     height: u32,
@@ -240,10 +240,10 @@ fn main() {
 ```
 
 ### Enums
+
 6. 🌟🌟🌟 We can also implement methods for enums.
 
 ```rust,editable
-
 #[derive(Debug)]
 enum TrafficLightColor {
     Red,
@@ -253,7 +253,7 @@ enum TrafficLightColor {
 
 // Implement TrafficLightColor with a method.
 impl TrafficLightColor {
-    
+
 }
 
 fn main() {
@@ -268,6 +268,5 @@ fn main() {
 ## Practice
 
 @todo
-
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it

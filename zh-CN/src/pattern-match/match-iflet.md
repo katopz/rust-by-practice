@@ -1,9 +1,10 @@
 # match, matches! 和 if let
 
 ### match
-1. 🌟🌟
-```rust,editable
 
+1. 🌟🌟
+
+```rust,editable
 // 填空
 enum Direction {
     East,
@@ -25,8 +26,8 @@ fn main() {
 ```
 
 2. 🌟🌟 `match` 是一个表达式，因此可以用在赋值语句中
-```rust,editable
 
+```rust,editable
 fn main() {
     let boolean = true;
 
@@ -41,8 +42,8 @@ fn main() {
 ```
 
 3. 🌟🌟 使用 match 匹配出枚举成员持有的值
-```rust,editable
 
+```rust,editable
 // 填空
 enum Message {
     Quit,
@@ -61,7 +62,7 @@ fn main() {
     for msg in msgs {
         show_message(msg)
     }
-} 
+}
 
 fn show_message(msg: Message) {
     match msg {
@@ -79,11 +80,12 @@ fn show_message(msg: Message) {
 ```
 
 ### matches!
+
 [`matches!`](https://doc.rust-lang.org/stable/core/macro.matches.html) 看起来像 `match`, 但是它可以做一些特别的事情
 
 4. 🌟🌟
-```rust,editable
 
+```rust,editable
 fn main() {
     let alphabets = ['a', 'E', 'Z', '0', 'x', '9' , 'Y'];
 
@@ -91,12 +93,12 @@ fn main() {
     for ab in alphabets {
         assert!(__)
     }
-} 
+}
 ```
 
 5. 🌟🌟
-```rust,editable
 
+```rust,editable
 enum MyEnum {
     Foo,
     Bar
@@ -117,11 +119,12 @@ fn main() {
 ```
 
 ### if let
+
 在有些时候, 使用 `match` 匹配枚举有些太重了，此时 `if let` 就非常适合.
 
-6. 🌟 
-```rust,editable
+6. 🌟
 
+```rust,editable
 fn main() {
     let o = Some(7);
 
@@ -136,8 +139,8 @@ fn main() {
 ```
 
 7. 🌟🌟
-```rust,editable
 
+```rust,editable
 // 填空
 enum Foo {
     Bar(u8)
@@ -153,8 +156,8 @@ fn main() {
 ```
 
 8. 🌟🌟
-```rust,editable
 
+```rust,editable
 enum Foo {
     Bar,
     Baz,
@@ -176,16 +179,17 @@ fn main() {
 ```
 
 ### 变量遮蔽( Shadowing )
-9. 🌟🌟
-```rust,editable
 
+9. 🌟🌟
+
+```rust,editable
 // 就地修复错误
 fn main() {
     let age = Some(30);
     if let Some(age) = age { // 创建一个新的变量，该变量与之前的 `age` 变量同名
        assert_eq!(age, Some(30));
     } // 新的 `age` 变量在这里超出作用域
-    
+
     match age {
         // `match` 也能实现变量遮蔽
         Some(age) =>  println!("age 是一个新的变量，它的值是 {}",age),
@@ -194,4 +198,4 @@ fn main() {
  }
 ```
 
-> 你可以在[这里](https://github.com/sunface/rust-by-practice/blob/master/solutions/pattern-match/match-iflet.md)找到答案(在 solutions 路径下) 
+> 你可以在[这里](https://github.com/sunface/rust-by-practice/blob/master/solutions/pattern-match/match-iflet.md)找到答案(在 solutions 路径下)

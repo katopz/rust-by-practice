@@ -1,9 +1,10 @@
 # 泛型
 
 ### 函数
-1. 🌟🌟🌟
-```rust,editable
 
+1. 🌟🌟🌟
+
+```rust,editable
 // 填空
 struct A;          // 具体的类型 `A`.
 struct S(A);       // 具体的类型 `S`.
@@ -31,9 +32,9 @@ fn main() {
 }
 ```
 
-1. 🌟🌟 
-```rust,editable
+1. 🌟🌟
 
+```rust,editable
 // 实现下面的泛型函数 sum
 fn sum
 
@@ -44,12 +45,11 @@ fn main() {
 }
 ```
 
-
 ### 结构体和 `impl`
 
 3. 🌟
-```rust,editable
 
+```rust,editable
 // 实现一个结构体 Point 让代码工作
 
 
@@ -60,8 +60,8 @@ fn main() {
 ```
 
 4. 🌟🌟
-```rust,editable
 
+```rust,editable
 // 修改以下结构体让代码工作
 struct Point<T> {
     x: T,
@@ -75,8 +75,8 @@ fn main() {
 ```
 
 5. 🌟🌟
-```rust,editable
 
+```rust,editable
 // 为 Val 增加泛型参数，不要修改 `main` 中的代码
 struct Val {
     val: f64,
@@ -97,10 +97,10 @@ fn main() {
 ```
 
 ### 方法
-6. 🌟🌟🌟 
 
-```rust,editable
-struct Point<T, U> {
+6. 🌟🌟🌟
+
+```rust,editablestruct Point<T, U> {
     x: T,
     y: U,
 }
@@ -122,8 +122,8 @@ fn main() {
 ```
 
 7. 🌟🌟
-```rust,editable
 
+```rust,editable
 // 修复错误，让代码工作
 struct Point<T> {
     x: T,
@@ -142,5 +142,4 @@ fn main() {
 }
 ```
 
-> 你可以在[这里](https://github.com/sunface/rust-by-practice/blob/master/solutions/generics-traits/generics.md)找到答案(在 solutions 路径下) 
-
+> 你可以在[这里](https://github.com/sunface/rust-by-practice/blob/master/solutions/generics-traits/generics.md)找到答案(在 solutions 路径下)

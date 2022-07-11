@@ -1,7 +1,8 @@
 # 函数
-1. 🌟🌟🌟
-```rust,editable
 
+1. 🌟🌟🌟
+
+```rust,editable
 fn main() {
     // 不要修改下面两行代码!
     let (x, y) = (1, 2);
@@ -15,10 +16,9 @@ fn sum(x, y: i32) {
 }
 ```
 
-
 2. 🌟🌟
-```rust,editable
-fn main() {
+
+```rust,editablefn main() {
    print();
 }
 
@@ -28,24 +28,22 @@ fn print() -> i32 {
 }
 ```
 
-
 3. 🌟🌟🌟
 
-```rust,editable
-// 用两种方法求解
+```rust,editable// 用两种方法求解
 fn main() {
     never_return();
 }
 
 fn never_return() -> ! {
     // 实现这个函数，不要修改函数签名!
-    
+
 }
 ```
 
 4. 🌟🌟 发散函数( Diverging function )不会返回任何值，因此它们可以用于替代需要返回任何值的地方
-```rust,editable
 
+```rust,editable
 fn main() {
     println!("Success!");
 }
@@ -59,20 +57,20 @@ fn get_option(tp: u8) -> Option<i32> {
             // TODO
         }
     };
-    
+
     // 这里与其返回一个 None，不如使用发散函数替代
     never_return_fn()
 }
 
 // 使用三种方法实现以下发散函数
 fn never_return_fn() -> ! {
-    
+
 }
 ```
 
 5. 🌟🌟
-```rust,editable
 
+```rust,editable
 fn main() {
     // 填空
     let b = __;
@@ -90,4 +88,4 @@ fn main() {
 }
 ```
 
-> 你可以在[这里](https://github.com/sunface/rust-by-practice/blob/master/solutions/basic-types/functions.md)找到答案(在 solutions 路径下) 
+> 你可以在[这里](https://github.com/sunface/rust-by-practice/blob/master/solutions/basic-types/functions.md)找到答案(在 solutions 路径下)

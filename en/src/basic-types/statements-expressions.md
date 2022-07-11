@@ -1,8 +1,8 @@
 # Statements and Expressions
 
 ### Examples
-```rust,editable
-fn main() {
+
+```rust,editablefn main() {
     let x = 5u32;
 
     let y = {
@@ -25,9 +25,10 @@ fn main() {
 ```
 
 ### Exercises
+
 1. 🌟🌟
-```rust,editable
-// Make it work with two ways
+
+```rust,editable// Make it work with two ways
 fn main() {
    let v = {
        let mut x = 1;
@@ -41,8 +42,8 @@ fn main() {
 ```
 
 2. 🌟
-```rust,editable
 
+```rust,editable
 fn main() {
    let v = (let x = 3);
 
@@ -53,8 +54,8 @@ fn main() {
 ```
 
 3. 🌟
-```rust,editable
 
+```rust,editable
 fn main() {
     let s = sum(1 , 2);
     assert_eq!(s, 3);

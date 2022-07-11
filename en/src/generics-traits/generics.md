@@ -1,9 +1,10 @@
 # Generics
 
 ### Functions
-1. 🌟🌟🌟
-```rust,editable
 
+1. 🌟🌟🌟
+
+```rust,editable
 // Fill in the blanks to make it work
 struct A;          // Concrete type `A`.
 struct S(A);       // Concrete type `S`.
@@ -34,8 +35,8 @@ fn main() {
 ```
 
 2. 🌟🌟 A function call with explicitly specified type parameters looks like: `fun::<A, B, ...>()`.
-```rust,editable
 
+```rust,editable
 // Implement the generic function below.
 fn sum
 
@@ -48,12 +49,11 @@ fn main() {
 }
 ```
 
-
 ### Struct and `impl`
 
 3. 🌟
-```rust,editable
 
+```rust,editable
 // Implement struct Point to make it work.
 
 
@@ -66,8 +66,8 @@ fn main() {
 ```
 
 4. 🌟🌟
-```rust,editable
 
+```rust,editable
 // Modify this struct to make the code work
 struct Point<T> {
     x: T,
@@ -83,8 +83,8 @@ fn main() {
 ```
 
 5. 🌟🌟
-```rust,editable
 
+```rust,editable
 // Add generic for Val to make the code work, DON'T modify the code in `main`.
 struct Val {
     val: f64,
@@ -105,10 +105,10 @@ fn main() {
 ```
 
 ### Method
-6. 🌟🌟🌟 
 
-```rust,editable
-struct Point<T, U> {
+6. 🌟🌟🌟
+
+```rust,editablestruct Point<T, U> {
     x: T,
     y: U,
 }
@@ -132,8 +132,8 @@ fn main() {
 ```
 
 7. 🌟🌟
-```rust,editable
 
+```rust,editable
 // Fix the errors to make the code work.
 struct Point<T> {
     x: T,
@@ -153,4 +153,3 @@ fn main() {
 ```
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it
-

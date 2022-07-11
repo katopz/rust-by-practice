@@ -1,5 +1,7 @@
 # &'static and T: 'static
+
 `'static` 是一个 Rust 保留的生命周期名称，在之前我们可能已经见过好几次了:
+
 ```rust
 // 引用的生命周期是 'static :
 let s: &'static str = "hello world";
@@ -11,12 +13,12 @@ fn generic<T>(x: T) where T: 'static {}
 虽然它们都是 `'static`，但是也稍有不同。
 
 ## &'static
+
 作为一个引用生命周期，`&'static` 说明该引用指向的数据可以跟程序活得一样久，但是该引用的生命周期依然有可能被强转为一个更短的生命周期。
 
-1、🌟🌟 有好几种方法可以将一个变量标记为  `'static` 生命周期, 其中两种都是和保存在二进制文件中相关( 例如字符串字面量就是保存在二进制文件中，它的生命周期是 `'statci` )。
+1、🌟🌟 有好几种方法可以将一个变量标记为 `'static` 生命周期, 其中两种都是和保存在二进制文件中相关( 例如字符串字面量就是保存在二进制文件中，它的生命周期是 `'statci` )。
 
 ```rust,editable
-
 /* 使用两种方法填空 */
 fn main() {
     __;
@@ -31,8 +33,8 @@ fn need_static(r : &'static str) {
 ```
 
 2、 🌟🌟🌟🌟 使用 `Box::leak` 也可以产生 `'static` 生命周期
-```rust,editable
-#[derive(Debug)]
+
+```rust,editable#[derive(Debug)]
 struct Config {
     a: String,
     b: String,
@@ -58,8 +60,8 @@ fn main() {
 ```
 
 3、 🌟 `&'static` 只能说明引用指向的数据是能一直存活的，但是引用本身依然受限于它的作用域
-```rust,editable
-fn main() {
+
+```rust,editablefn main() {
     {
         // 字符串字面量能跟程序活得一样久，因此 `static_string` 的生命周期是 `'static`
         let static_string = "I'm in read-only memory";
@@ -75,18 +77,17 @@ fn main() {
 4、 `&'static` 可以被强转成一个较短的生命周期
 
 **Example**
-```rust,editable
-// 声明一个 static 常量，它拥有 `'static` 生命周期.
+```rust,editable// 声明一个 static 常量，它拥有 `'static` 生命周期.
 static NUM: i32 = 18;
 
 // 返回常量 `Num` 的引用，注意，这里的生命周期从 `'static` 强转为 `'a`
-fn coerce_static<'a>(_: &'a i32) -> &'a i32 {
-    &NUM
+fn coerce*static<'a>(*: &'a i32) -> &'a i32 {
+&NUM
 }
 
 fn main() {
-    {
-        let lifetime_num = 9;
+{
+let lifetime_num = 9;
 
         let coerced_static = coerce_static(&lifetime_num);
 
@@ -94,8 +95,10 @@ fn main() {
     }
 
     println!("NUM: {} stays accessible!", NUM);
+
 }
-```
+
+````
 
 
 
@@ -104,8 +107,7 @@ fn main() {
 关于 `'static` 的特征约束详细解释，请参见 [Rust 语言圣经](https://course.rs/advance/lifetime/static.html#t-static)，这里就不再赘述。
 
 5、🌟🌟
-```rust,editable
-/* 让代码工作 */
+```rust,editable/* 让代码工作 */
 use std::fmt::Debug;
 
 fn print_it<T: Debug + 'static>( input: T) {
@@ -134,12 +136,11 @@ fn main() {
     // 但是下面的代码可以正常运行 !
     print_it2(&i);
 }
-```
-
+````
 
 6、🌟🌟🌟
-```rust,editable
-use std::fmt::Display;
+
+```rust,editableuse std::fmt::Display;
 
 fn main() {
   let mut string = "First".to_owned();

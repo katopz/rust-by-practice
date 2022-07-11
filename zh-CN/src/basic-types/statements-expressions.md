@@ -1,8 +1,8 @@
 # 语句与表达式
 
 ### 示例
-```rust,editable
-fn main() {
+
+```rust,editablefn main() {
     let x = 5u32;
 
     let y = {
@@ -25,9 +25,10 @@ fn main() {
 ```
 
 ### 练习
+
 1. 🌟🌟
-```rust,editable
-// 使用两种方法让代码工作起来
+
+```rust,editable// 使用两种方法让代码工作起来
 fn main() {
    let v = {
        let mut x = 1;
@@ -39,8 +40,8 @@ fn main() {
 ```
 
 2. 🌟
-```rust,editable
 
+```rust,editable
 fn main() {
    let v = (let x = 3);
 
@@ -49,8 +50,8 @@ fn main() {
 ```
 
 3. 🌟
-```rust,editable
 
+```rust,editable
 fn main() {
     let s = sum(1 , 2);
     assert_eq!(s, 3);
@@ -61,4 +62,4 @@ fn sum(x: i32, y: i32) -> i32 {
 }
 ```
 
-> 你可以在[这里](https://github.com/sunface/rust-by-practice/blob/master/solutions/basic-types/statements.md)找到答案(在 solutions 路径下) 
+> 你可以在[这里](https://github.com/sunface/rust-by-practice/blob/master/solutions/basic-types/statements.md)找到答案(在 solutions 路径下)

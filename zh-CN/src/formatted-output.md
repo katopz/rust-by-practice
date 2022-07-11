@@ -3,6 +3,7 @@
 ## 位置参数
 
 1.🌟🌟
+
 ```rust,edtiable
 
 /* 填空 */
@@ -17,14 +18,14 @@ fn main() {
 ## 具名参数
 
 2.🌟🌟
-```rust,editable
-fn main() {
+
+```rust,editablefn main() {
     println!("{argument}", argument = "test"); // => "test"
 
     /* 填空 */
     assert_eq!(format!("{name}{}", 1, __), "21");
     assert_eq!(format!(__,a = "a", b = 'b', c = 3 ), "a 3 b");
-    
+
     /* 修复错误 */
     // 具名参数必须放在其它参数后面
     println!("{abc} {1}", abc = "def", 2);
@@ -36,10 +37,10 @@ fn main() {
 ## 字符串对齐
 
 3.🌟🌟 默认情况下，通过空格来填充字符串
-```rust,editable
-fn main() {
+
+```rust,editablefn main() {
     // 下面两个都是通过 5 个空格来填充
-    println!("Hello {:5}!", "x"); // =>  "Hello x    !"  
+    println!("Hello {:5}!", "x"); // =>  "Hello x    !"
     println!("Hello {:1$}!", "x", 5); // =>  "Hello x    !"
 
     /* 填空 */
@@ -51,8 +52,8 @@ fn main() {
 ```
 
 4.🌟🌟🌟 左对齐, 右对齐, 使用指定的字符填充
-```rust,editable
-fn main() {
+
+```rust,editablefn main() {
     // 左对齐
     println!("Hello {:<5}!", "x"); // => Hello x    !
     // 右对齐
@@ -68,8 +69,8 @@ fn main() {
 ```
 
 5.🌟🌟 我们还能使用 0 来填充数字
-```rust,editable
-fn main() {
+
+```rust,editablefn main() {
     println!("Hello {:5}!", 5); // => Hello     5!
     println!("Hello {:+}!", 5); // =>  Hello +5!
     println!("Hello {:05}!", 5); // => Hello 00005!
@@ -77,20 +78,21 @@ fn main() {
 
     /* 填空 */
     assert!(format!("{number:0>width$}", number=1, width=6) == __);
-    
+
     println!("Success!")
 }
 ```
 
 ## 精度
-6.🌟🌟 浮点数精度
-```rust,editable
 
+6.🌟🌟 浮点数精度
+
+```rust,editable
 /* 填空 */
 fn main() {
     let v = 3.1415926;
 
-    println!("{:.1$}", v, 4); // same as {:.4} => 3.1416 
+    println!("{:.1$}", v, 4); // same as {:.4} => 3.1416
 
     assert_eq!(format!("__", v), "3.14");
     assert_eq!(format!("__", v), "+3.14");
@@ -101,8 +103,8 @@ fn main() {
 ```
 
 7.🌟🌟🌟 字符串长度
-```rust,editable
-fn main() {
+
+```rust,editablefn main() {
     let s = "Hello, world!";
 
     println!("{0:.5}", s); // => Hello
@@ -111,17 +113,16 @@ fn main() {
 
     println!("Success!")
 }
-```   
+```
 
 ## 二进制, 八进制, 十六进制
 
 - format!("{}", foo) -> "3735928559"
 - format!("0x{:X}", foo) -> "0xDEADBEEF"
 - format!("0o{:o}", foo) -> "0o33653337357"
-  
-8.🌟🌟
-```rust,editable
-fn main() {
+  8.🌟🌟
+
+```rust,editablefn main() {
     assert_eq!(format!("__", 27), "0b11011");
     assert_eq!(format!("__", 27), "0o33");
     assert_eq!(format!("__", 27), "0x1b");
@@ -136,9 +137,10 @@ fn main() {
 ```
 
 ## 捕获环境中的值
+
 9.🌟🌟🌟
-```rust,editable
-fn get_person() -> String {
+
+```rust,editablefn get_person() -> String {
     String::from("sunface")
 }
 
@@ -163,12 +165,11 @@ fn main() {
 }
 ```
 
-
 ## Others
 
 **Example**
-```rust,editable
-fn main() {
+
+```rust,editablefn main() {
     // 指数
     println!("{:2e}", 1000000000); // => 1e9
     println!("{:2E}", 1000000000); // => 1E9

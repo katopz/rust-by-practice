@@ -16,7 +16,7 @@ mod front_of_house {
 
         fn take_payment() {}
 
-        fn complain() {} 
+        fn complain() {}
     }
 }
 ```
@@ -41,7 +41,7 @@ pub mod front_of_house {
 
         // Maybe you don't want the guest hearing the your complaining about them
         // So just make it private
-        fn complain() {} 
+        fn complain() {}
     }
 }
 
@@ -123,8 +123,7 @@ pub fn seat_at_table() -> String {
 }
 ```
 
-```rust,editable
-// in src/front_of_house/serving.rs
+```rust,editable// in src/front_of_house/serving.rs
 
 pub fn take_order() {}
 
@@ -134,7 +133,7 @@ pub fn take_payment() {}
 
 // Maybe you don't want the guest hearing the your complaining about them
 // So just make it private
-fn complain() {} 
+fn complain() {}
 ```
 
 5.

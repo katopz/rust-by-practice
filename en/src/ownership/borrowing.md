@@ -1,9 +1,10 @@
 # Reference and Borrowing
 
 ### Reference
-1. 🌟
-```rust,editable
 
+1. 🌟
+
+```rust,editable
 fn main() {
    let x = 5;
    // Fill the blank
@@ -14,8 +15,8 @@ fn main() {
 ```
 
 2. 🌟
-```rust,editable
 
+```rust,editable
 fn main() {
     let x = 5;
     let y = &x;
@@ -28,8 +29,8 @@ fn main() {
 ```
 
 3. 🌟
-```rust,editable
 
+```rust,editable
 // Fix error
 fn main() {
     let mut s = String::from("hello, ");
@@ -43,8 +44,8 @@ fn borrow_object(s: &String) {}
 ```
 
 4. 🌟
-```rust,editable
 
+```rust,editable
 // Fix error
 fn main() {
     let mut s = String::from("hello, ");
@@ -60,14 +61,14 @@ fn push_str(s: &mut String) {
 ```
 
 5. 🌟🌟
-```rust,editable
 
+```rust,editable
 fn main() {
     let mut s = String::from("hello, ");
 
     // Fill the blank to make it work
     let p = __;
-    
+
     p.push_str("world");
 
     println!("Success!");
@@ -75,11 +76,12 @@ fn main() {
 ```
 
 #### Ref
+
 `ref` can be used to take references to a value, similar to `&`.
 
 6. 🌟🌟🌟
-```rust,editable
 
+```rust,editable
 fn main() {
     let c = '中';
 
@@ -88,7 +90,7 @@ fn main() {
     let __ r2 = c;
 
     assert_eq!(*r1, *r2);
-    
+
     // Check the equality of the two address strings
     assert_eq!(get_addr(r1),get_addr(r2));
 
@@ -102,9 +104,10 @@ fn get_addr(r: &char) -> String {
 ```
 
 ### Borrowing rules
-7. 🌟
-```rust,editable
 
+7. 🌟
+
+```rust,editable
 // Remove something to make it work
 // Don't remove a whole line !
 fn main() {
@@ -120,9 +123,10 @@ fn main() {
 ```
 
 #### Mutability
-8. 🌟 Error: Borrow an immutable object as mutable
-```rust,editable
 
+8. 🌟 Error: Borrow an immutable object as mutable
+
+```rust,editable
 fn main() {
     // Fix error by modifying this line
     let  s = String::from("hello, ");
@@ -136,14 +140,14 @@ fn borrow_object(s: &mut String) {}
 ```
 
 9. 🌟🌟 Ok: Borrow a mutable object as immutable
-```rust,editable
 
+```rust,editable
 // This code has no errors!
 fn main() {
     let mut s = String::from("hello, ");
 
     borrow_object(&s);
-    
+
     s.push_str("world");
 
     println!("Success!");
@@ -153,9 +157,10 @@ fn borrow_object(s: &String) {}
 ```
 
 ### NLL
-10. 🌟🌟
-```rust,editable
 
+10. 🌟🌟
+
+```rust,editable
 // Comment one line to make it work
 fn main() {
     let mut s = String::from("hello, ");
@@ -164,14 +169,14 @@ fn main() {
     r1.push_str("world");
     let r2 = &mut s;
     r2.push_str("!");
-    
+
     println!("{}",r1);
 }
 ```
 
 11. 🌟🌟
-```rust,editable
 
+```rust,editable
 fn main() {
     let mut s = String::from("hello, ");
 

@@ -1,8 +1,8 @@
 # 所有权
 
 1. 🌟🌟
-```rust,editable
 
+```rust,editable
 fn main() {
     // 使用尽可能多的方法来通过编译
     let x = String::from("hello, world");
@@ -12,8 +12,8 @@ fn main() {
 ```
 
 2. 🌟🌟
-```rust,editable
-// 不要修改 main 中的代码
+
+```rust,editable// 不要修改 main 中的代码
 fn main() {
     let s1 = String::from("hello, world");
     let s2 = take_ownership(s1);
@@ -27,10 +27,9 @@ fn take_ownership(s: String) {
 }
 ```
 
-
 3. 🌟🌟
-```rust,editable
 
+```rust,editable
 fn main() {
     let s = give_ownership();
     println!("{}", s);
@@ -47,8 +46,8 @@ fn give_ownership() -> String {
 ```
 
 4. 🌟🌟
-```rust,editable
-// 修复错误，不要删除任何代码行
+
+```rust,editable// 修复错误，不要删除任何代码行
 fn main() {
     let s = String::from("hello, world");
 
@@ -62,7 +61,8 @@ fn print_str(s: String)  {
 }
 ```
 
-5. 🌟🌟 
+5. 🌟🌟
+
 ```rust, editable
 // 不要使用 clone，使用 copy 的方式替代
 fn main() {
@@ -73,14 +73,15 @@ fn main() {
 ```
 
 #### 可变性
+
 当所有权转移时，可变性也可以随之改变。
 
 6. 🌟
-```rust,editable
 
+```rust,editable
 fn main() {
     let s = String::from("hello, ");
-    
+
     // 只修改下面这行代码 !
     let s1 = s;
 
@@ -89,27 +90,28 @@ fn main() {
 ```
 
 7. 🌟🌟🌟
-```rust,editable
 
+```rust,editable
 fn main() {
     let x = Box::new(5);
-    
+
     let ...      // 完成该行代码，不要修改其它行！
-    
+
     *y = 4;
-    
+
     assert_eq!(*x, 5);
 }
 ```
 
 ### 部分 move
+
 当解构一个变量时，可以同时使用 `move` 和引用模式绑定的方式。当这么做时，部分 `move` 就会发生：变量中一部分的所有权被转移给其它变量，而另一部分我们获取了它的引用。
 
 在这种情况下，原变量将无法再被使用，但是它没有转移所有权的那一部分依然可以使用，也就是之前被引用的那部分。
 
 #### 示例
-```rust,editable
 
+```rust,editable
 fn main() {
     #[derive(Debug)]
     struct Person {
@@ -123,7 +125,7 @@ fn main() {
     };
 
     // 通过这种解构式模式匹配，person.name 的所有权被转移给新的变量 `name`
-    // 但是，这里 `age` 变量确是对 person.age 的引用, 这里 ref 的使用相当于: let age = &person.age 
+    // 但是，这里 `age` 变量确是对 person.age 的引用, 这里 ref 的使用相当于: let age = &person.age
     let Person { name, ref age } = person;
 
     println!("The person's age is {}", age);
@@ -141,8 +143,8 @@ fn main() {
 #### 练习
 
 8. 🌟
-```rust,editable
 
+```rust,editable
 fn main() {
    let t = (String::from("hello"), String::from("world"));
 
@@ -154,8 +156,8 @@ fn main() {
 ```
 
 9. 🌟🌟
-```rust,editable
 
+```rust,editable
 fn main() {
    let t = (String::from("hello"), String::from("world"));
 
@@ -166,4 +168,4 @@ fn main() {
 }
 ```
 
-> 你可以在[这里](https://github.com/sunface/rust-by-practice/blob/master/solutions/ownership/ownership.md)找到答案(在 solutions 路径下) 
+> 你可以在[这里](https://github.com/sunface/rust-by-practice/blob/master/solutions/ownership/ownership.md)找到答案(在 solutions 路径下)

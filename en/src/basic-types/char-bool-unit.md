@@ -1,30 +1,33 @@
 # Char, Bool and Unit
 
 ### Char
+
 1. 🌟
+
 ```rust, editable
 
 // Make it work
 use std::mem::size_of_val;
 fn main() {
     let c1 = 'a';
-    assert_eq!(size_of_val(&c1),1); 
+    assert_eq!(size_of_val(&c1),1);
 
     let c2 = '中';
-    assert_eq!(size_of_val(&c2),3); 
+    assert_eq!(size_of_val(&c2),3);
 
     println!("Success!");
-} 
+}
 ```
 
 2. 🌟
+
 ```rust, editable
 
 // Make it work
 fn main() {
     let c1 = "中";
     print_char(c1);
-} 
+}
 
 fn print_char(c : char) {
     println!("{}", c);
@@ -32,7 +35,9 @@ fn print_char(c : char) {
 ```
 
 ### Bool
+
 3. 🌟
+
 ```rust, editable
 
 // Make println! work
@@ -43,10 +48,11 @@ fn main() {
     if !t {
         println!("Success!");
     }
-} 
+}
 ```
 
 4. 🌟
+
 ```rust, editable
 
 // Make it work
@@ -59,11 +65,11 @@ fn main() {
 }
 ```
 
-
 ### Unit type
-5. 🌟🌟
-```rust,editable
 
+5. 🌟🌟
+
+```rust,editable
 // Make it work, don't modify `implicitly_ret_unit` !
 fn main() {
     let _v: () = ();
@@ -85,8 +91,8 @@ fn explicitly_ret_unit() -> () {
 ```
 
 6. 🌟🌟 What's the size of the unit type?
-```rust,editable
 
+```rust,editable
 // Modify `4` in assert to make it work
 use std::mem::size_of_val;
 fn main() {
