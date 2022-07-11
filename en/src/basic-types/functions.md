@@ -18,9 +18,26 @@ fn sum(x, y: i32) {
 }
 ```
 
+```rust,answer
+fn main() {
+    // Don't modify the following two lines!
+    let (x, y) = (1, 2);
+    let s = sum(x, y);
+
+    assert_eq!(s, 3);
+
+    println!("Success!");
+}
+
+fn sum(x: i32, y: i32) -> i32 {
+    x + y
+}
+```
+
 2. 🌟
 
-```rust,editablefn main() {
+```rust,editable
+fn main() {
    print();
 }
 
@@ -30,9 +47,21 @@ fn print() -> i32 {
 }
 ```
 
+```rust,answer
+fn main() {
+   print();
+}
+
+// Replace i32 with another type
+fn print() -> () {
+   println!("Success!");
+}
+```
+
 3. 🌟🌟🌟
 
-```rust,editable// Solve it in two ways
+```rust,editable
+// Solve it in two ways
 // DON'T let `println!` works
 fn main() {
     never_return();
@@ -43,6 +72,39 @@ fn main() {
 fn never_return() -> ! {
     // Implement this function, don't modify the fn signatures
 
+}
+```
+
+```rust,answer
+// Solve it in two ways
+// DON'T let `println!` works
+fn main() {
+    never_return();
+}
+
+fn never_return() -> ! {
+    // Implement this function, don't modify the fn signatures
+    panic!("I return nothing!")
+}
+```
+
+```rust,answer
+// Solve it in two ways
+// DON'T let `println!` works
+fn main() {
+    never_return();
+}
+
+use std::thread;
+use std::time;
+
+fn never_return() -> ! {
+    // Implement this function, don't modify the fn signatures
+    loop {
+        println!("I return nothing");
+        // sleeping for 1 second to avoid exhausting the cpu resoucre
+        thread::sleep(time::Duration::from_secs(1))
+    }
 }
 ```
 
@@ -77,6 +139,83 @@ fn never_return_fn() -> ! {
 }
 ```
 
+```rust,answer
+fn main() {
+    println!("Success!");
+}
+
+fn get_option(tp: u8) -> Option<i32> {
+    match tp {
+        1 => {
+            // TODO
+        }
+        _ => {
+            // TODO
+        }
+    };
+
+    // Rather than returning a None, we use a diverging function instead
+    never_return_fn()
+}
+
+// IMPLEMENT this function in THREE ways
+fn never_return_fn() -> ! {
+    unimplemented!()
+}
+```
+
+```rust,answer
+fn main() {
+    println!("Success!");
+}
+
+fn get_option(tp: u8) -> Option<i32> {
+    match tp {
+        1 => {
+            // TODO
+        }
+        _ => {
+            // TODO
+        }
+    };
+
+    // Rather than returning a None, we use a diverging function instead
+    never_return_fn()
+}
+
+// IMPLEMENT this function in THREE ways
+fn never_return_fn() -> ! {
+    panic!()
+}
+```
+
+```rust,answer
+fn main() {
+    println!("Success!");
+}
+
+fn get_option(tp: u8) -> Option<i32> {
+    match tp {
+        1 => {
+            // TODO
+        }
+        _ => {
+            // TODO
+        }
+    };
+
+    // Rather than returning a None, we use a diverging function instead
+    never_return_fn()
+}
+
+// IMPLEMENT this function in THREE ways
+fn never_return_fn() -> ! {
+    loop {
+        std::thread::sleep(std::time::Duration::from_secs(1))
+    }
+}
+```
+
 5. 🌟🌟
 
 ```rust,editable
@@ -90,6 +229,24 @@ fn main() {
         false => {
             println!("Success!");
             panic!("we have no value for `false`, but we can panic");
+        }
+    };
+
+    println!("Exercise Failed if printing out this line!");
+}
+```
+
+```rust,answer
+fn main() {
+    // FILL in the blank
+    let b = false;
+
+    let v = match b {
+        true => 1,
+        // Diverging functions can also be used in match expression to replace a value of any value
+        false => {
+            println!("Success!");
+            panic!("we have no value for `false`, but we can panic")
         }
     };
 
