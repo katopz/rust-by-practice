@@ -1,153 +1,105 @@
+const get_answers = (current) => {
+  let _current = current
+  let answers = []
+  while (_current.nextSibling && _current.nextSibling.nextSibling && _current.nextSibling.nextSibling.nodeName === 'PRE' && _current.nextSibling.nextSibling.firstChild.childNodes[1].className.indexOf('answer')) {
+    answers.push((_current = _current.nextSibling.nextSibling))
+  }
+
+  return answers
+}
+
 window.onload = function () {
-  // Assume edit mode
-  if (window.location.hostname !== 'localhost' && window.location.hostname !== '[::1]') return
-
-  function getRoWColumnRange(range) {
-    const { start, end } = range
-    if (start.row === end.row) {
-      return { row: Math.min(start.row, end.row), column: Math.min(start.column, end.column) }
-    } else if (start.row < end.row) {
-      return start
-    } else {
-      return end
-    }
-  }
-
-  function removeAllMarker(editor) {
-    const prevMarkers = editor.session.getMarkers()
-    if (prevMarkers) {
-      const prevMarkersArr = Object.keys(prevMarkers)
-      for (let item of prevMarkersArr) {
-        editor.session.removeMarker(prevMarkers[item].id)
-      }
-    }
-  }
+  const dmp = new diff_match_patch()
 
   window.editors.forEach((editor, i) => {
-    editor.raw = editor.session.getValue()
-    editor.type = editor.session.getValue().indexOf('__') > 0 ? 'under' : 'at'
-    editor.solutions = []
-    editor.removes = []
-    editor.onCopy = function () {
-      const { start, end } = this.getSelectionRange()
-      const a = { row: Math.min(start.row, end.row), column: Math.min(start.column, end.column) }
-      const b = { row: Math.max(start.row, end.row), column: Math.max(start.column, end.column) }
-      editor.removes.push({ start: a, end: b })
-
-      editor.type = 'replace'
+    // Clear marker on focus
+    function removeAllMarker(editor) {
+      const prevMarkers = editor.session.getMarkers()
+      if (prevMarkers) {
+        const prevMarkersArr = Object.keys(prevMarkers)
+        for (let item of prevMarkersArr) {
+          editor.session.removeMarker(prevMarkers[item].id)
+        }
+      }
     }
 
     editor.on('focus', () => removeAllMarker(editor))
 
-    editor.onCut = function () {
-      const range = this.getSelectionRange()
-      const { row, column } = getRoWColumnRange(range)
-      const raw_length = editor.session.getValue().length
+    // Find answers after editor
+    let current = editor.container.parentElement.parentNode
+    editor.answers = get_answers(current)
 
-      const raw_copy_text = this.getCopyText()
-      const copy_text = raw_copy_text.replace(/`/g, '\\`')
+    // Create buttons from answers
+    let buttons = []
+    editor.answers.forEach((answer, i) => {
+      let button = document.createElement('button')
+      let button_text = `🦀 HINT` + (editor.answers.length === 1 ? `` : ` ${i + 1}`)
+      button.append(button_text)
+      button.className = 'hint'
+      button.onclick = () => {
+        let uncompleted_text = editor.session.getValue()
+        let answer_text = answer.firstChild.textContent
+        editor.setValue(answer_text)
+        editor.selection.selectTo(0)
 
-      // all
-      if (raw_length === raw_copy_text.length) {
-        editor.type = 'all'
+        // Highlight patched
+        const diffs = dmp.diff_main(uncompleted_text, answer_text).filter((e) => e['0'] !== -1)
+        console.log('diffs:', diffs)
+
+        if (diffs.length >= 0) {
+          let cursor = 0
+          let text = ''
+          diffs.forEach((diff, i) => {
+            let [a, b] = Array.from(diff)
+
+            if (i % 2 === 0) {
+              cursor += b.length
+            } else {
+              console.log('---------------')
+              console.log('[a, b]:', [a, b])
+              let texts = text.split('\n')
+              console.log('texts:', texts)
+
+              // let tabs = texts.map((e) => {
+              //   console.log('e:', e)
+              //   return e.split('\t').length
+              // })
+              // console.log('tabs:', tabs)
+
+              let row = texts.length - 1
+
+              console.log('b.length:', b.length)
+
+              let prev_text = texts[texts.length - 1].split('\t').join('').length
+              console.log('prev_text:', prev_text)
+
+              let prev_tab = texts[texts.length - 1].split('\t').length
+              console.log('prev_tab:', prev_tab)
+
+              let newlines = b.split('\n')
+              let start_with_new_line = b.indexOf('\n') === 0
+
+              let tab = newlines[0].split('\t').length
+              console.log('tab:', tab)
+
+              // newline
+              let column = start_with_new_line ? 0 : prev_text
+              row = start_with_new_line ? row + 1 : row
+
+              let range = new ace.Range(row, column, row, column + b.length)
+              console.log('range:', range)
+              editor.session.addMarker(range, 'ace_step', 'line', false)
+            }
+
+            text += b
+          })
+        }
       }
 
-      // all | at | under | replace
-      let solution = '`' + copy_text + '`'
-      let fn = 'solveAll'
-      switch (editor.type) {
-        case 'at':
-          this.solutions.push(JSON.stringify([row, column, copy_text]))
-          solution = `[${this.solutions}]`
-          fn = 'solveAt'
-          break
-        case 'under':
-          this.solutions.push(JSON.stringify(copy_text))
-          solution = `[${this.solutions}]`
-          fn = 'solveUnder'
-          break
-        case 'replace':
-          this.solutions.push(JSON.stringify([row, column, copy_text, editor.removes]))
-          solution = `[${this.solutions}]`
-          fn = 'solveReplace'
-          break
-      }
+      buttons.push(button)
+      answer.remove()
+    })
 
-      // Copy
-      navigator.clipboard.writeText(`<script>let answers_${i + 1} = ${solution}</script>
-<button class="hint" id="hint_${i + 1}" onclick="this.${fn}(${editor.type === 'all' ? '' : '...'}answers_${i + 1})">💡 HINT</button>`)
-
-      // super
-      this.commands.exec('cut', this)
-    }.bind(editor)
-  })
-  ;[...document.querySelectorAll('.hint')].forEach((e) => {
-    let editor = window.editors[parseInt(e.id.split('_')[1]) - 1]
-
-    e.solveUnder = (...arguments) => {
-      // restore
-      editor.session.setValue(editor.raw)
-
-      // get __ position
-      editor.findAll('__')
-      const ranges = editor.getSelection().getAllRanges()
-      ranges.forEach((range, i) => {
-        const { start, end } = range
-        const { row, column } = { row: Math.min(start.row, end.row), column: Math.min(start.column, end.column) }
-        const answer = arguments[i]
-        editor.session.addMarker(new ace.Range(row, column, row, column + answer.length), 'ace_step', 'line', false)
-      })
-
-      editor.session.setValue(editor.session.getValue().replace(/(__)/g, () => arguments.shift()))
-    }
-
-    e.solveAt = (...arguments) => {
-      // restore
-      editor.session.setValue(editor.raw)
-      removeAllMarker(editor)
-
-      // insert
-      arguments.forEach((answers) => {
-        const [row, column, answer] = answers
-        editor.session.insert({ row, column }, answer)
-        editor.session.addMarker(new ace.Range(row, column, row, column + answer.length), 'ace_step', 'line', false)
-
-        // More highlight for newline
-        const newlines = answer.split('\n')
-        let j = 0
-        let k = 0
-        while (newlines[j++] === '') k++
-        if (k > 0) {
-          editor.session.addMarker(new ace.Range(row + k, 0, row + k, 0 + answer.length), 'ace_step', 'line', false)
-        }
-      })
-    }
-
-    e.solveReplace = (...arguments) => {
-      // restore
-      editor.session.setValue(editor.raw)
-      removeAllMarker(editor)
-
-      // insert
-      arguments.forEach((answers, i) => {
-        const [row, column, answer, removes] = answers
-        editor.session.replace(removes[i], '')
-        editor.session.insert({ row, column }, answer)
-        editor.session.addMarker(new ace.Range(row, column, row, column + answer.length), 'ace_step', 'line', false)
-
-        // More highlight for newline
-        const newlines = answer.split('\n')
-        let j = 0
-        let k = 0
-        while (newlines[j++] === '') k++
-        if (k > 0) {
-          editor.session.addMarker(new ace.Range(row + k, 0, row + k, 0 + answer.length), 'ace_step', 'line', false)
-        }
-      })
-    }
-
-    e.solveAll = (answer) => {
-      editor.session.setValue(answer)
-    }
+    buttons.forEach((button) => current.append(button))
   })
 }

@@ -15,7 +15,7 @@ level = 1
 
 [output.html]
 additional-css = ["theme/style1.css", "theme/quiz.css"]
-additional-js = ["assets/custom3.js","assets/lang.js", "assets/quiz.js"]
+additional-js = ["assets/custom3.js","assets/lang.js", "assets/diff.js", "assets/quiz.js"]
 git-repository-url = "https://github.com/sunface/rust-by-practice"
 edit-url-template = "https://github.com/sunface/rust-by-practice/edit/master/en/{path}"
 
