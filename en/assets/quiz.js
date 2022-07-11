@@ -49,49 +49,32 @@ window.onload = function () {
         if (diffs.length >= 0) {
           let cursor = 0
           let text = ''
+
           diffs.forEach((diff, i) => {
-            let [a, b] = Array.from(diff)
+            let current_text = diff['1']
 
             if (i % 2 === 0) {
-              cursor += b.length
+              cursor += current_text.length
             } else {
-              console.log('---------------')
-              console.log('[a, b]:', [a, b])
               let texts = text.split('\n')
-              console.log('texts:', texts)
-
-              // let tabs = texts.map((e) => {
-              //   console.log('e:', e)
-              //   return e.split('\t').length
-              // })
-              // console.log('tabs:', tabs)
 
               let row = texts.length - 1
-
-              console.log('b.length:', b.length)
-
               let prev_text = texts[texts.length - 1].split('\t').join('').length
-              console.log('prev_text:', prev_text)
 
-              let prev_tab = texts[texts.length - 1].split('\t').length
-              console.log('prev_tab:', prev_tab)
+              let newlines = current_text.split('\n')
+              let start_with_new_line = current_text.indexOf('\n') === 0
 
-              let newlines = b.split('\n')
-              let start_with_new_line = b.indexOf('\n') === 0
-
-              let tab = newlines[0].split('\t').length
-              console.log('tab:', tab)
+              let tab = newlines[0].split('\t').length * 4
 
               // newline
-              let column = start_with_new_line ? 0 : prev_text
+              let column = start_with_new_line ? tab : prev_text
               row = start_with_new_line ? row + 1 : row
 
-              let range = new ace.Range(row, column, row, column + b.length)
-              console.log('range:', range)
+              let range = new ace.Range(row, column, row, column + current_text.length)
               editor.session.addMarker(range, 'ace_step', 'line', false)
             }
 
-            text += b
+            text += current_text
           })
         }
       }
