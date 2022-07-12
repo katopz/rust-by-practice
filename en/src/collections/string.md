@@ -1,10 +1,12 @@
 # String
+
 `std::string::String` is a UTF-8 encoded, growable string. It is the most common string type we used in daily dev, it also has ownership over the string contents.
 
 ### Basic operations
-1. 🌟🌟
-```rust,editable
 
+1. 🌟🌟
+
+```rust,editable
 // FILL in the blanks and FIX errors
 // 1. Don't use `to_string()`
 // 2. Dont't add/remove any code line
@@ -26,14 +28,15 @@ fn move_ownership(s: String) {
 ```
 
 ### String and &str
+
 A `String` is stored as a vector of bytes (`Vec<u8>`), but guaranteed to always be a valid UTF-8 sequence. `String` is heap allocated, growable and not null terminated.
 
 `&str` is a slice (`&[u8]`) that always points to a valid UTF-8 sequence, and can be used to view into a String, just like `&[T]` is a view into `Vec<T>`.
 
 2. 🌟🌟
-```rust,editable
-// FILL in the blanks
-fn main() {  
+
+```rust,editable// FILL in the blanks
+fn main() {
    let mut s = String::from("hello, world");
 
    let slice1: &str = __; // in two ways
@@ -42,7 +45,7 @@ fn main() {
    let slice2 = __;
    assert_eq!(slice2, "hello");
 
-   let slice3: __ = __; 
+   let slice3: __ = __;
    slice3.push('!');
    assert_eq!(slice3, "hello, world!");
 
@@ -51,11 +54,11 @@ fn main() {
 ```
 
 3. 🌟🌟
-```rust,editable
 
+```rust,editable
 // Question: how many heap allocations are happend here ?
-// Your answer: 
-fn main() {  
+// Your answer:
+fn main() {
     // Create a String type based on `&str`
     // the type of string literals is `&str`
    let s: String = String::from("hello, world!");
@@ -73,9 +76,10 @@ fn main() {
 ```
 
 ### UTF-8 & Indexing
+
 Strings are always valid UTF-8. This has a few implications:
 
-- the first of which is that if you need a non-UTF-8 string, consider [OsString](https://doc.rust-lang.org/stable/std/ffi/struct.OsString.html). It is similar, but without the UTF-8 constraint. 
+- the first of which is that if you need a non-UTF-8 string, consider [OsString](https://doc.rust-lang.org/stable/std/ffi/struct.OsString.html). It is similar, but without the UTF-8 constraint.
 - The second implication is that you cannot index into a String
 
 Indexing is intended to be a constant-time operation, but UTF-8 encoding does not allow us to do this. Furthermore, it’s not clear what sort of thing the index should return: a byte, a codepoint, or a grapheme cluster. The bytes and chars methods return iterators over the first two, respectively.
@@ -83,7 +87,6 @@ Indexing is intended to be a constant-time operation, but UTF-8 encoding does no
 4. 🌟🌟🌟 You can't use index to access a char in a string, but you can use slice `&s1[start..end]`.
 
 ```rust,editable
-
 // FILL in the blank and FIX errors
 fn main() {
     let s = String::from("hello, 世界");
@@ -92,7 +95,7 @@ fn main() {
 
     let slice2 = &s[3..5];// tips: `中`  takes 3 bytes in UTF8 format
     assert_eq!(slice2, "世");
-    
+
     // iterate all chars in s
     for (i, c) in s.__ {
         if i == 7 {
@@ -104,11 +107,12 @@ fn main() {
 }
 ```
 
-
 #### utf8_slice
+
 You can use [utf8_slice](https://docs.rs/utf8_slice/1.0.0/utf8_slice/fn.slice.html) to slice UTF8 string, it can index chars instead of bytes.
 
 **Example**
+
 ```rust
 use utf8_slice;
 fn main() {
@@ -119,12 +123,10 @@ fn main() {
 }
 ```
 
-
 5. 🌟🌟🌟
-> Tips: maybe you need `from_utf8` method
+   > Tips: maybe you need `from_utf8` method
 
 ```rust,editable
-
 // FILL in the blanks
 fn main() {
     let mut s = String::new();
@@ -135,8 +137,8 @@ fn main() {
 
     // Turn a bytes vector into a String
     let s1 = __;
-    
-    
+
+
     assert_eq!(s, s1);
 
     println!("Success!")
@@ -144,14 +146,15 @@ fn main() {
 ```
 
 ### Representation
-A String is made up of three components: a pointer to some bytes, a length, and a capacity. 
+
+A String is made up of three components: a pointer to some bytes, a length, and a capacity.
 
 The pointer points to an internal buffer String uses to store its data. The length is the number of bytes currently stored in the buffer( always stored on the heap ), and the capacity is the size of the buffer in bytes. As such, the length will always be less than or equal to the capacity.
 
 6. 🌟🌟 If a String has enough capacity, adding elements to it will not re-allocate
-```rust,editable
 
-// modify the code below to print out: 
+```rust,editable
+// modify the code below to print out:
 // 25
 // 25
 // 25
@@ -171,8 +174,8 @@ fn main() {
 ```
 
 7. 🌟🌟🌟
-```rust,editable
 
+```rust,editable
 // FILL in the blanks
 use std::mem;
 
@@ -199,8 +202,8 @@ fn main() {
 }
 ```
 
-
 ### Common methods
+
 More exercises of String methods can be found [here](../std/String.md).
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it

@@ -1,8 +1,9 @@
 # Module
+
 Modules let us organize the code within a crate into groups by readablity and easy reuse. Module also controls the privacy of items, which is whether an item can be seen by outside code( public ), or is just an internal implementation and not available for outside code( private ).
 
-
 We have created a package named `hello-package` in previous chapter, and it looks like this:
+
 ```shell
 .
 ├── Cargo.toml
@@ -14,6 +15,7 @@ We have created a package named `hello-package` in previous chapter, and it look
 Now it's time to create some modules in the library crate and use them in the binary crate, let's start.
 
 1. 🌟🌟 Implement module `front_of_house` based on the module tree below:
+
 ```shell
 library crate root
  └── front_of_house
@@ -27,15 +29,13 @@ library crate root
          └── complain
 ```
 
-```rust,editable
-// FILL in the blank
+```rust,editable// FILL in the blank
 // in __.rs
 
 mod front_of_house {
     // IMPLEMENT this module..
 }
 ```
-
 
 2. 🌟🌟 Let's call `add_to_waitlist` from a function `eat_at_restaurant` which within the library crate root.
 
@@ -52,14 +52,14 @@ pub fn eat_at_restaurant() {
     // call add_to_waitlist with **absolute path**:
     __.add_to_waitlist();
 
-    // call with **relative path** 
+    // call with **relative path**
      __.add_to_waitlist();
 }
 ```
 
 3. 🌟🌟 You can use `super` to import items within the parent module
-```rust,editable
-// in lib.rs
+
+```rust,editable// in lib.rs
 
 mod back_of_house {
     fn fix_incorrect_order() {
@@ -74,8 +74,8 @@ mod back_of_house {
 }
 ```
 
-
 ### Separating modules into different files
+
 ```rust
 // in lib.rs
 pub mod front_of_house {
@@ -96,13 +96,13 @@ pub mod front_of_house {
 
         // Maybe you don't want the guest hearing the your complaining about them
         // So just make it private
-        fn complain() {} 
+        fn complain() {}
     }
 }
 
 pub fn eat_at_restaurant() -> String {
     front_of_house::hosting::add_to_waitlist();
-    
+
     back_of_house::cook_order();
 
     String::from("yummy yummy!")
@@ -119,6 +119,7 @@ pub mod back_of_house {
 ```
 
 4. 🌟🌟🌟🌟 Please separate the modules and codes above into files resident in below dir tree :
+
 ```shell
 .
 ├── Cargo.toml
@@ -132,41 +133,37 @@ pub mod back_of_house {
 │   └── main.rs
 ```
 
-```rust,editable
-// in src/lib.rs
+```rust,editable// in src/lib.rs
 
 // IMPLEMENT...
 ```
 
-```rust,editable
-// in src/back_of_house.rs
+```rust,editable// in src/back_of_house.rs
 
 // IMPLEMENT...
 ```
 
-
-```rust,editable
-// in src/front_of_house/mod.rs
+```rust,editable// in src/front_of_house/mod.rs
 
 // IMPLEMENT...
 ```
 
-```rust,editable
-// in src/front_of_house/hosting.rs
+```rust,editable// in src/front_of_house/hosting.rs
 
 // IMPLEMENT...
 ```
 
-```rust,editable
-// in src/front_of_house/serving.rs
+```rust,editable// in src/front_of_house/serving.rs
 
 // IMPLEMENT...
 ```
 
 ### accessing code in library crate from binary crate
+
 **Please ensure you have completed the 4th exercise before making further progress.**
 
-You should have below structures and the corresponding codes in them when reaching here: 
+You should have below structures and the corresponding codes in them when reaching here:
+
 ```shell
 .
 ├── Cargo.toml
@@ -182,8 +179,7 @@ You should have below structures and the corresponding codes in them when reachi
 
 5. 🌟🌟🌟 Now we will call a few library functions from the binary crate.
 
-```rust,editable
-// in src/main.rs
+```rust,editable// in src/main.rs
 
 // FILL in the blank and FIX the errors
 fn main() {

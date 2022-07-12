@@ -1,5 +1,7 @@
 # &'static and T: 'static
+
 `'static` is a reserverd lifetime name, you might have encountered it serveral times:
+
 ```rust
 // A reference with 'static lifetime:
 let s: &'static str = "hello world";
@@ -11,14 +13,12 @@ fn generic<T>(x: T) where T: 'static {}
 Though they are all `'static`, but subtly different.
 
 ## &'static
+
 As a reference lifetime, `&'static` indicates the data pointed to by the reference lives as long as the running program. But it can still be coerced to a shorter lifetime.
-
-
 
 1、🌟🌟 There are several ways to make a variable with `'static` lifetime, two of them are stored in the read-only memory of the binary。
 
 ```rust,editable
-
 /* Fill in the blank in two ways */
 fn main() {
     __;
@@ -33,8 +33,8 @@ fn need_static(r : &'static str) {
 ```
 
 2、 🌟🌟🌟🌟 Another way to make `'static` lifetime is using `Box::leak`
-```rust,editable
-#[derive(Debug)]
+
+```rust,editable#[derive(Debug)]
 struct Config {
     a: String,
     b: String,
@@ -60,8 +60,8 @@ fn main() {
 ```
 
 3、 🌟 `&'static` only indicates that the data can live forever, not the reference. The latter one will be constrained by its scope.
-```rust,editable
-fn main() {
+
+```rust,editablefn main() {
     {
         // Make a `string` literal and print it:
         let static_string = "I'm in read-only memory";
@@ -78,20 +78,19 @@ fn main() {
 4、 `&'static` can be coerced to a shorter lifetime.
 
 **Example**
-```rust,editable
-// Make a constant with `'static` lifetime.
+```rust,editable// Make a constant with `'static` lifetime.
 static NUM: i32 = 18;
 
 // Returns a reference to `NUM` where its `'static`
 // lifetime is coerced to that of the input argument.
-fn coerce_static<'a>(_: &'a i32) -> &'a i32 {
-    &NUM
+fn coerce*static<'a>(*: &'a i32) -> &'a i32 {
+&NUM
 }
 
 fn main() {
-    {
-        // Make an integer to use for `coerce_static`:
-        let lifetime_num = 9;
+{
+// Make an integer to use for `coerce_static`:
+let lifetime_num = 9;
 
         // Coerce `NUM` to lifetime of `lifetime_num`:
         let coerced_static = coerce_static(&lifetime_num);
@@ -100,8 +99,10 @@ fn main() {
     }
 
     println!("NUM: {} stays accessible!", NUM);
+
 }
-```
+
+````
 
 
 
@@ -111,8 +112,7 @@ As a trait bound, it means the type does not contain any non-static references. 
 It's important to understand this means that any owned data always passes a `'static `lifetime bound, but a reference to that owned data generally does no。
 
 5、🌟🌟
-```rust,editable
-/* Make it work */
+```rust,editable/* Make it work */
 use std::fmt::Debug;
 
 fn print_it<T: Debug + 'static>( input: T) {
@@ -142,12 +142,11 @@ fn main() {
     // but this one WORKS !
     print_it2(&i);
 }
-```
-
+````
 
 6、🌟🌟🌟
-```rust,editable
-use std::fmt::Display;
+
+```rust,editableuse std::fmt::Display;
 
 fn main() {
   let mut string = "First".to_owned();

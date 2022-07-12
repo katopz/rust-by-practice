@@ -9,7 +9,6 @@
 1. 🌟🌟
 
 ```rust,editable
-
 // 填空并修复错误
 use std::collections::HashMap;
 fn main() {
@@ -41,7 +40,6 @@ fn main() {
 2. 🌟🌟
 
 ```rust,editable
-
 use std::collections::HashMap;
 fn main() {
     let teams = [
@@ -68,7 +66,6 @@ fn main() {
 3. 🌟🌟
 
 ```rust,editable
-
 // 填空
 use std::collections::HashMap;
 fn main() {
@@ -113,7 +110,6 @@ fn random_stat_buff() -> u8 {
 4. 🌟🌟
 
 ```rust,editable
-
 // 修复错误
 // 提示: `derive` 是实现一些常用特征的好办法
 use std::collections::HashMap;
@@ -154,7 +150,6 @@ fn main() {
 #### 示例
 
 ```rust,editable
-
 use std::collections::HashMap;
 fn main() {
     let mut map: HashMap<i32, i32> = HashMap::with_capacity(100);
@@ -181,8 +176,7 @@ fn main() {
 
 5. 🌟🌟
 
-```rust,editable
-// 修复错误，尽可能少的去修改代码
+```rust,editable// 修复错误，尽可能少的去修改代码
 // 不要移除任何代码行！
 use std::collections::HashMap;
 fn main() {

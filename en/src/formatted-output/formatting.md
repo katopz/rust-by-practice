@@ -3,6 +3,7 @@
 ## Positional arguments
 
 1.🌟🌟
+
 ```rust,edtiable
 
 /* Fill in the blanks */
@@ -17,14 +18,14 @@ fn main() {
 ## Named arguments
 
 2.🌟🌟
-```rust,editable
-fn main() {
+
+```rust,editablefn main() {
     println!("{argument}", argument = "test"); // => "test"
 
     /* Fill in the blanks */
     assert_eq!(format!("{name}{}", 1, __), "21");
     assert_eq!(format!(__,a = "a", b = 'b', c = 3 ), "a 3 b");
-    
+
     /* Fix the error */
     // named argument must be placed after other arguments
     println!("{abc} {1}", abc = "def", 2);
@@ -36,10 +37,10 @@ fn main() {
 ## Padding with string
 
 3.🌟🌟 By default, you can pad string with spaces
-```rust,editable
-fn main() {
+
+```rust,editablefn main() {
     // the following two are padding with 5 spaces
-    println!("Hello {:5}!", "x"); // =>  "Hello x    !"  
+    println!("Hello {:5}!", "x"); // =>  "Hello x    !"
     println!("Hello {:1$}!", "x", 5); // =>  "Hello x    !"
 
     /* Fill in the blanks */
@@ -51,8 +52,8 @@ fn main() {
 ```
 
 4.🌟🌟🌟 Left align, right align, pad with specified characters.
-```rust,editable
-fn main() {
+
+```rust,editablefn main() {
     // left align
     println!("Hello {:<5}!", "x"); // => Hello x    !
     // right align
@@ -68,8 +69,8 @@ fn main() {
 ```
 
 5.🌟🌟 You can pad numbers with extra zeros.
-```rust,editable
-fn main() {
+
+```rust,editablefn main() {
     println!("Hello {:5}!", 5); // => Hello     5!
     println!("Hello {:+}!", 5); // =>  Hello +5!
     println!("Hello {:05}!", 5); // => Hello 00005!
@@ -77,20 +78,21 @@ fn main() {
 
     /* Fill in the blank */
     assert!(format!("{number:0>width$}", number=1, width=6) == __);
-    
+
     println!("Success!")
 }
 ```
 
 ## precision
-6.🌟🌟 Floating point precision
-```rust,editable
 
+6.🌟🌟 Floating point precision
+
+```rust,editable
 /* Fill in the blanks */
 fn main() {
     let v = 3.1415926;
 
-    println!("{:.1$}", v, 4); // same as {:.4} => 3.1416 
+    println!("{:.1$}", v, 4); // same as {:.4} => 3.1416
 
     assert_eq!(format!("__", v), "3.14");
     assert_eq!(format!("__", v), "+3.14");
@@ -101,8 +103,8 @@ fn main() {
 ```
 
 7.🌟🌟🌟 string length
-```rust,editable
-fn main() {
+
+```rust,editablefn main() {
     let s = "Hello, world!";
 
     println!("{0:.5}", s); // => Hello
@@ -111,17 +113,16 @@ fn main() {
 
     println!("Success!")
 }
-```   
+```
 
 ## binary, octal, hex
 
 - format!("{}", foo) -> "3735928559"
 - format!("0x{:X}", foo) -> "0xDEADBEEF"
 - format!("0o{:o}", foo) -> "0o33653337357"
-  
-8.🌟🌟
-```rust,editable
-fn main() {
+  8.🌟🌟
+
+```rust,editablefn main() {
     assert_eq!(format!("__", 27), "0b11011");
     assert_eq!(format!("__", 27), "0o33");
     assert_eq!(format!("__", 27), "0x1b");
@@ -136,9 +137,10 @@ fn main() {
 ```
 
 ## Capture the enviroments
+
 9.🌟🌟🌟
-```rust,editable
-fn get_person() -> String {
+
+```rust,editablefn get_person() -> String {
     String::from("sunface")
 }
 
@@ -163,12 +165,11 @@ fn main() {
 }
 ```
 
-
 ## Others
 
 **Example**
-```rust,editable
-fn main() {
+
+```rust,editablefn main() {
     // exponent
     println!("{:2e}", 1000000000); // => 1e9
     println!("{:2E}", 1000000000); // => 1E9

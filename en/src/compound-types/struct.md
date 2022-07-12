@@ -1,9 +1,10 @@
 # Struct
 
 ### The types of structs
-1. 🌟 We must specify concrete values for each of the fields in struct.
-```rust,editable
 
+1. 🌟 We must specify concrete values for each of the fields in struct.
+
+```rust,editable
 // Fix the error
 struct Person {
     name: String,
@@ -18,13 +19,12 @@ fn main() {
     };
 
     println!("Success!");
-} 
+}
 ```
 
+2. 🌟 Unit struct don't have any fields. It can be useful when you need to implement a trait on some type but don’t have any data that you want to store in the type itself.
 
-2. 🌟 Unit struct don't have any fields. It can be useful when you need to implement a trait on some type but don’t have any data that you want to store in the type itself. 
 ```rust,editable
-
 struct Unit;
 trait SomeTrait {
     // ...Some behaviors defined here.
@@ -38,7 +38,7 @@ fn main() {
     do_something_with_unit(u);
 
     println!("Success!");
-} 
+}
 
 // Fill the blank to make the code work
 fn do_something_with_unit(u: __) {   }
@@ -47,7 +47,6 @@ fn do_something_with_unit(u: __) {   }
 3. 🌟🌟🌟 Tuple struct looks similar to tuples, it has added meaning the struct name provides but has no named fields. It's useful when you want to give the whole tuple a name, but don't care about the fields's names.
 
 ```rust,editable
-
 // Fix the error and fill the blanks
 struct Color(i32, i32, i32);
 struct Point(i32, i32, i32);
@@ -56,7 +55,7 @@ fn main() {
     check_color(v);
 
     println!("Success!");
-}   
+}
 
 fn check_color(p: Color) {
     let (x, _, _) = p;
@@ -71,7 +70,6 @@ fn check_color(p: Color) {
 4. 🌟 You can make a whole struct mutable when instantiating it, but Rust doesn't allow us to mark only certain fields as mutable.
 
 ```rust,editable
-
 // Fill the blank and fix the error without adding/removing new line
 struct Person {
     name: String,
@@ -84,7 +82,7 @@ fn main() {
         age,
     };
 
-    // How can you believe sunface is only 18? 
+    // How can you believe sunface is only 18?
     p.age = 30;
 
     // Fill the blank
@@ -94,9 +92,9 @@ fn main() {
 }
 ```
 
-5. 🌟 Using *field init shorthand syntax* to reduce repetitions.
-```rust,editable
+5. 🌟 Using _field init shorthand syntax_ to reduce repetitions.
 
+```rust,editable
 // Fill the blank
 struct Person {
     name: String,
@@ -104,7 +102,7 @@ struct Person {
 }
 fn main() {
     println!("Success!");
-} 
+}
 
 fn build_person(name: String, age: u8) -> Person {
     Person {
@@ -114,9 +112,9 @@ fn build_person(name: String, age: u8) -> Person {
 }
 ```
 
-6. 🌟 You can create instance from other instance with *struct update syntax*
-```rust,editable
+6. 🌟 You can create instance from other instance with _struct update syntax_
 
+```rust,editable
 // Fill the blank to make the code work
 struct User {
     active: bool,
@@ -135,7 +133,7 @@ fn main() {
     let u2 = set_email(u1);
 
     println!("Success!");
-} 
+}
 
 fn set_email(u: User) -> User {
     User {
@@ -146,10 +144,10 @@ fn set_email(u: User) -> User {
 ```
 
 ### Print the structs
-7. 🌟🌟 We can use `#[derive(Debug)]` to [make a struct printable](https://doc.rust-lang.org/book/ch05-02-example-structs.html?highlight=%23%5Bderive(Debug)%5D#adding-useful-functionality-with-derived-traits).
+
+7. 🌟🌟 We can use `#[derive(Debug)]` to [make a struct printable](<https://doc.rust-lang.org/book/ch05-02-example-structs.html?highlight=%23%5Bderive(Debug)%5D#adding-useful-functionality-with-derived-traits>).
 
 ```rust,editable
-
 // Fill the blanks to make the code work
 #[__]
 struct Rectangle {
@@ -171,11 +169,12 @@ fn main() {
 ```
 
 ### Partial move
+
 Within the destructuring of a single variable, both by-move and by-reference pattern bindings can be used at the same time. Doing this will result in a partial move of the variable, which means that parts of the variable will be moved while other parts stay. In such a case, the parent variable cannot be used afterwards as a whole, however the parts that are only referenced (and not moved) can still be used.
 
 #### Example
-```rust,editable
 
+```rust,editable
 fn main() {
     #[derive(Debug)]
     struct Person {
@@ -203,12 +202,11 @@ fn main() {
 }
 ```
 
-
 #### Exercises
 
 8. 🌟🌟
-```rust,editable
 
+```rust,editable
 // Fix errors to make it work
 #[derive(Debug)]
 struct File {
@@ -225,7 +223,7 @@ fn main() {
 
     // ONLY modify this line
     println!("{}, {}, {:?}",f.name, f.data, f);
-} 
+}
 ```
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it

@@ -1,8 +1,8 @@
 # use and pub
+
 1. 🌟 We can bring two types of the same name into the same scope with use, but you need `as` keyword.
 
-```rust,editable
-use std::fmt::Result;
+```rust,editableuse std::fmt::Result;
 use std::io::Result;
 
 fn main() {}
@@ -11,7 +11,6 @@ fn main() {}
 2. 🌟🌟 If we are using multiple items defined in the same crate or module, then listing each item on its own line will take up too much verticall space.
 
 ```rust,editable
-
 // FILL in the blank in two ways
 // DON'T add new code line
 use std::collections::__;
@@ -25,21 +24,22 @@ fn main() {
 ```
 
 ### Re-exporting names with `pub use`
+
 3. 🌟🌟🌟 In our recently created package `hello-package`, add something to make the below code work
-```rust,editable
-fn main() {
+
+```rust,editablefn main() {
     assert_eq!(hello_package::hosting::seat_at_table(), "sit down please");
      assert_eq!(hello_package::eat_at_restaurant(),"yummy yummy!");
 }
 ```
 
+### pub(in Crate)
 
-### pub(in Crate) 
 Sometimes we want an item only be public to a certain crate, then we can use the `pub(in Crate)` syntax.
 
 #### Example
-```rust,editable
-pub mod a {
+
+```rust,editablepub mod a {
     pub const I: i32 = 3;
 
     fn semisecret(x: i32) -> i32 {
@@ -63,7 +63,7 @@ pub mod a {
 ```
 
 ### Full Code
-The full code of `hello-package` is [here](https://github.com/sunface/rust-by-practice/tree/master/practices/hello-package).
 
+The full code of `hello-package` is [here](https://github.com/sunface/rust-by-practice/tree/master/practices/hello-package).
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice) (under the solutions path), but only use it when you need it :)
