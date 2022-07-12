@@ -12,6 +12,9 @@ window.onload = function () {
   const dmp = new diff_match_patch()
 
   window.editors.forEach((editor, i) => {
+    // keep raw
+    editor.raw = editor.session.getValue()
+
     // Clear marker on focus
     function removeAllMarker(editor) {
       const prevMarkers = editor.session.getMarkers()
@@ -23,7 +26,7 @@ window.onload = function () {
       }
     }
 
-    editor.on('focus', () => removeAllMarker(editor))
+    editor.on('change', () => removeAllMarker(editor))
 
     // Find answers after editor
     let current = editor.container.parentElement.parentNode
@@ -37,41 +40,66 @@ window.onload = function () {
       button.append(button_text)
       button.className = 'hint'
       button.onclick = () => {
-        let uncompleted_text = editor.session.getValue()
+        let uncompleted_text = editor.raw
         let answer_text = answer.firstChild.textContent
         editor.setValue(answer_text)
         editor.selection.selectTo(0)
 
         // Highlight patched
         const diffs = dmp.diff_main(uncompleted_text, answer_text).filter((e) => e['0'] !== -1)
-        console.log('diffs:', diffs)
+        // console.log('diffs:', diffs)
 
         if (diffs.length >= 0) {
-          let cursor = 0
           let text = ''
 
           diffs.forEach((diff, i) => {
+            let patch_type = diff['0']
             let current_text = diff['1']
 
-            if (i % 2 === 0) {
-              cursor += current_text.length
+            // console.log('patch_type:', patch_type)
+            if (i % 2 === 0 || (patch_type === 0 && i === diffs.length - 1)) {
+              // Do nothing
             } else {
               let texts = text.split('\n')
 
               let row = texts.length - 1
-              let prev_text = texts[texts.length - 1].split('\t').join('').length
+              let prev_text_size = texts[texts.length - 1].split('\t').join('').length
 
               let newlines = current_text.split('\n')
-              let start_with_new_line = current_text.indexOf('\n') === 0
 
-              let tab = newlines[0].split('\t').length * 4
+              let chunks = newlines.map((e) => ({
+                current_text: e,
+                is_blank_line: e === '',
+                tab_size: e.split('\t').length * 4
+              }))
 
-              // newline
-              let column = start_with_new_line ? tab : prev_text
-              row = start_with_new_line ? row + 1 : row
+              chunks.forEach((e, i) => {
+                // console.log(e)
+                // newline
+                const is_prev_blank_line = i > 0 && chunks[i - 1].current_text === ''
+                let start_with_new_line = e.current_text.indexOf('\n') === 0 || is_prev_blank_line
+                // console.log('start_with_new_line:', start_with_new_line)
+                if (is_prev_blank_line) {
+                  row = row - 1
+                }
 
-              let range = new ace.Range(row, column, row, column + current_text.length)
-              editor.session.addMarker(range, 'ace_step', 'line', false)
+                // console.log('e.tab_size:', e.tab_size)
+                // console.log('prev_text_size:', prev_text_size)
+
+                let column = start_with_new_line ? e.tab_size : prev_text_size
+                row = start_with_new_line ? row + 1 : row
+
+                // console.log('current_text:', e.current_text)
+                let current_text_no_tab = e.current_text.split('\t').join('').split('    ').join('').length
+                // console.log('current_text_no_tab:', current_text_no_tab)
+
+                let range = new ace.Range(row, column, row, column + current_text_no_tab)
+                // console.log('range:', range)
+
+                editor.session.addMarker(range, 'ace_step', 'line', false)
+
+                row = row + 1
+              })
             }
 
             text += current_text
