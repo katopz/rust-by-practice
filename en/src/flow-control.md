@@ -1,9 +1,10 @@
 # Flow control
 
 ### If/else
-1. 🌟 
-```rust,editable
 
+1. 🌟
+
+```rust,editable
 // Fill in the blanks
 fn main() {
     let n = 5;
@@ -15,12 +16,12 @@ fn main() {
     } __ {
         println!("{} is zero", n);
     }
-} 
+}
 ```
 
 2. 🌟🌟 `If/else` expression can be used in assignments.
-```rust,editable
 
+```rust,editable
 // Fix the errors
 fn main() {
     let n = 5;
@@ -37,14 +38,14 @@ fn main() {
         }
 
     println!("{} -> {}", n, big_n);
-} 
+}
 ```
 
 ### For
+
 3. 🌟 The `for in` construct can be used to iterate through an Iterator, e.g a range `a..b`.
 
 ```rust,editable
-
 fn main() {
     for n in 1..=100 { // modify this line to make the code work
         if n == 100 {
@@ -53,13 +54,12 @@ fn main() {
     }
 
     println!("Success!");
-} 
+}
 ```
 
+4. 🌟🌟
 
-4. 🌟🌟 
 ```rust,editable
-
 // Fix the errors without adding or removing lines
 fn main() {
     let names = [String::from("liming"),String::from("hanmeimei")];
@@ -74,14 +74,14 @@ fn main() {
     for n in numbers {
         // Do something with name...
     }
-    
+
     println!("{:?}", numbers);
-} 
+}
 ```
 
 5. 🌟
-```rust,editable
-fn main() {
+
+```rust,editablefn main() {
     let a = [4, 3, 2, 1];
 
     // Iterate the indexing and value in 'a'
@@ -92,10 +92,10 @@ fn main() {
 ```
 
 ### While
+
 6. 🌟🌟 The `while` keyword can be used to run a loop when a condition is true.
 
 ```rust,editable
-
 // Fill in the blanks to make the last println! work !
 fn main() {
     // A counter variable
@@ -122,9 +122,10 @@ fn main() {
 ```
 
 ### Continue and break
-7. 🌟 Use `break` to break the loop.
-```rust,editable
 
+7. 🌟 Use `break` to break the loop.
+
+```rust,editable
 // Fill in the blank
 fn main() {
     let mut n = 0;
@@ -142,8 +143,8 @@ fn main() {
 ```
 
 8. 🌟🌟 `continue` will skip over the remaining code in current iteration and go to the next iteration.
-```rust,editable
 
+```rust,editable
 // Fill in the blanks
 fn main() {
     let mut n = 0;
@@ -152,7 +153,7 @@ fn main() {
            n+=1;
            __;
        }
-       
+
        __
     }
 
@@ -162,12 +163,11 @@ fn main() {
 }
 ```
 
-### Loop 
+### Loop
 
 9. 🌟🌟 Loop is usually used together with `break` or `continue`.
 
 ```rust,editable
-
 // Fill in the blanks
 fn main() {
     let mut count = 0u32;
@@ -201,8 +201,8 @@ fn main() {
 ```
 
 10. 🌟🌟 Loop is an expression, so we can use it with `break` to return a value
-```rust,editable
 
+```rust,editable
 // Fill in the blank
 fn main() {
     let mut counter = 0;
@@ -224,7 +224,6 @@ fn main() {
 11. 🌟🌟🌟 It's possible to break or continue outer loops when dealing with nested loops. In these cases, the loops must be annotated with some 'label, and the label must be passed to the break/continue statement.
 
 ```rust,editable
-
 // Fill in the blank
 fn main() {
     let mut count = 0;

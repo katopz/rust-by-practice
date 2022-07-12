@@ -5,7 +5,6 @@
 1. 🌟 A variable can be used only if it has been initialized.
 
 ```rust,editable
-
 // Fix the error below with least amount of modification to the code
 fn main() {
     let x: i32; // Uninitialized but used, ERROR !
@@ -23,7 +22,6 @@ fn main() {
 2. 🌟 Use `mut` to mark a variable as mutable.
 
 ```rust,editable
-
 // Fill the blanks in the code to make it compile
 fn main() {
     let __ = 1;
@@ -45,7 +43,6 @@ A scope is the range within the program for which the item is valid.
 3. 🌟
 
 ```rust,editable
-
 // Fix the error below with least amount of modification
 fn main() {
     let x: i32 = 10;
@@ -64,7 +61,6 @@ fn main() {
 4. 🌟🌟
 
 ```rust,editable
-
 // Fix the error with the use of define_x
 fn main() {
     println!("{}, world", x);
@@ -91,7 +87,6 @@ You can declare a new variable with the same name as a previous variable, here w
 5. 🌟🌟
 
 ```rust,editable
-
 // Only modify `assert_eq!` to make the `println!` work(print `42` in terminal)
 fn main() {
     let x: i32 = 5;
@@ -114,7 +109,6 @@ fn main() {
 6. 🌟🌟
 
 ```rust,editable
-
 // Remove a line in the code to make it compile
 fn main() {
     let mut x: i32 = 1;
@@ -143,7 +137,6 @@ fn main() {
 > Note: none of the solutions is to remove the line `let x = 1`
 
 ```rust,editable
-
 fn main() {
     let x = 1;
 }
@@ -167,7 +160,6 @@ fn main() {
 > Tips: you can use Shadowing or Mutability
 
 ```rust,editable
-
 // Fix the error below with least amount of modification
 fn main() {
     let (x, y) = (1, 2);
@@ -198,7 +190,6 @@ Introduced in Rust 1.59: You can now use tuple, slice, and struct patterns as th
 > Note: the feature `Destructuring assignments` need 1.59 or higher Rust version
 
 ```rust,editable
-
 fn main() {
     let (x, y);
     (x,..) = (3, 4);

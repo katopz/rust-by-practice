@@ -4,7 +4,7 @@
 fn main() {
      // impl From<bool> for i32
     let i1:i32 = false.into();
-    let i2:i32 = i32::from(false);  
+    let i2:i32 = i32::from(false);
     assert_eq!(i1, i2);
     assert_eq!(i1, 0);
 
@@ -18,7 +18,7 @@ fn main() {
 fn main() {
      // impl From<bool> for i32
     let i1:i32 = false.into();
-    let i2:i32 = i32::from(false);  
+    let i2:i32 = i32::from(false);
     assert_eq!(i1, i2);
     assert_eq!(i1, 0);
 
@@ -116,8 +116,7 @@ fn main() {
 
 5.
 
-```rust,editable
-#[derive(Debug, PartialEq)]
+```rust,editable#[derive(Debug, PartialEq)]
 struct EvenNum(i32);
 
 impl TryFrom<i32> for EvenNum {

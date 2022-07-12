@@ -1,7 +1,8 @@
 # Tuple
-1. 🌟 Elements in a tuple can have different types. Tuple's type signature is `(T1, T2, ...)`, where `T1`, `T2` are the types of tuple's members.
-```rust,editable
 
+1. 🌟 Elements in a tuple can have different types. Tuple's type signature is `(T1, T2, ...)`, where `T1`, `T2` are the types of tuple's members.
+
+```rust,editable
 fn main() {
     let _t0: (u8,i16) = (0, -1);
     // Tuples can be tuple's members
@@ -14,8 +15,8 @@ fn main() {
 ```
 
 2. 🌟 Members can be extracted from the tuple using indexing.
-```rust,editable
 
+```rust,editable
 // Make it work
 fn main() {
     let t = ("i", "am", "sunface");
@@ -25,9 +26,9 @@ fn main() {
 }
 ```
 
-3. 🌟 Long tuples  cannot be printed
-```rust,editable
+3. 🌟 Long tuples cannot be printed
 
+```rust,editable
 // Fix the error
 fn main() {
     let too_long_tuple = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13);
@@ -36,8 +37,8 @@ fn main() {
 ```
 
 4. 🌟 Destructuring tuple with pattern.
-```rust,editable
 
+```rust,editable
 fn main() {
     let tup = (1, 6.4, "hello");
 
@@ -53,13 +54,13 @@ fn main() {
 ```
 
 5. 🌟🌟 Destructure assignments.
-```rust,editable
-fn main() {
+
+```rust,editablefn main() {
     let (x, y, z);
 
     // Fill the blank
     __ = (1, 2, 3);
-    
+
     assert_eq!(x, 3);
     assert_eq!(y, 1);
     assert_eq!(z, 2);
@@ -69,8 +70,8 @@ fn main() {
 ```
 
 6. 🌟🌟 Tuples can be used as function arguments and return values
-```rust,editable
 
+```rust,editable
 fn main() {
     // Fill the blank, need a few computations here.
     let (x, y) = sum_multiply(__);

@@ -1,13 +1,15 @@
 # Vector
-Vectors are re-sizable arrays. Like slices, their size is not known at compile time, but they can grow or shrink at any time. 
+
+Vectors are re-sizable arrays. Like slices, their size is not known at compile time, but they can grow or shrink at any time.
 
 ### Basic Operations
-1. 🌟🌟🌟
-```rust,editable
 
+1. 🌟🌟🌟
+
+```rust,editable
 fn main() {
     let arr: [u8; 3] = [1, 2, 3];
-    
+
     let v = Vec::from(arr);
     is_vec(v);
 
@@ -17,12 +19,12 @@ fn main() {
     // vec!(..) and vec![..] are same macros, so
     let v = vec!(1, 2, 3);
     is_vec(v);
-    
+
     // in code below, v is Vec<[u8; 3]> , not Vec<u8>
-    // USE Vec::new and `for` to rewrite the below code 
+    // USE Vec::new and `for` to rewrite the below code
     let v1 = vec!(arr);
     is_vec(v1);
- 
+
     assert_eq!(v, v1);
 
     println!("Success!")
@@ -31,17 +33,15 @@ fn main() {
 fn is_vec(v: Vec<u8>) {}
 ```
 
-
-
 2. 🌟🌟 a Vec can be extended with `extend` method
-```rust,editable
 
+```rust,editable
 // FILL in the blank
 fn main() {
     let mut v1 = Vec::from([1, 2, 4]);
     v1.pop();
     v1.push(3);
-    
+
     let mut v2 = Vec::new();
     v2.__;
 
@@ -52,9 +52,10 @@ fn main() {
 ```
 
 ### Turn X Into Vec
-3. 🌟🌟🌟
-```rust,editable
 
+3. 🌟🌟🌟
+
+```rust,editable
 // FILL in the blanks
 fn main() {
     // array -> Vec
@@ -62,10 +63,10 @@ fn main() {
     let arr = [1, 2, 3];
     let v1 = __(arr);
     let v2: Vec<i32> = arr.__();
- 
+
     assert_eq!(v1, v2);
- 
-    
+
+
     // String -> Vec
     // impl From<String> for Vec
     let s = "hello".to_string();
@@ -89,9 +90,10 @@ fn main() {
 ```
 
 ### Indexing
-4. 🌟🌟🌟
-```rust,editable
 
+4. 🌟🌟🌟
+
+```rust,editable
 // FIX the error and IMPLEMENT the code
 fn main() {
     let mut v = Vec::from([1, 2, 3]);
@@ -102,22 +104,22 @@ fn main() {
     for i in 0..5 {
        // IMPLEMENT the code here...
     }
-    
+
     assert_eq!(v, vec![2, 3, 4, 5, 6]);
 
     println!("Success!")
 }
 ```
 
-
 ### Slicing
-A Vec can be mutable. On the other hand, slices are read-only objects. To get a slice, use `&`. 
+
+A Vec can be mutable. On the other hand, slices are read-only objects. To get a slice, use `&`.
 
 In Rust, it’s more common to pass slices as arguments rather than vectors when you just want to provide read access. The same goes for `String` and `&str`.
 
 5. 🌟🌟
-```rust,editable
 
+```rust,editable
 // FIX the errors
 fn main() {
     let mut v = vec![1, 2, 3];
@@ -126,9 +128,9 @@ fn main() {
     // out of bounds will cause a panic
     // You must use `v.len` here
     let slice2 = &v[0..4];
-    
+
     assert_eq!(slice1, slice2);
-    
+
     // slice are read only
     // Note: slice and &Vec are different
     let vec_ref: &mut Vec<i32> = &mut v;
@@ -141,14 +143,16 @@ fn main() {
     println!("Success!")
 }
 ```
+
 ### Capacity
+
 The capacity of a vector is the amount of space allocated for any future elements that will be added onto the vector. This is not to be confused with the length of a vector, which specifies the number of actual elements within the vector. If a vector’s length exceeds its capacity, its capacity will automatically be increased, but its elements will have to be reallocated.
 
 For example, a vector with capacity 10 and length 0 would be an empty vector with space for 10 more elements. Pushing 10 or fewer elements onto the vector will not change its capacity or cause reallocation to occur. However, if the vector’s length is increased to 11, it will have to reallocate, which can be slow. For this reason, it is recommended to use `Vec::with_capacity `whenever possible to specify how big the vector is expected to get.
 
 6. 🌟🌟
-```rust,editable
-// FIX the errors
+
+```rust,editable// FIX the errors
 fn main() {
     let mut vec = Vec::with_capacity(10);
 
@@ -169,7 +173,7 @@ fn main() {
     assert!(vec.capacity() >= 11);
 
 
-    // fill in an appropriate value to make the `for` done without reallocating 
+    // fill in an appropriate value to make the `for` done without reallocating
     let mut vec = Vec::with_capacity(__);
     for i in 0..100 {
         vec.push(i);
@@ -177,13 +181,15 @@ fn main() {
 
     assert_eq!(vec.len(), __);
     assert_eq!(vec.capacity(), __);
-    
+
     println!("Success!")
 }
 ```
 
 ### Store distinct types in Vector
+
 The elements in a vector mush be the same type, for example , the code below will cause an error:
+
 ```rust
 fn main() {
    let v = vec![1, 2.0, 3];
@@ -193,8 +199,8 @@ fn main() {
 But we can use enums or trait objects to store distinct types.
 
 7. 🌟🌟
-```rust,editable
-#[derive(Debug)]
+
+```rust,editable#[derive(Debug)]
 enum IpAddr {
     V4(String),
     V6(String),
@@ -202,7 +208,7 @@ enum IpAddr {
 fn main() {
     // FILL in the blank
     let v : Vec<IpAddr>= __;
-    
+
     // Comparing two enums need to derive the PartialEq trait
     assert_eq!(v[0], IpAddr::V4("127.0.0.1".to_string()));
     assert_eq!(v[1], IpAddr::V6("::1".to_string()));
@@ -212,8 +218,8 @@ fn main() {
 ```
 
 8. 🌟🌟
-```rust,editable
-trait IpAddr {
+
+```rust,editabletrait IpAddr {
     fn display(&self);
 }
 

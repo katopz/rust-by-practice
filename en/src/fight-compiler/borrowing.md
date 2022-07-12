@@ -1,8 +1,8 @@
 # Borrowing
 
 1. 🌟🌟
-```rust,editable
-// FIX the error without removing any code line
+
+```rust,editable// FIX the error without removing any code line
 struct test {
     list: Vec<i32>,
     a: i32
