@@ -1,23 +1,108 @@
 use std::{env, fs};
 
-fn parse_file(file_path: String) {
-    println!("In file {}", file_path);
+use regex::Regex;
+use std::fs::File;
+use std::io::{self, BufRead, BufReader, Error, Write};
+use std::path::Path;
 
-    let contents = fs::read_to_string(file_path.clone())
-        .expect(format!("{:?}/{:?}", env::current_dir().unwrap(), file_path).as_str());
+// The output is wrapped in a Result to allow matching on errors
+// Returns an Iterator to the Reader of the lines of the file.
+fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
+where
+    P: AsRef<Path>,
+{
+    let file = File::open(filename)?;
+    Ok(io::BufReader::new(file).lines())
+}
 
-    let foo = contents
-        .split("\n\n")
-        .into_iter()
-        .map(|e| e)
-        .collect::<Vec<_>>();
-    println!("{:#?}", foo);
+enum ParseExpect {
+    Number,
+    CodeBegin,
+    CodeEnd,
 }
 
 fn main() {
-    println!("{:?}", env::current_dir());
-    // ./solutions/compound-types/slice.md
-    // ./solutions/basic-types/statements.md
-    let file_path = "./solutions/basic-types/statements.md".to_string();
-    parse_file(file_path);
+    let answer_file_name = "./solutions/basic-types/statements.md";
+    let answer_file_names = answer_file_name.split("/").collect::<Vec<_>>();
+    let quiz_file_name = format!(
+        "./en/src/{}/{}",
+        answer_file_names[2],
+        ((answer_file_names[3])
+            .to_string()
+            .split_once(".")
+            .unwrap()
+            .0)
+            .to_string()
+    );
+
+    let num_bullet_re = Regex::new(r"^[0-9]\.").unwrap();
+    let code_begin_re = Regex::new(r"^```").unwrap();
+    let code_end_re = Regex::new(r"^```\r?$").unwrap();
+
+    let mut state = ParseExpect::Number;
+    let mut rust_content = "".to_owned();
+
+    let mut current_num_bullet = "".to_string();
+
+    // File hosts must exist in current path before this produces output
+    if let Ok(lines) = read_lines(answer_file_name) {
+        // Consumes the iterator, returns an (Optional) String
+        for line in lines {
+            match line {
+                Ok(text) => {
+                    // Process state
+                    match state {
+                        ParseExpect::Number => {
+                            // Begin with number and dot?
+                            if num_bullet_re.is_match(&text.as_str()) {
+                                current_num_bullet = text.split_once(".").unwrap().0.to_string();
+                                state = ParseExpect::CodeBegin;
+                                continue;
+                            }
+
+                            // Begin other code block?
+                            if code_begin_re.is_match(text.as_str()) {
+                                state = ParseExpect::CodeEnd;
+                                continue;
+                            }
+                        }
+                        ParseExpect::CodeBegin => {
+                            // Begin code block?
+                            if code_begin_re.is_match(text.as_str()) {
+                                state = ParseExpect::CodeEnd;
+                                continue;
+                            }
+                        }
+                        ParseExpect::CodeEnd => {
+                            // Finish code block?
+                            if code_end_re.is_match(text.as_str()) {
+                                // Write
+                                println!("code:{rust_content}");
+                                let file_name = format!(
+                                    "{}_{current_num_bullet}.rs",
+                                    quiz_file_name.to_lowercase().to_owned()
+                                );
+                                println!("file_name:{file_name:#?}");
+
+                                let mut output = File::create(&file_name).unwrap();
+                                write!(output, "{rust_content}").unwrap();
+
+                                // Clear
+                                rust_content = "".to_owned();
+
+                                // Next
+                                state = ParseExpect::Number;
+                                continue;
+                            }
+
+                            rust_content.push_str(text.as_str());
+                            rust_content.push_str("\n".as_ref());
+                            // println!("CodeEnd:{rust_content:?}");
+                        }
+                    }
+                }
+                Err(_) => todo!(),
+            }
+        }
+    }
 }

@@ -43,6 +43,8 @@ fn main() {
 }
 ```
 
+{{#playground statements_1.rs answer}}
+
 ```rust,answer
 // Make it work with two ways
 fn main() {
@@ -76,13 +78,15 @@ fn main() {
 
 ```rust,editable
 fn main() {
-   let v = (let x = 3);
+    let v = (let x = 3);
 
-   assert!(v == 3);
+    assert!(v == 3);
 
-   println!("Success!");
+    println!("Success!");
 }
 ```
+
+{{#playground statements_2.rs answer}}
 
 ```rust,answer
 fn main() {
@@ -111,6 +115,8 @@ fn sum(x: i32, y: i32) -> i32 {
     x + y;
 }
 ```
+
+{{#playground statements_3.rs answer}}
 
 ```rust,answer
 fn main() {
