@@ -16,6 +16,8 @@ fn main() {
 }
 ```
 
+{{#playground ../../../solutions/compound-types/slice_0.rs answer}}
+
 A slice reference is a two-word object, for simplicity reasons, from now on we will use slice instead of `slice reference`. The first word is a pointer to the data, and the second word is the length of the slice. The word size is the same as usize, determined by the processor architecture, eg 64 bits on an x86-64. Slices can be used to borrow a section of an array, and have the type signature `&[T]`.
 
 2. 🌟🌟🌟
