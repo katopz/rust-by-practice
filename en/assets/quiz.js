@@ -65,12 +65,11 @@ window.onload = function () {
             let row1 = row + newline
             let column1 = col + last_hunk_padded.length
 
-            row = row1
-
-            // console.log('col:', col)
+            console.log('row:', row)
+            console.log('col:', col)
             if (patch_type === 1) {
               let range = new ace.Range(row0, column0, row1, column1)
-              // console.log('range:', range)
+              console.log('range:', range)
 
               editor.session.addMarker(range, 'ace_step', 'line', false)
 
@@ -79,6 +78,7 @@ window.onload = function () {
               }
 
               col = col + last_hunk_padded.length
+              row = row + newline
             } else if (patch_type === -1) {
               if (hunks.length > 1) {
                 col = 0
@@ -89,6 +89,7 @@ window.onload = function () {
               }
 
               col = col + last_hunk_padded.length
+              row = row + newline
             }
           })
         }
