@@ -21,6 +21,23 @@ enum ParseExpect {
     CodeEnd,
 }
 
+fn write_file_rs(
+    quiz_file_name: &String,
+    current_num_bullet: &String,
+    sub_index: i32,
+    rust_content: &String,
+) {
+    write!(
+        File::create(&format!(
+            "{}_{current_num_bullet}_{sub_index}.rs",
+            quiz_file_name.to_lowercase().to_owned()
+        ))
+        .unwrap(),
+        "{rust_content}"
+    )
+    .unwrap()
+}
+
 fn main() {
     let answer_file_name = "./solutions/basic-types/statements.md";
     let answer_file_names = answer_file_name.split("/").collect::<Vec<_>>();
@@ -36,13 +53,14 @@ fn main() {
     );
 
     let num_bullet_re = Regex::new(r"^[0-9]\.").unwrap();
-    let code_begin_re = Regex::new(r"^```").unwrap();
+    let code_begin_re = Regex::new(r"^```\w").unwrap();
     let code_end_re = Regex::new(r"^```\r?$").unwrap();
 
     let mut state = ParseExpect::Number;
     let mut rust_content = "".to_owned();
 
     let mut current_num_bullet = "".to_string();
+    let mut current_sub_index = 0;
 
     // File hosts must exist in current path before this produces output
     if let Ok(lines) = read_lines(answer_file_name) {
@@ -62,6 +80,13 @@ fn main() {
 
                             // Begin other code block?
                             if code_begin_re.is_match(text.as_str()) {
+                                // Bump next sub filename index
+                                current_sub_index = current_sub_index + 1;
+
+                                // Clear
+                                rust_content = "".to_owned();
+
+                                // Next
                                 state = ParseExpect::CodeEnd;
                                 continue;
                             }
@@ -70,22 +95,26 @@ fn main() {
                             // Begin code block?
                             if code_begin_re.is_match(text.as_str()) {
                                 state = ParseExpect::CodeEnd;
+
+                                // New sub
+                                current_sub_index = 0;
+
+                                // Clear
+                                rust_content = "".to_owned();
                                 continue;
                             }
                         }
                         ParseExpect::CodeEnd => {
                             // Finish code block?
                             if code_end_re.is_match(text.as_str()) {
-                                // Write
-                                println!("code:{rust_content}");
-                                let file_name = format!(
-                                    "{}_{current_num_bullet}.rs",
-                                    quiz_file_name.to_lowercase().to_owned()
+                                // Write current block
+                                // println!("write:{rust_content:?}");
+                                write_file_rs(
+                                    &quiz_file_name,
+                                    &current_num_bullet,
+                                    current_sub_index,
+                                    &rust_content,
                                 );
-                                println!("file_name:{file_name:#?}");
-
-                                let mut output = File::create(&file_name).unwrap();
-                                write!(output, "{rust_content}").unwrap();
 
                                 // Clear
                                 rust_content = "".to_owned();
@@ -97,7 +126,6 @@ fn main() {
 
                             rust_content.push_str(text.as_str());
                             rust_content.push_str("\n".as_ref());
-                            // println!("CodeEnd:{rust_content:?}");
                         }
                     }
                 }
