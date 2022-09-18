@@ -42,37 +42,8 @@ fn main() {
     println!("Success!");
 }
 ```
-
-{{#playground statements_1_0.rs answer}}
-
-```rust,answer
-// Make it work with two ways
-fn main() {
-   let v = {
-       let mut x = 1;
-       x += 2
-   };
-
-   assert_eq!(v, ());
-
-   println!("Success!");
-}
-```
-
-```rust,answer
-// Make it work with two ways
-fn main() {
-   let v = {
-       let mut x = 1;
-       x += 2;
-       x
-   };
-
-   assert_eq!(v, 3);
-
-   println!("Success!");
-}
-```
+{{#playground statements-expressions_1_0.rs answer}}
+{{#playground statements-expressions_1_1.rs answer}}
 
 2. 🌟
 
@@ -85,21 +56,7 @@ fn main() {
     println!("Success!");
 }
 ```
-
-{{#playground statements_2_0.rs answer}}
-
-```rust,answer
-fn main() {
-   let v = {
-        let x = 3;
-        x
-   };
-
-   assert!(v == 3);
-
-   println!("Success!");
-}
-```
+{{#playground statements-expressions_2_0.rs answer}}
 
 3. 🌟
 
@@ -115,20 +72,6 @@ fn sum(x: i32, y: i32) -> i32 {
     x + y;
 }
 ```
-
-{{#playground statements_3_0.rs answer}}
-
-```rust,answer
-fn main() {
-    let s = sum(1 , 2);
-    assert_eq!(s, 3);
-
-    println!("Success!");
-}
-
-fn sum(x: i32, y: i32) -> i32 {
-    x + y
-}
-```
+{{#playground statements-expressions_3_0.rs answer}}
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it
