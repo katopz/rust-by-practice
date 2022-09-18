@@ -1,10 +1,8 @@
 mod utils;
 
-use regex::Regex;
-use std::path::Path;
 use utils::{
-    get_filtered_folders, read_lines, write_file_md, write_file_rs, ParseExpect, CODE_BEGIN_RE,
-    CODE_END_RE, INSERTED_RS_RE, NUM_BULLET_RE,
+    is_path_exists, list_md_file, list_rs_file, read_lines, write_file_md, write_file_rs,
+    ParseExpect, CODE_BEGIN_RE, CODE_END_RE, INSERTED_RS_RE, NUM_BULLET_RE,
 };
 
 pub fn generate_answer_rs(answer_file_name: &String) {
@@ -20,6 +18,12 @@ pub fn generate_answer_rs(answer_file_name: &String) {
             .0)
             .to_string()
     );
+
+    // Ensure md exist
+    let quiz_file_name_md = &format!("{}.md", quiz_file_name);
+    if !is_path_exists(quiz_file_name_md) {
+        panic!("not found {quiz_file_name_md}");
+    }
 
     let mut state = ParseExpect::Number;
     let mut rust_content = "".to_owned();
@@ -110,12 +114,7 @@ pub fn insert_answer_rs(answer_file_name: &String) {
         .to_string();
     let quiz_file_path = format!("{}/{}.md", quiz_folder_name, quiz_file_name);
 
-    let rs_file_re = Regex::new(r".rs$").unwrap();
-    let rs_paths = get_filtered_folders(&Path::new(&quiz_folder_name), &rs_file_re).unwrap();
-    let rs_path_strings = rs_paths
-        .iter()
-        .map(|e| e.file_name().unwrap().to_owned().into_string().unwrap())
-        .collect::<Vec<_>>();
+    let rs_file_names = list_rs_file(&quiz_folder_name);
 
     let mut state = ParseExpect::Number;
     let mut rust_content = "".to_owned();
@@ -160,7 +159,7 @@ pub fn insert_answer_rs(answer_file_name: &String) {
                                     format!("{quiz_file_name}_{current_num_bullet}");
 
                                 // Match answer(s)
-                                rs_path_strings
+                                rs_file_names
                                     .iter()
                                     .filter(|e| e.starts_with(&base_file_name))
                                     .for_each(|e| {
@@ -187,9 +186,18 @@ pub fn insert_answer_rs(answer_file_name: &String) {
 }
 
 fn main() {
-    // let file_name = "./solutions/basic-types/statements-expressions.md".to_owned();
-    let file_name = "./solutions/basic-types/numbers.md".to_owned();
+    // Loop add md in folder
+    let base_path = "./solutions/basic-types";
+    let md_file_names = list_md_file(&base_path.to_owned());
 
-    generate_answer_rs(&file_name);
-    insert_answer_rs(&file_name)
+    // TODO: handle result
+    let _results = md_file_names
+        .iter()
+        .map(|file_name| {
+            let file_path = format!("{base_path}/{file_name}");
+            // println!("file_path:{:?}", file_path);
+            generate_answer_rs(&file_path);
+            insert_answer_rs(&file_path);
+        })
+        .collect::<Vec<_>>();
 }

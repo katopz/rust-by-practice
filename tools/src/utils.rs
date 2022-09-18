@@ -66,3 +66,26 @@ pub(crate) fn get_filtered_folders(
         .filter(|path| pattern_re.is_match(path.file_name().unwrap().to_str().unwrap())) // Filter out non-file
         .collect())
 }
+
+pub(crate) fn list_rs_file(path_string: &String) -> Vec<String> {
+    let rs_file_re = Regex::new(r".rs$").unwrap();
+    let rs_paths = get_filtered_folders(&Path::new(path_string), &rs_file_re).unwrap();
+    rs_paths
+        .iter()
+        .map(|e| e.file_name().unwrap().to_owned().into_string().unwrap())
+        .collect::<Vec<_>>()
+}
+
+// TODO: DRY
+pub(crate) fn list_md_file(path_string: &String) -> Vec<String> {
+    let rs_file_re = Regex::new(r".md$").unwrap();
+    let rs_paths = get_filtered_folders(&Path::new(path_string), &rs_file_re).unwrap();
+    rs_paths
+        .iter()
+        .map(|e| e.file_name().unwrap().to_owned().into_string().unwrap())
+        .collect::<Vec<_>>()
+}
+
+pub(crate) fn is_path_exists(path_name: &String) -> bool {
+    Path::new(path_name).exists()
+}
