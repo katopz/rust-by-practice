@@ -1,4 +1,3 @@
-
 fn main() {
     let v = {
         let mut x = 1;

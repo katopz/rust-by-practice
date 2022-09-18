@@ -124,8 +124,8 @@ fn main() {
                                 continue;
                             }
 
-                            rust_content.push_str("\n".as_ref());
                             rust_content.push_str(text.as_str());
+                            rust_content.push_str("\n".as_ref());
                         }
                     }
                 }
