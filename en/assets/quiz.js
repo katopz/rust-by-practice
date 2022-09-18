@@ -67,27 +67,25 @@ window.onload = function () {
 
             console.log('row:', row)
             console.log('col:', col)
+
+            // Reset column
+            if (hunks.length > 1) {
+              col = 0
+            }
+
             if (patch_type === 1) {
               let range = new ace.Range(row0, column0, row1, column1)
               console.log('range:', range)
 
               editor.session.addMarker(range, 'ace_step', 'line', false)
 
-              if (hunks.length > 1) {
-                col = 0
-              }
-
+              // Bump
               col = col + last_hunk_padded.length
               row = row + newline
             } else if (patch_type === -1) {
-              if (hunks.length > 1) {
-                col = 0
-              }
+              // Do nothing
             } else if (patch_type === 0) {
-              if (hunks.length > 1) {
-                col = 0
-              }
-
+              // Bump
               col = col + last_hunk_padded.length
               row = row + newline
             }
