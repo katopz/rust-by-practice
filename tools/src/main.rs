@@ -1,9 +1,11 @@
-use std::{env, fs};
+mod utils;
+use std::fs;
 
 use regex::Regex;
 use std::fs::File;
-use std::io::{self, BufRead, BufReader, Error, Write};
+use std::io::{self, BufRead, Write};
 use std::path::{Path, PathBuf};
+use utils::{CODE_BEGIN_RE, CODE_END_RE, NUM_BULLET_RE};
 
 // The output is wrapped in a Result to allow matching on errors
 // Returns an Iterator to the Reader of the lines of the file.
@@ -46,7 +48,7 @@ fn write_file_md(file_path: &String, rust_content: &String) {
     .unwrap()
 }
 
-pub fn generate_answer_rs(answer_file_name: String) {
+pub fn generate_answer_rs(answer_file_name: &String) {
     let answer_file_names = answer_file_name.split("/").collect::<Vec<_>>();
     let quiz_folder_name = format!("./en/src/{}", answer_file_names[2]);
     let quiz_file_name = format!(
@@ -59,10 +61,6 @@ pub fn generate_answer_rs(answer_file_name: String) {
             .0)
             .to_string()
     );
-
-    let num_bullet_re = Regex::new(r"^[0-9]\.").unwrap();
-    let code_begin_re = Regex::new(r"^```\w").unwrap();
-    let code_end_re = Regex::new(r"^```\r?$").unwrap();
 
     let mut state = ParseExpect::Number;
     let mut rust_content = "".to_owned();
@@ -80,14 +78,14 @@ pub fn generate_answer_rs(answer_file_name: String) {
                     match state {
                         ParseExpect::Number => {
                             // Begin with number and dot?
-                            if num_bullet_re.is_match(text.as_str()) {
+                            if NUM_BULLET_RE.is_match(text.as_str()) {
                                 current_num_bullet = text.split_once(".").unwrap().0.to_string();
                                 state = ParseExpect::CodeBegin;
                                 continue;
                             }
 
                             // Begin other code block?
-                            if code_begin_re.is_match(text.as_str()) {
+                            if CODE_END_RE.is_match(text.as_str()) {
                                 // Bump next sub filename index
                                 current_sub_index = current_sub_index + 1;
 
@@ -101,7 +99,7 @@ pub fn generate_answer_rs(answer_file_name: String) {
                         }
                         ParseExpect::CodeBegin => {
                             // Begin code block?
-                            if code_begin_re.is_match(text.as_str()) {
+                            if CODE_BEGIN_RE.is_match(text.as_str()) {
                                 state = ParseExpect::CodeEnd;
 
                                 // New sub
@@ -114,7 +112,7 @@ pub fn generate_answer_rs(answer_file_name: String) {
                         }
                         ParseExpect::CodeEnd => {
                             // Finish code block?
-                            if code_end_re.is_match(text.as_str()) {
+                            if CODE_END_RE.is_match(text.as_str()) {
                                 // Write current block
                                 write_file_rs(
                                     &quiz_file_name,
@@ -152,7 +150,7 @@ fn get_filtered_folders(dir: &Path, pattern_re: &Regex) -> Result<Vec<PathBuf>, 
         .collect())
 }
 
-pub fn insert_answer_rs(answer_file_name: String) {
+pub fn insert_answer_rs(answer_file_name: &String) {
     let answer_file_names = answer_file_name.split("/").collect::<Vec<_>>();
     let quiz_folder_name = format!("./en/src/{}", answer_file_names[2]);
     let quiz_file_name = ((answer_file_names[3])
@@ -169,10 +167,6 @@ pub fn insert_answer_rs(answer_file_name: String) {
         .iter()
         .map(|e| e.file_name().unwrap().to_owned().into_string().unwrap())
         .collect::<Vec<_>>();
-
-    let num_bullet_re = Regex::new(r"^[0-9]\.").unwrap();
-    let code_begin_re = Regex::new(r"^```\w").unwrap();
-    let code_end_re = Regex::new(r"^```\r?$").unwrap();
 
     let mut state = ParseExpect::Number;
     let mut rust_content = "".to_owned();
@@ -193,7 +187,7 @@ pub fn insert_answer_rs(answer_file_name: String) {
                     match state {
                         ParseExpect::Number => {
                             // Begin with number and dot?
-                            if num_bullet_re.is_match(text.as_str()) {
+                            if NUM_BULLET_RE.is_match(text.as_str()) {
                                 current_num_bullet = text.split_once(".").unwrap().0.to_string();
                                 state = ParseExpect::CodeBegin;
                                 continue;
@@ -201,7 +195,7 @@ pub fn insert_answer_rs(answer_file_name: String) {
                         }
                         ParseExpect::CodeBegin => {
                             // Begin code block?
-                            if code_begin_re.is_match(text.as_str()) {
+                            if CODE_BEGIN_RE.is_match(text.as_str()) {
                                 state = ParseExpect::CodeEnd;
 
                                 continue;
@@ -209,24 +203,22 @@ pub fn insert_answer_rs(answer_file_name: String) {
                         }
                         ParseExpect::CodeEnd => {
                             // Finish code block?
-                            if code_end_re.is_match(text.as_str()) {
+                            if CODE_END_RE.is_match(text.as_str()) {
                                 // Insert answer
                                 let base_file_name =
                                     format!("{quiz_file_name}_{current_num_bullet}");
 
                                 // Match answer(s)
-                                let filtered = rs_path_strings
+                                rs_path_strings
                                     .iter()
                                     .filter(|e| e.starts_with(&base_file_name))
-                                    .collect::<Vec<_>>();
-
-                                filtered.iter().for_each(|e| {
-                                    // {{#playground statements_1_0.rs answer}}
-                                    rust_content.push_str(
-                                        format!("{{{{#playground {e} answer}}}}").as_str(),
-                                    );
-                                    rust_content.push_str("\n".as_ref());
-                                });
+                                    .for_each(|e| {
+                                        // {{#playground statements_1_0.rs answer}}
+                                        rust_content.push_str(
+                                            format!("{{{{#playground {e} answer}}}}").as_str(),
+                                        );
+                                        rust_content.push_str("\n".as_ref());
+                                    });
 
                                 // Next
                                 state = ParseExpect::Number;
@@ -244,7 +236,9 @@ pub fn insert_answer_rs(answer_file_name: String) {
 }
 
 fn main() {
-    let file_name = "./solutions/basic-types/statements-expressions.md".to_owned();
-    // generate_answer_rs(file_name);
-    insert_answer_rs(file_name)
+    // let file_name = "./solutions/basic-types/statements-expressions.md".to_owned();
+    let file_name = "./solutions/basic-types/numbers.md".to_owned();
+
+    generate_answer_rs(&file_name);
+    insert_answer_rs(&file_name)
 }
