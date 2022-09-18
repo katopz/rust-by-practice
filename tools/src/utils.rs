@@ -9,6 +9,8 @@ lazy_static! {
     pub(crate) static ref NUM_BULLET_RE: Regex = Regex::new(r"^[0-9]\.").unwrap();
     pub(crate) static ref CODE_BEGIN_RE: Regex = Regex::new(r"^```\w").unwrap();
     pub(crate) static ref CODE_END_RE: Regex = Regex::new(r"^```\r?$").unwrap();
+    pub(crate) static ref INSERTED_RS_RE: Regex =
+        Regex::new(r"^(\{\{#playground\s)(\w+\.rs\s)(answer\}\})$").unwrap();
 }
 
 // The output is wrapped in a Result to allow matching on errors

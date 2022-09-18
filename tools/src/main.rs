@@ -4,7 +4,7 @@ use regex::Regex;
 use std::path::Path;
 use utils::{
     get_filtered_folders, read_lines, write_file_md, write_file_rs, ParseExpect, CODE_BEGIN_RE,
-    CODE_END_RE, NUM_BULLET_RE,
+    CODE_END_RE, INSERTED_RS_RE, NUM_BULLET_RE,
 };
 
 pub fn generate_answer_rs(answer_file_name: &String) {
@@ -128,9 +128,11 @@ pub fn insert_answer_rs(answer_file_name: &String) {
         for line in lines {
             match line {
                 Ok(text) => {
-                    // Keep all line
-                    rust_content.push_str(text.as_str());
-                    rust_content.push_str("\n".as_ref());
+                    // Keep all line, except inserted
+                    if !INSERTED_RS_RE.is_match(text.as_str()) {
+                        rust_content.push_str(text.as_str());
+                        rust_content.push_str("\n".as_ref());
+                    }
 
                     // Process state
                     match state {
@@ -164,10 +166,10 @@ pub fn insert_answer_rs(answer_file_name: &String) {
                                     .for_each(|e| {
                                         // {{#playground statements_1_0.rs answer}}
                                         rust_content.push_str(
-                                            format!("{{{{#playground {e} answer}}}}").as_str(),
+                                            format!("\n{{{{#playground {e} answer}}}}").as_str(),
                                         );
-                                        rust_content.push_str("\n".as_ref());
                                     });
+                                rust_content.push_str("\n".as_ref());
 
                                 // Next
                                 state = ParseExpect::Number;
