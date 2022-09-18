@@ -44,7 +44,7 @@ pub fn generate_answer_rs(answer_file_name: &String) {
                             }
 
                             // Begin other code block?
-                            if CODE_END_RE.is_match(text.as_str()) {
+                            if CODE_BEGIN_RE.is_match(text.as_str()) {
                                 // Bump next sub filename index
                                 current_sub_index = current_sub_index + 1;
 
