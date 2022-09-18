@@ -35,6 +35,10 @@ pub(crate) fn write_file_rs(
     sub_index: i32,
     rust_content: &String,
 ) {
+    if current_num_bullet.len() == 0 {
+        panic!("expect current_num_bullet for quiz_file_name:{quiz_file_name}")
+    }
+
     write!(
         File::create(&format!(
             "{}_{current_num_bullet}_{sub_index}.rs",
@@ -67,7 +71,17 @@ pub(crate) fn get_filtered_files(
         .collect())
 }
 
-pub(crate) fn list_rs_file(path_string: &String) -> Vec<String> {
+pub(crate) fn get_folders(path_string: &String) -> Result<Vec<String>, io::Error> {
+    Ok(fs::read_dir(&Path::new(path_string))?
+        .into_iter()
+        .filter(|r| r.is_ok())
+        .map(|r| r.unwrap().path())
+        .filter(|path| path.is_dir())
+        .map(|e| e.file_name().unwrap().to_owned().into_string().unwrap())
+        .collect::<Vec<_>>())
+}
+
+pub(crate) fn get_rs_files(path_string: &String) -> Vec<String> {
     let rs_file_re = Regex::new(r".rs$").unwrap();
     let rs_paths = get_filtered_files(&Path::new(path_string), &rs_file_re).unwrap();
     rs_paths
@@ -77,7 +91,7 @@ pub(crate) fn list_rs_file(path_string: &String) -> Vec<String> {
 }
 
 // TODO: DRY
-pub(crate) fn list_md_file(path_string: &String) -> Vec<String> {
+pub(crate) fn get_md_files(path_string: &String) -> Vec<String> {
     let rs_file_re = Regex::new(r".md$").unwrap();
     let rs_paths = get_filtered_files(&Path::new(path_string), &rs_file_re).unwrap();
     rs_paths

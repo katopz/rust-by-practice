@@ -1,8 +1,8 @@
 mod utils;
 
 use utils::{
-    is_path_exists, list_md_file, list_rs_file, read_lines, write_file_md, write_file_rs,
-    ParseExpect, CODE_BEGIN_RE, CODE_END_RE, INSERTED_RS_RE, NUM_BULLET_RE,
+    get_folders, get_md_files, get_rs_files, is_path_exists, read_lines, write_file_md,
+    write_file_rs, ParseExpect, CODE_BEGIN_RE, CODE_END_RE, INSERTED_RS_RE, NUM_BULLET_RE,
 };
 
 pub fn generate_answer_rs(answer_file_name: &String) {
@@ -114,7 +114,7 @@ pub fn insert_answer_rs(answer_file_name: &String) {
         .to_string();
     let quiz_file_path = format!("{}/{}.md", quiz_folder_name, quiz_file_name);
 
-    let rs_file_names = list_rs_file(&quiz_folder_name);
+    let rs_file_names = get_rs_files(&quiz_folder_name);
 
     let mut state = ParseExpect::Number;
     let mut rust_content = "".to_owned();
@@ -186,18 +186,26 @@ pub fn insert_answer_rs(answer_file_name: &String) {
 }
 
 fn main() {
-    // Loop add md in folder
-    let base_path = "./solutions/basic-types";
-    let md_file_names = list_md_file(&base_path.to_owned());
+    let path = "./solutions";
+    let folders = get_folders(&path.to_string()).unwrap();
 
-    // TODO: handle result
-    let _results = md_file_names
-        .iter()
-        .map(|file_name| {
-            let file_path = format!("{base_path}/{file_name}");
-            // println!("file_path:{:?}", file_path);
-            generate_answer_rs(&file_path);
-            insert_answer_rs(&file_path);
-        })
-        .collect::<Vec<_>>();
+    folders.iter().for_each(|folder| {
+        println!("folder:{:?}", folder);
+
+        let base_path = format!("{path}/{folder}"); //"./solutions/basic-types";
+        println!("base_path:{:?}", base_path);
+
+        let md_file_names = get_md_files(&base_path.to_owned());
+
+        // TODO: handle result
+        let _results = md_file_names
+            .iter()
+            .map(|file_name| {
+                let file_path = format!("{base_path}/{file_name}");
+                // println!("file_path:{:?}", file_path);
+                generate_answer_rs(&file_path);
+                insert_answer_rs(&file_path);
+            })
+            .collect::<Vec<_>>();
+    })
 }
