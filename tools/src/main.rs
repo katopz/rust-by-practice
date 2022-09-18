@@ -1,52 +1,11 @@
 mod utils;
-use std::fs;
 
 use regex::Regex;
-use std::fs::File;
-use std::io::{self, BufRead, Write};
-use std::path::{Path, PathBuf};
-use utils::{CODE_BEGIN_RE, CODE_END_RE, NUM_BULLET_RE};
-
-// The output is wrapped in a Result to allow matching on errors
-// Returns an Iterator to the Reader of the lines of the file.
-fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
-where
-    P: AsRef<Path>,
-{
-    let file = File::open(filename)?;
-    Ok(io::BufReader::new(file).lines())
-}
-
-enum ParseExpect {
-    Number,
-    CodeBegin,
-    CodeEnd,
-}
-
-fn write_file_rs(
-    quiz_file_name: &String,
-    current_num_bullet: &String,
-    sub_index: i32,
-    rust_content: &String,
-) {
-    write!(
-        File::create(&format!(
-            "{}_{current_num_bullet}_{sub_index}.rs",
-            quiz_file_name.to_lowercase().to_owned()
-        ))
-        .unwrap(),
-        "{rust_content}"
-    )
-    .unwrap()
-}
-
-fn write_file_md(file_path: &String, rust_content: &String) {
-    write!(
-        File::create(file_path.to_lowercase().to_owned()).unwrap(),
-        "{rust_content}"
-    )
-    .unwrap()
-}
+use std::path::Path;
+use utils::{
+    get_filtered_folders, read_lines, write_file_md, write_file_rs, ParseExpect, CODE_BEGIN_RE,
+    CODE_END_RE, NUM_BULLET_RE,
+};
 
 pub fn generate_answer_rs(answer_file_name: &String) {
     let answer_file_names = answer_file_name.split("/").collect::<Vec<_>>();
@@ -138,16 +97,6 @@ pub fn generate_answer_rs(answer_file_name: &String) {
             }
         }
     }
-}
-
-fn get_filtered_folders(dir: &Path, pattern_re: &Regex) -> Result<Vec<PathBuf>, io::Error> {
-    Ok(fs::read_dir(dir)?
-        .into_iter()
-        .filter(|r| r.is_ok())
-        .map(|r| r.unwrap().path())
-        .filter(|path| path.is_file())
-        .filter(|path| pattern_re.is_match(path.file_name().unwrap().to_str().unwrap())) // Filter out non-file
-        .collect())
 }
 
 pub fn insert_answer_rs(answer_file_name: &String) {
