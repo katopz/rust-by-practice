@@ -54,7 +54,7 @@ pub(crate) fn write_file_md(file_path: &String, rust_content: &String) {
     .unwrap()
 }
 
-pub(crate) fn get_filtered_folders(
+pub(crate) fn get_filtered_files(
     dir: &Path,
     pattern_re: &Regex,
 ) -> Result<Vec<PathBuf>, io::Error> {
@@ -69,7 +69,7 @@ pub(crate) fn get_filtered_folders(
 
 pub(crate) fn list_rs_file(path_string: &String) -> Vec<String> {
     let rs_file_re = Regex::new(r".rs$").unwrap();
-    let rs_paths = get_filtered_folders(&Path::new(path_string), &rs_file_re).unwrap();
+    let rs_paths = get_filtered_files(&Path::new(path_string), &rs_file_re).unwrap();
     rs_paths
         .iter()
         .map(|e| e.file_name().unwrap().to_owned().into_string().unwrap())
@@ -79,7 +79,7 @@ pub(crate) fn list_rs_file(path_string: &String) -> Vec<String> {
 // TODO: DRY
 pub(crate) fn list_md_file(path_string: &String) -> Vec<String> {
     let rs_file_re = Regex::new(r".md$").unwrap();
-    let rs_paths = get_filtered_folders(&Path::new(path_string), &rs_file_re).unwrap();
+    let rs_paths = get_filtered_files(&Path::new(path_string), &rs_file_re).unwrap();
     rs_paths
         .iter()
         .map(|e| e.file_name().unwrap().to_owned().into_string().unwrap())
