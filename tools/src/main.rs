@@ -5,7 +5,7 @@ use utils::{
     write_file_rs, ParseExpect, CODE_BEGIN_RE, CODE_END_RE, INSERTED_RS_RE, NUM_BULLET_RE,
 };
 
-pub fn generate_answer_rs(answer_file_name: &String) {
+pub fn generate_answer_rs(answer_file_name: &String) -> Result<(), anyhow::Error> {
     let answer_file_names = answer_file_name.split("/").collect::<Vec<_>>();
     let quiz_folder_name = format!("./en/src/{}", answer_file_names[2]);
     let quiz_file_name = format!(
@@ -78,11 +78,11 @@ pub fn generate_answer_rs(answer_file_name: &String) {
                             if CODE_END_RE.is_match(text.as_str()) {
                                 // Write current block
                                 write_file_rs(
-                                    &quiz_file_name,
+                                    quiz_file_name.to_owned(),
                                     &current_num_bullet,
                                     current_sub_index,
                                     &rust_content,
-                                );
+                                )?;
 
                                 // Clear
                                 rust_content = "".to_owned();
@@ -101,9 +101,11 @@ pub fn generate_answer_rs(answer_file_name: &String) {
             }
         }
     }
+
+    Ok(())
 }
 
-pub fn insert_answer_rs(answer_file_name: &String) {
+pub fn insert_answer_rs(answer_file_name: &String) -> Result<(), anyhow::Error> {
     let answer_file_names = answer_file_name.split("/").collect::<Vec<_>>();
     let quiz_folder_name = format!("./en/src/{}", answer_file_names[2]);
     let quiz_file_name = ((answer_file_names[3])
@@ -114,7 +116,7 @@ pub fn insert_answer_rs(answer_file_name: &String) {
         .to_string();
     let quiz_file_path = format!("{}/{}.md", quiz_folder_name, quiz_file_name);
 
-    let rs_file_names = get_rs_files(&quiz_folder_name);
+    let rs_file_names = get_rs_files(&quiz_folder_name)?;
 
     let mut state = ParseExpect::Number;
     let mut rust_content = "".to_owned();
@@ -182,20 +184,17 @@ pub fn insert_answer_rs(answer_file_name: &String) {
         }
     }
 
-    write_file_md(&quiz_file_path, &rust_content)
+    Ok(write_file_md(&quiz_file_path, &rust_content)?)
 }
 
-fn main() {
-    let path = "./solutions";
-    let folders = get_folders(&path.to_string()).unwrap();
+fn generate_solution(path_string: &str) -> Result<(), anyhow::Error> {
+    let folders = get_folders(&path_string.to_string())?;
 
     folders.iter().for_each(|folder| {
-        println!("folder:{:?}", folder);
+        let base_path = format!("{path_string}/{folder}");
+        println!("process:{:?}", base_path);
 
-        let base_path = format!("{path}/{folder}"); //"./solutions/basic-types";
-        println!("base_path:{:?}", base_path);
-
-        let md_file_names = get_md_files(&base_path.to_owned());
+        let md_file_names = get_md_files(&base_path.to_owned()).unwrap();
 
         // TODO: handle result
         let _results = md_file_names
@@ -203,9 +202,15 @@ fn main() {
             .map(|file_name| {
                 let file_path = format!("{base_path}/{file_name}");
                 // println!("file_path:{:?}", file_path);
-                generate_answer_rs(&file_path);
-                insert_answer_rs(&file_path);
+                generate_answer_rs(&file_path).unwrap();
+                insert_answer_rs(&file_path).unwrap();
             })
             .collect::<Vec<_>>();
-    })
+    });
+
+    Ok(())
+}
+
+fn main() -> Result<(), anyhow::Error> {
+    generate_solution("./solutions")
 }

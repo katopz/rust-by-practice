@@ -1,6 +1,7 @@
 use lazy_static::lazy_static;
 use regex::Regex;
 
+use anyhow::{bail, Result};
 use std::fs::{self, File};
 use std::io::{self, BufRead, Write};
 use std::path::{Path, PathBuf};
@@ -30,38 +31,40 @@ pub(crate) enum ParseExpect {
 }
 
 pub(crate) fn write_file_rs(
-    quiz_file_name: &String,
+    quiz_file_name: String,
     current_num_bullet: &String,
     sub_index: i32,
     rust_content: &String,
-) {
+) -> Result<(), anyhow::Error> {
     if current_num_bullet.len() == 0 {
-        panic!("expect current_num_bullet for quiz_file_name:{quiz_file_name}")
-    }
+        bail!("expect current_num_bullet from {quiz_file_name}")
+    };
 
     write!(
         File::create(&format!(
             "{}_{current_num_bullet}_{sub_index}.rs",
             quiz_file_name.to_lowercase().to_owned()
-        ))
-        .unwrap(),
+        ))?,
         "{rust_content}"
-    )
-    .unwrap()
+    )?;
+    Ok(())
 }
 
-pub(crate) fn write_file_md(file_path: &String, rust_content: &String) {
+pub(crate) fn write_file_md(
+    file_path: &String,
+    rust_content: &String,
+) -> Result<(), anyhow::Error> {
     write!(
-        File::create(file_path.to_lowercase().to_owned()).unwrap(),
+        File::create(file_path.to_lowercase().to_owned())?,
         "{rust_content}"
-    )
-    .unwrap()
+    )?;
+    Ok(())
 }
 
 pub(crate) fn get_filtered_files(
     dir: &Path,
     pattern_re: &Regex,
-) -> Result<Vec<PathBuf>, io::Error> {
+) -> Result<Vec<PathBuf>, anyhow::Error> {
     Ok(fs::read_dir(dir)?
         .into_iter()
         .filter(|r| r.is_ok())
@@ -71,7 +74,7 @@ pub(crate) fn get_filtered_files(
         .collect())
 }
 
-pub(crate) fn get_folders(path_string: &String) -> Result<Vec<String>, io::Error> {
+pub(crate) fn get_folders(path_string: &String) -> Result<Vec<String>, anyhow::Error> {
     Ok(fs::read_dir(&Path::new(path_string))?
         .into_iter()
         .filter(|r| r.is_ok())
@@ -81,23 +84,23 @@ pub(crate) fn get_folders(path_string: &String) -> Result<Vec<String>, io::Error
         .collect::<Vec<_>>())
 }
 
-pub(crate) fn get_rs_files(path_string: &String) -> Vec<String> {
+pub(crate) fn get_rs_files(path_string: &String) -> Result<Vec<String>, anyhow::Error> {
     let rs_file_re = Regex::new(r".rs$").unwrap();
-    let rs_paths = get_filtered_files(&Path::new(path_string), &rs_file_re).unwrap();
-    rs_paths
+    let rs_paths = get_filtered_files(&Path::new(path_string), &rs_file_re)?;
+    Ok(rs_paths
         .iter()
         .map(|e| e.file_name().unwrap().to_owned().into_string().unwrap())
-        .collect::<Vec<_>>()
+        .collect::<Vec<_>>())
 }
 
 // TODO: DRY
-pub(crate) fn get_md_files(path_string: &String) -> Vec<String> {
+pub(crate) fn get_md_files(path_string: &String) -> Result<Vec<String>, anyhow::Error> {
     let rs_file_re = Regex::new(r".md$").unwrap();
-    let rs_paths = get_filtered_files(&Path::new(path_string), &rs_file_re).unwrap();
-    rs_paths
+    let rs_paths = get_filtered_files(&Path::new(path_string), &rs_file_re)?;
+    Ok(rs_paths
         .iter()
         .map(|e| e.file_name().unwrap().to_owned().into_string().unwrap())
-        .collect::<Vec<_>>()
+        .collect::<Vec<_>>())
 }
 
 pub(crate) fn is_path_exists(path_name: &String) -> bool {
