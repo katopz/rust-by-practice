@@ -1,11 +1,12 @@
 mod utils;
+use std::{fs, process::Command};
 
 use utils::{
     get_folders, get_md_files, get_rs_files, is_path_exists, read_lines, write_file_md,
     write_file_rs, ParseExpect, CODE_BEGIN_RE, CODE_END_RE, INSERTED_RS_RE, NUM_BULLET_RE,
 };
 
-pub fn generate_answer_rs(answer_file_name: &String) -> Result<(), anyhow::Error> {
+fn generate_answer_rs(answer_file_name: &String) -> Result<(), anyhow::Error> {
     let answer_file_names = answer_file_name.split("/").collect::<Vec<_>>();
     let quiz_folder_name = format!("./en/src/{}", answer_file_names[2]);
     let quiz_file_name = format!(
@@ -105,7 +106,7 @@ pub fn generate_answer_rs(answer_file_name: &String) -> Result<(), anyhow::Error
     Ok(())
 }
 
-pub fn insert_answer_rs(answer_file_name: &String) -> Result<(), anyhow::Error> {
+fn insert_answer_rs(answer_file_name: &String) -> Result<(), anyhow::Error> {
     let answer_file_names = answer_file_name.split("/").collect::<Vec<_>>();
     let quiz_folder_name = format!("./en/src/{}", answer_file_names[2]);
     let quiz_file_name = ((answer_file_names[3])
@@ -170,7 +171,10 @@ pub fn insert_answer_rs(answer_file_name: &String) -> Result<(), anyhow::Error> 
                                             format!("\n{{{{#playground {e} answer}}}}").as_str(),
                                         );
                                     });
-                                rust_content.push_str("\n".as_ref());
+
+                                if rs_file_names.len() > 0 {
+                                    rust_content.push_str(format!("\n").as_str())
+                                }
 
                                 // Next
                                 state = ParseExpect::Number;
@@ -211,6 +215,117 @@ fn generate_solution(path_string: &str) -> Result<(), anyhow::Error> {
     Ok(())
 }
 
+fn format_md_rs(file_path: &String) -> Result<(), anyhow::Error> {
+    let mut state = ParseExpect::Number;
+    let mut md_content = "".to_owned();
+    let mut rust_content = "".to_owned();
+
+    let mut current_num_bullet = "".to_string();
+
+    println!("parse format_md_rs: {file_path:#?}");
+
+    // File hosts must exist in current path before this produces output
+    if let Ok(lines) = read_lines(&file_path) {
+        // Consumes the iterator, returns an (Optional) String
+        for line in lines {
+            match line {
+                Ok(text) => {
+                    // Keep all content except code block
+                    if state == ParseExpect::Number {
+                        md_content.push_str(text.as_str());
+                        md_content.push_str("\n".as_ref());
+                    }
+
+                    // Process state
+                    match state {
+                        ParseExpect::Number => {
+                            // Begin with number and dot?
+                            if NUM_BULLET_RE.is_match(text.as_str()) {
+                                current_num_bullet = text.split_once(".").unwrap().0.to_string();
+                                state = ParseExpect::CodeBegin;
+                                continue;
+                            }
+                        }
+                        ParseExpect::CodeBegin => {
+                            // Keep
+                            md_content.push_str(text.as_str());
+                            md_content.push_str("\n".as_ref());
+
+                            // Begin code block?
+                            if CODE_BEGIN_RE.is_match(text.as_str()) {
+                                state = ParseExpect::CodeEnd;
+
+                                continue;
+                            }
+                        }
+                        ParseExpect::CodeEnd => {
+                            // Finish code block?
+                            if CODE_END_RE.is_match(text.as_str()) {
+                                // Format
+                                let temp_file_path = "temp.md".to_owned();
+                                write_file_md(&temp_file_path, &rust_content)?;
+                                let mut format_cmd = Command::new("rustfmt");
+                                format_cmd.arg("-v").arg(&temp_file_path);
+                                let format_output =
+                                    format_cmd.output().expect("failed to execute format");
+                                if format_output.stderr.len() > 0 {
+                                    println!("{:?}", format_output.stderr)
+                                }
+                                let formatted_rust_content = fs::read_to_string(&temp_file_path)
+                                    .expect("Should have been able to read the file");
+                                fs::remove_file(temp_file_path)?;
+
+                                // Merge code
+                                md_content.push_str(formatted_rust_content.as_str());
+                                md_content.push_str(text.as_str());
+                                md_content.push_str("\n".as_ref());
+
+                                println!("formatted: {current_num_bullet:?}");
+
+                                // Next
+                                state = ParseExpect::Number;
+                                rust_content = "".to_owned();
+                                continue;
+                            }
+
+                            // Keep code
+                            rust_content.push_str(text.as_str());
+                            rust_content.push_str("\n".as_ref());
+                        }
+                    }
+                }
+                Err(_) => todo!(),
+            }
+        }
+    }
+
+    Ok(write_file_md(&format!("{file_path}"), &md_content)?)
+}
+
+fn format_md_rs_in_folder(path_string: &str) -> Result<(), anyhow::Error> {
+    let folders = get_folders(&path_string.to_string())?;
+
+    // TODO : DRY
+    folders.iter().for_each(|folder| {
+        let base_path = format!("{path_string}/{folder}");
+        let md_file_names = get_md_files(&base_path.to_owned()).unwrap();
+
+        // TODO: handle result
+        let _results = md_file_names
+            .iter()
+            .map(|file_name| {
+                let file_path = format!("{base_path}/{file_name}");
+                println!("format:{:?}", file_path);
+                format_md_rs(&file_path).unwrap();
+            })
+            .collect::<Vec<_>>();
+    });
+
+    Ok(())
+}
+
 fn main() -> Result<(), anyhow::Error> {
-    generate_solution("./solutions")
+    format_md_rs(&"./solutions/compound-types/struct.md".to_string())
+    // format_md_rs_in_folder("./solutions")
+    // generate_solution("./solutions")
 }

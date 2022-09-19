@@ -8,7 +8,7 @@ use std::path::{Path, PathBuf};
 
 lazy_static! {
     pub(crate) static ref NUM_BULLET_RE: Regex = Regex::new(r"^\d{1,2}\.").unwrap();
-    pub(crate) static ref CODE_BEGIN_RE: Regex = Regex::new(r"^```\w").unwrap();
+    pub(crate) static ref CODE_BEGIN_RE: Regex = Regex::new(r"^```rust").unwrap();
     pub(crate) static ref CODE_END_RE: Regex = Regex::new(r"^```\r?$").unwrap();
     pub(crate) static ref INSERTED_RS_RE: Regex =
         Regex::new(r"^(\{\{#playground\s)(\w+\.rs\s)(answer\}\})$").unwrap();
@@ -24,6 +24,7 @@ where
     Ok(io::BufReader::new(file).lines())
 }
 
+#[derive(PartialEq, Eq)]
 pub(crate) enum ParseExpect {
     Number,
     CodeBegin,
@@ -37,7 +38,7 @@ pub(crate) fn write_file_rs(
     rust_content: &String,
 ) -> Result<(), anyhow::Error> {
     if current_num_bullet.len() == 0 {
-        bail!("expect current_num_bullet from {quiz_file_name}")
+        // bail!("expect current_num_bullet from {quiz_file_name}")
     };
 
     write!(
