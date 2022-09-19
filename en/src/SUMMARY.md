@@ -54,7 +54,7 @@
   - [&'static and T: 'static](lifetime/static.md)
   - [advanced](lifetime/advance.md)
 - [Functional programing](functional-programing/intro.md)
-  - [Closure](functional-programing/cloure.md)
+  - [Closure](functional-programing/closure.md)
   - [Iterator](functional-programing/iterator.md)
 - [newtype and DST](newtype-sized.md)
 - [Smart pointers TODO](smart-pointers/intro.md)
@@ -86,8 +86,8 @@
   - [Future](async/future.md)
   - [Pin and Unpin](async/pin-unpin.md)
   - [Stream](async/stream.md)
-  
 - [Standard Library TODO](std/intro.md)
+
   - [String](std/String.md)
 
 - [Fighting with Compiler](fight-compiler/intro.md)
