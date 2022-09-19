@@ -269,7 +269,10 @@ fn format_md_rs(file_path: &String) -> Result<(), anyhow::Error> {
                                 let format_output =
                                     format_cmd.output().expect("failed to execute format");
                                 if format_output.stderr.len() > 0 {
-                                    println!("{:?}", format_output.stderr)
+                                    println!(
+                                        "stderr: {:?}",
+                                        String::from_utf8(format_output.stderr).unwrap()
+                                    )
                                 }
                                 let formatted_rust_content = fs::read_to_string(&temp_file_path)
                                     .expect("Should have been able to read the file");
@@ -325,7 +328,8 @@ fn format_md_rs_in_folder(path_string: &str) -> Result<(), anyhow::Error> {
 }
 
 fn main() -> Result<(), anyhow::Error> {
-    format_md_rs(&"./solutions/compound-types/struct.md".to_string())
+    // format_md_rs(&"./solutions/compound-types/struct.md".to_string())
     // format_md_rs_in_folder("./solutions")
+    format_md_rs_in_folder("./en/src")
     // generate_solution("./solutions")
 }
