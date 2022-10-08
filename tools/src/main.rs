@@ -187,7 +187,7 @@ fn insert_answer_rs(answer_file_name: &String) -> Result<(), anyhow::Error> {
                             // Finish code block?
                             if CODE_END_RE.is_match(text.as_str()) {
                                 // Insert answer
-                                let base_file_name = format!("{file_name}_{current_num_bullet}");
+                                let base_file_name = format!("{file_name}_{current_num_bullet}_");
                                 let mut is_push = false;
 
                                 // Match answer(s)
