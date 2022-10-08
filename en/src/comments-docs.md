@@ -38,13 +38,12 @@ fn main() {
 ### Exercises
 1. 🌟🌟
 ```rust,editable
-
 /* Make it work, only using comments! */
 fn main() {
     todo!();
     unimplemented!();
 
-    assert_eq!(6, 5 + 3 + 2 + 1 )
+    assert_eq!(6, 5 + 3 + 2 + 1)
 }
 ```
 
@@ -186,7 +185,7 @@ Add following code to `src/compute.rs` ,
 /// let res = doc_comments::compute::try_div(10, 0)?;
 /// # Ok(()) // returning from try_main
 /// # }
-/// # fn main() { 
+/// # fn main() {
 /// #    try_main().unwrap();
 /// #
 /// # }
