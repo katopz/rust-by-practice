@@ -52,8 +52,8 @@ pub fn eat_at_restaurant() {
     // Call add_to_waitlist with **absolute path**:
     __.add_to_waitlist();
 
-    // Call with **relative path** 
-     __.add_to_waitlist();
+    // Call with **relative path**
+    __.add_to_waitlist();
 }
 ```
 
@@ -188,7 +188,7 @@ You should have below structures and the corresponding codes in them when reachi
 // FILL in the blank and FIX the errors
 fn main() {
     assert_eq!(__, "sit down please");
-    assert_eq!(__,"yummy yummy!");
+    assert_eq!(__, "yummy yummy!");
 }
 ```
 

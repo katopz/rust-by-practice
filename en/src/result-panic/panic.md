@@ -7,14 +7,13 @@ The simplest error handling mechanism is to use `panic`. It just prints an error
 
 1. 🌟🌟
 ```rust,editable
-
 // FILL the blanks
 fn drink(beverage: &str) {
     if beverage == "lemonade" {
         println!("Success!");
         // IMPLEMENT the below code
         __
-     }
+    }
 
     println!("Exercise Failed if printing out this line!");
 }
@@ -47,7 +46,7 @@ fn main() {
     println!("Success!")
 }
 
-fn divide(x:u8, y:u8) {
+fn divide(x: u8, y: u8) {
     println!("{}", x / y)
 }
 

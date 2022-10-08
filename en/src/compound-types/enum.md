@@ -2,7 +2,6 @@
 1. 🌟🌟 Enums can be created with explicit discriminator.
 
 ```rust,editable
-
 // Fix the errors
 enum Number {
     Zero,
@@ -23,19 +22,17 @@ enum Number2 {
     Two = 2.0,
 }
 
-
 fn main() {
     // An enum variant can be converted to a integer by `as`
     assert_eq!(Number::One, Number1::One);
     assert_eq!(Number1::One, Number2::One);
 
     println!("Success!");
-} 
+}
 ```
 
 2. 🌟 Each enum variant can hold its own data.
 ```rust,editable
-
 // Fill in the blank
 enum Message {
     Quit,
@@ -45,16 +42,15 @@ enum Message {
 }
 
 fn main() {
-    let msg1 = Message::Move{__}; // Instantiating with x = 1, y = 2 
+    let msg1 = Message::Move { __ }; // Instantiating with x = 1, y = 2
     let msg2 = Message::Write(__); // Instantiating with "hello, world!"
 
     println!("Success!");
-} 
+}
 ```
 
 3. 🌟🌟 We can get the data which an enum variant is holding by pattern match.
 ```rust,editable
-
 // Fill in the blank and fix the error
 enum Message {
     Quit,
@@ -64,22 +60,21 @@ enum Message {
 }
 
 fn main() {
-    let msg = Message::Move{x: 1, y: 2};
+    let msg = Message::Move { x: 1, y: 2 };
 
-    if let Message::Move{__} = msg {
+    if let Message::Move { __ } = msg {
         assert_eq!(a, b);
     } else {
         panic!("NEVER LET THIS RUN！");
     }
 
     println!("Success!");
-} 
+}
 ```
 
 4. 🌟🌟 
 
 ```rust,editable
-
 // Fill in the blank and fix the errors
 enum Message {
     Quit,
@@ -91,14 +86,14 @@ enum Message {
 fn main() {
     let msgs: __ = [
         Message::Quit,
-        Message::Move{x:1, y:3},
-        Message::ChangeColor(255,255,0)
+        Message::Move { x: 1, y: 3 },
+        Message::ChangeColor(255, 255, 0),
     ];
 
     for msg in msgs {
         show_message(msg)
     }
-} 
+}
 
 fn show_message(msg: Message) {
     println!("{}", msg);
@@ -107,7 +102,6 @@ fn show_message(msg: Message) {
 
 5. 🌟🌟 Since there is no `null` in Rust, we have to use enum  `Option<T>`  to deal with the cases when the value is absent.
 ```rust,editable
-
 // Fill in the blank to make the `println` work.
 // Also add some code to prevent the `panic` from running.
 fn main() {
@@ -119,10 +113,10 @@ fn main() {
         println!("{}", n);
 
         println!("Success!");
-    } 
-        
+    }
+
     panic!("NEVER LET THIS RUN！");
-} 
+}
 
 fn plus_one(x: Option<i32>) -> Option<i32> {
     match x {

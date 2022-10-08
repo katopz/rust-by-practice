@@ -6,7 +6,7 @@
 ```rust,editable
 /* Fill in the blanks */
 fn main() {
-    println!("{0}, this is {1}. {1}, this is {0}", "Alice", "Bob");// => Alice, this is Bob. Bob, this is Alice
+    println!("{0}, this is {1}. {1}, this is {0}", "Alice", "Bob"); // => Alice, this is Bob. Bob, this is Alice
     assert_eq!(format!("{1}{0}", 1, 2), __);
     assert_eq!(format!(__, 1, 2), "2112");
     println!("Success!");
@@ -22,8 +22,8 @@ fn main() {
 
     /* Fill in the blanks */
     assert_eq!(format!("{name}{}", 1, __), "21");
-    assert_eq!(format!(__,a = "a", b = 'b', c = 3 ), "a 3 b");
-    
+    assert_eq!(format!(__, a = "a", b = 'b', c = 3), "a 3 b");
+
     /* Fix the error */
     // named argument must be placed after other arguments
     println!("{abc} {1}", abc = "def", 2);
@@ -38,7 +38,7 @@ fn main() {
 ```rust,editable
 fn main() {
     // the following two are padding with 5 spaces
-    println!("Hello {:5}!", "x"); // =>  "Hello x    !"  
+    println!("Hello {:5}!", "x"); // =>  "Hello x    !"
     println!("Hello {:1$}!", "x", 5); // =>  "Hello x    !"
 
     /* Fill in the blanks */
@@ -53,7 +53,7 @@ fn main() {
 ```rust,editable
 fn main() {
     // left align
-    println!("Hello {:<5}!", "x"); // => Hello x    !
+    println!("Hello {:<5}!", "x"); /// => Hello x    !
     // right align
     assert_eq!(format!("Hello __!", "x"), "Hello     x!");
     // center align
@@ -75,8 +75,8 @@ fn main() {
     println!("Hello {:05}!", -5); // => Hello -0005!
 
     /* Fill in the blank */
-    assert!(format!("{number:0>width$}", number=1, width=6) == __);
-    
+    assert!(format!("{number:0>width$}", number = 1, width = 6) == __);
+
     println!("Success!")
 }
 ```
@@ -84,12 +84,11 @@ fn main() {
 ## precision
 6.🌟🌟 Floating point precision
 ```rust,editable
-
 /* Fill in the blanks */
 fn main() {
     let v = 3.1415926;
 
-    println!("{:.1$}", v, 4); // same as {:.4} => 3.1416 
+    println!("{:.1$}", v, 4); // same as {:.4} => 3.1416
 
     assert_eq!(format!("__", v), "3.14");
     assert_eq!(format!("__", v), "+3.14");
@@ -144,7 +143,6 @@ fn get_person() -> String {
 fn get_format() -> (usize, usize) {
     (4, 1)
 }
-
 
 fn main() {
     let person = get_person();

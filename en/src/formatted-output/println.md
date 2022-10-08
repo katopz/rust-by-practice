@@ -14,7 +14,6 @@ correctness at compile time.
 ## `format!`
 1.🌟
 ```rust,editable
-
 fn main() {
     let s1 = "hello";
     /* Fill in the blank */
@@ -26,14 +25,13 @@ fn main() {
 ## `print!`, `println!`
 2.🌟
 ```rust,editable
-
 fn main() {
-   /* Fill in the blanks to make it print:
-   Hello world, I am 
-   Sunface!
-   */
-   __("hello world, ");
-   __("I am");
-   __("Sunface!");
+    /* Fill in the blanks to make it print:
+    Hello world, I am
+    Sunface!
+    */
+    __("hello world, ");
+    __("I am");
+    __("Sunface!");
 }
 ```

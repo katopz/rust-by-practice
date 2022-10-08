@@ -2,12 +2,11 @@
 
 1. 🌟🌟 
 ```rust,editable
-
 fn main() {
     // Use as many approaches as you can to make it work
     let x = String::from("hello, world");
     let y = x;
-    println!("{},{}",x,y);
+    println!("{},{}", x, y);
 }
 ```
 
@@ -30,7 +29,6 @@ fn take_ownership(s: String) {
 
 3. 🌟🌟
 ```rust,editable
-
 fn main() {
     let s = give_ownership();
     println!("{}", s);
@@ -56,8 +54,8 @@ fn main() {
     println!("{}", s);
 }
 
-fn print_str(s: String)  {
-    println!("{}",s)
+fn print_str(s: String) {
+    println!("{}", s)
 }
 ```
 
@@ -76,10 +74,9 @@ Mutability can be changed when ownership is transferred.
 
 6. 🌟
 ```rust,editable
-
 fn main() {
     let s = String::from("hello, ");
-    
+
     // Modify this line only !
     let s1 = s;
 
@@ -142,22 +139,20 @@ fn main() {
 
 8. 🌟
 ```rust,editable
-
 fn main() {
-   let t = (String::from("hello"), String::from("world"));
+    let t = (String::from("hello"), String::from("world"));
 
-   let _s = t.0;
+    let _s = t.0;
 
-   // Modify this line only, don't use `_s`
-   println!("{:?}", t);
+    // Modify this line only, don't use `_s`
+    println!("{:?}", t);
 }
 ```
 
 9. 🌟🌟
 ```rust,editable
-
 fn main() {
-   let t = (String::from("hello"), String::from("world"));
+    let t = (String::from("hello"), String::from("world"));
 
     // Fill the blanks
     let (__, __) = __;

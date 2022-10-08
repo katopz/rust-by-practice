@@ -3,10 +3,9 @@
 ### Functions
 1. 🌟🌟🌟
 ```rust,editable
-
 // Fill in the blanks to make it work
-struct A;          // Concrete type `A`.
-struct S(A);       // Concrete type `S`.
+struct A; // Concrete type `A`.
+struct S(A); // Concrete type `S`.
 struct SGen<T>(T); // Generic type `SGen`.
 
 fn reg_fn(_s: S) {}
@@ -19,8 +18,8 @@ fn generic<T>(_s: SGen<T>) {}
 
 fn main() {
     // Using the non-generic functions
-    reg_fn(__);          // Concrete type.
-    gen_spec_t(__);   // Implicitly specified type parameter `A`.
+    reg_fn(__); // Concrete type.
+    gen_spec_t(__); // Implicitly specified type parameter `A`.
     gen_spec_i32(__); // Implicitly specified type parameter `i32`.
 
     // Explicitly specified type parameter `char` to `generic()`.
@@ -53,9 +52,7 @@ fn main() {
 
 3. 🌟
 ```rust,editable
-
 // Implement struct Point to make it work.
-
 
 fn main() {
     let integer = Point { x: 5, y: 10 };
@@ -67,7 +64,6 @@ fn main() {
 
 4. 🌟🌟
 ```rust,editable
-
 // Modify this struct to make the code work
 struct Point<T> {
     x: T,
@@ -76,7 +72,10 @@ struct Point<T> {
 
 fn main() {
     // DON'T modify this code.
-    let p = Point{x: 5, y : "hello".to_string()};
+    let p = Point {
+        x: 5,
+        y: "hello".to_string(),
+    };
 
     println!("Success!");
 }
@@ -84,7 +83,6 @@ fn main() {
 
 5. 🌟🌟
 ```rust,editable
-
 // Add generic for Val to make the code work, DON'T modify the code in `main`.
 struct Val {
     val: f64,
@@ -96,10 +94,11 @@ impl Val {
     }
 }
 
-
 fn main() {
-    let x = Val{ val: 3.0 };
-    let y = Val{ val: "hello".to_string()};
+    let x = Val { val: 3.0 };
+    let y = Val {
+        val: "hello".to_string(),
+    };
     println!("{}, {}", x.value(), y.value());
 }
 ```
@@ -133,7 +132,6 @@ fn main() {
 
 7. 🌟🌟
 ```rust,editable
-
 // Fix the errors to make the code work.
 struct Point<T> {
     x: T,
@@ -147,8 +145,8 @@ impl Point<f32> {
 }
 
 fn main() {
-    let p = Point{x: 5, y: 10};
-    println!("{}",p.distance_from_origin());
+    let p = Point { x: 5, y: 10 };
+    println!("{}", p.distance_from_origin());
 }
 ```
 

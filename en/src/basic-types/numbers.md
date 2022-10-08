@@ -7,15 +7,14 @@
 > Tips: If we don't explicitly assign a type to a variable, then the compiler will infer one for us.
 
 ```rust,editable
-
 // Remove something to make it work
 fn main() {
     let x: i32 = 5;
     let mut y: u32 = 5;
 
     y = x;
-    
-    let z = 10; // Type of z ? 
+
+    let z = 10; // Type of z ?
 
     println!("Success!");
 }
@@ -23,7 +22,6 @@ fn main() {
 
 2. 🌟
 ```rust,editable
-
 //  Fill the blank
 fn main() {
     let v: u16 = 38_u8 as __;
@@ -37,7 +35,6 @@ fn main() {
 > Tips: If we don't explicitly assign a type to a variable, then the compiler will infer one for us.
 
 ```rust,editable
-
 // Modify `assert_eq!` to make it work
 fn main() {
     let x = 5;
@@ -54,11 +51,10 @@ fn type_of<T>(_: &T) -> String {
 
 4. 🌟🌟 
 ```rust,editable
-
 // Fill the blanks to make it work
 fn main() {
-    assert_eq!(i8::MAX, __); 
-    assert_eq!(u8::MAX, __); 
+    assert_eq!(i8::MAX, __);
+    assert_eq!(u8::MAX, __);
 
     println!("Success!");
 }
@@ -66,18 +62,16 @@ fn main() {
 
 5. 🌟🌟 
 ```rust,editable
-
 // Fix errors and panics to make it work
 fn main() {
-   let v1 = 251_u8 + 8;
-   let v2 = i8::checked_add(251, 8).unwrap();
-   println!("{},{}",v1,v2);
+    let v1 = 251_u8 + 8;
+    let v2 = i8::checked_add(251, 8).unwrap();
+    println!("{},{}", v1, v2);
 }
 ```
 
 6. 🌟🌟
 ```rust,editable
-
 // Modify `assert!` to make it work
 fn main() {
     let v = 1_024 + 0xff + 0o77 + 0b1111_1111;
@@ -92,7 +86,6 @@ fn main() {
 7. 🌟
 
 ```rust,editable
-
 //  Replace ? with your answer
 fn main() {
     let x = 1_000.000_1; // ?
@@ -106,9 +99,8 @@ fn main() {
 8. 🌟🌟 Make it work in two distinct ways
 
 ```rust,editable
-
 fn main() {
-    assert!(0.1+0.2==0.3);
+    assert!(0.1 + 0.2 == 0.3);
 
     println!("Success!");
 }
@@ -127,18 +119,17 @@ fn main() {
     assert!(sum == -3);
 
     for c in 'a'..='z' {
-        println!("{}",c);
+        println!("{}", c);
     }
 }
 ```
 
 10. 🌟🌟 
 ```rust,editable
-
 // Fill the blanks
 use std::ops::{Range, RangeInclusive};
 fn main() {
-    assert_eq!((1..__), Range{ start: 1, end: 5 });
+    assert_eq!((1..__), Range { start: 1, end: 5 });
     assert_eq!((1..__), RangeInclusive::new(1, 5));
 
     println!("Success!");
@@ -149,7 +140,6 @@ fn main() {
 
 11. 🌟 
 ```rust,editable
-
 // Fill the blanks and fix the errors
 fn main() {
     // Integer addition
@@ -157,8 +147,8 @@ fn main() {
 
     // Integer subtraction
     assert!(1i32 - 2 == __);
-    assert!(1u8 - 2 == -1); 
-    
+    assert!(1u8 - 2 == -1);
+
     assert!(3 * 50 == __);
 
     assert!(9.6 / 3.2 == 3.0); // error ! make it work

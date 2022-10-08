@@ -4,10 +4,9 @@ Vectors are resizable arrays. Like slices, their size is not known at compile ti
 ### Basic Operations
 1. 🌟🌟🌟
 ```rust,editable
-
 fn main() {
     let arr: [u8; 3] = [1, 2, 3];
-    
+
     let v = Vec::from(arr);
     is_vec(v);
 
@@ -17,12 +16,12 @@ fn main() {
     // vec!(..) and vec![..] are same macros, so
     let v = vec!(1, 2, 3);
     is_vec(v);
-    
+
     // In code below, v is Vec<[u8; 3]> , not Vec<u8>
-    // USE Vec::new and `for` to rewrite the below code 
+    // USE Vec::new and `for` to rewrite the below code
     let v1 = vec!(arr);
     is_vec(v1);
- 
+
     assert_eq!(v, v1);
 
     println!("Success!");
@@ -35,13 +34,12 @@ fn is_vec(v: Vec<u8>) {}
 
 2. 🌟🌟 A Vec can be extended with `extend` method
 ```rust,editable
-
 // FILL in the blank
 fn main() {
     let mut v1 = Vec::from([1, 2, 4]);
     v1.pop();
     v1.push(3);
-    
+
     let mut v2 = Vec::new();
     v2.__;
 
@@ -54,7 +52,6 @@ fn main() {
 ### Turn X Into Vec
 3. 🌟🌟🌟
 ```rust,editable
-
 // FILL in the blanks
 fn main() {
     // Array -> Vec
@@ -62,10 +59,9 @@ fn main() {
     let arr = [1, 2, 3];
     let v1 = __(arr);
     let v2: Vec<i32> = arr.__();
- 
+
     assert_eq!(v1, v2);
- 
-    
+
     // String -> Vec
     // impl From<String> for Vec
     let s = "hello".to_string();
@@ -85,13 +81,12 @@ fn main() {
     assert_eq!(v4, vec![0; 10]);
 
     println!("Success!");
- }
+}
 ```
 
 ### Indexing
 4. 🌟🌟🌟
 ```rust,editable
-
 // FIX the error and IMPLEMENT the code
 fn main() {
     let mut v = Vec::from([1, 2, 3]);
@@ -100,9 +95,9 @@ fn main() {
     }
 
     for i in 0..5 {
-       // IMPLEMENT the code here...
+        // IMPLEMENT the code here...
     }
-    
+
     assert_eq!(v, vec![2, 3, 4, 5, 6]);
 
     println!("Success!");
@@ -117,7 +112,6 @@ In Rust, it’s more common to pass slices as arguments rather than vectors when
 
 5. 🌟🌟
 ```rust,editable
-
 // FIX the errors
 fn main() {
     let mut v = vec![1, 2, 3];
@@ -126,9 +120,9 @@ fn main() {
     // Out of bounds will cause a panic
     // You must use `v.len` here
     let slice2 = &v[0..4];
-    
+
     assert_eq!(slice1, slice2);
-    
+
     // Slices are read only
     // Note: slice and &Vec are different
     let vec_ref: &mut Vec<i32> = &mut v;
@@ -168,8 +162,7 @@ fn main() {
     assert_eq!(vec.len(), 11);
     assert!(vec.capacity() >= 11);
 
-
-    // Fill in an appropriate value to make the `for` done without reallocating 
+    // Fill in an appropriate value to make the `for` done without reallocating
     let mut vec = Vec::with_capacity(__);
     for i in 0..100 {
         vec.push(i);
@@ -177,7 +170,7 @@ fn main() {
 
     assert_eq!(vec.len(), __);
     assert_eq!(vec.capacity(), __);
-    
+
     println!("Success!");
 }
 ```
@@ -201,8 +194,8 @@ enum IpAddr {
 }
 fn main() {
     // FILL in the blank
-    let v : Vec<IpAddr>= __;
-    
+    let v: Vec<IpAddr> = __;
+
     // Comparing two enums need to derive the PartialEq trait
     assert_eq!(v[0], IpAddr::V4("127.0.0.1".to_string()));
     assert_eq!(v[1], IpAddr::V6("::1".to_string()));
@@ -220,19 +213,19 @@ trait IpAddr {
 struct V4(String);
 impl IpAddr for V4 {
     fn display(&self) {
-        println!("ipv4: {:?}",self.0)
+        println!("ipv4: {:?}", self.0)
     }
 }
 struct V6(String);
 impl IpAddr for V6 {
     fn display(&self) {
-        println!("ipv6: {:?}",self.0)
+        println!("ipv6: {:?}", self.0)
     }
 }
 
 fn main() {
     // FILL in the blank
-    let v: __= vec![
+    let v: __ = vec![
         Box::new(V4("127.0.0.1".to_string())),
         Box::new(V6("::1".to_string())),
     ];

@@ -3,7 +3,6 @@ Slices are similar to arrays, but their length is not known at compile time, so 
 
 1. 🌟🌟 Here, both `[i32]` and `str` are slice types, but directly using it will cause errors. You have to use the reference of the slice instead: `&[i32]`, `&str`.
 ```rust,editable
-
 // Fix the errors, DON'T add new lines!
 fn main() {
     let arr = [1, 2, 3];
@@ -19,12 +18,11 @@ A slice reference is a two-word object, for simplicity reasons, from now on we w
 
 2. 🌟🌟🌟
 ```rust,editable
-
 fn main() {
     let arr: [char; 3] = ['中', '国', '人'];
 
     let slice = &arr[..2];
-    
+
     // Modify '8' to make it work
     // TIPS: slice( reference ) IS NOT an array, if it is an array, then `assert!` will passed: Each of the two chars '中' and '国'  occupies 4 bytes, 2 * 4 = 8
     assert!(std::mem::size_of_val(&slice) == 8);
@@ -35,7 +33,6 @@ fn main() {
 
 3. 🌟🌟
 ```rust,editable
-
 fn main() {
     let arr: [i32; 5] = [1, 2, 3, 4, 5];
     // Fill the blanks to make the code work
@@ -49,7 +46,6 @@ fn main() {
 ### String slices
 4. 🌟 
 ```rust,editable
-
 fn main() {
     let s = String::from("hello");
 
@@ -65,7 +61,6 @@ fn main() {
 
 5. 🌟
 ```rust,editable
-
 fn main() {
     let s = "你好，世界";
     // Modify this line to make the code work
@@ -79,13 +74,12 @@ fn main() {
 
 6. 🌟🌟 `&String` can be implicitly converted into `&str`.
 ```rust,editable
-
 // Fix errors
 fn main() {
     let mut s = String::from("hello world");
 
     // Here, &s is `&String` type, but `first_word` need a `&str` type.
-    // It works because `&String` can be implicitly converted to `&str, If you want know more ,this is called `Deref` 
+    // It works because `&String` can be implicitly converted to `&str, If you want know more ,this is called `Deref`
     let word = first_word(&s);
 
     s.clear(); // error!

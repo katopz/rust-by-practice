@@ -98,9 +98,7 @@ fn foo() -> i32 {
 
 fn main() {
     let pointer = foo as *const ();
-    let function = unsafe {
-        std::mem::transmute::<*const (), fn() -> i32>(pointer)
-    };
+    let function = unsafe { std::mem::transmute::<*const (), fn() -> i32>(pointer) };
     assert_eq!(function(), 0);
 }
 ```
@@ -112,8 +110,7 @@ unsafe fn extend_lifetime<'b>(r: R<'b>) -> R<'static> {
     std::mem::transmute::<R<'b>, R<'static>>(r)
 }
 
-unsafe fn shorten_invariant_lifetime<'b, 'c>(r: &'b mut R<'static>)
-                                             -> &'b mut R<'c> {
+unsafe fn shorten_invariant_lifetime<'b, 'c>(r: &'b mut R<'static>) -> &'b mut R<'c> {
     std::mem::transmute::<&'b mut R<'static>, &'b mut R<'c>>(r)
 }
 ```
