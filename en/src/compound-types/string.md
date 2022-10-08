@@ -14,6 +14,13 @@ fn main() {
 }
 ```
 
+{{#playground string_11_0.rs answer}}
+{{#playground string_10_0.rs answer}}
+{{#playground string_12_0.rs answer}}
+{{#playground string_1_0.rs answer}}
+
+
+
 
 2. 🌟🌟 We can only use `str` by boxed it, `&` can be used to convert `Box<str>` to `&str` 
 
@@ -28,6 +35,11 @@ fn greetings(s: &str) {
     println!("{}", s)
 }
 ```
+
+{{#playground string_2_0.rs answer}}
+{{#playground string_2_1.rs answer}}
+
+
 
 ### String
 `String` type is defined in std and stored as a vector of bytes (Vec<u8>), but guaranteed to always be a valid UTF-8 sequence. String is heap allocated, growable and not null terminated.
@@ -46,6 +58,10 @@ fn main() {
 }
 ```
 
+{{#playground string_3_0.rs answer}}
+
+
+
 4. 🌟🌟🌟
 ```rust,editable
 // Fix all errors without adding newline
@@ -58,6 +74,10 @@ fn main() {
     println!("{}", s);
 }
 ```
+
+{{#playground string_4_0.rs answer}}
+
+
 
 5. 🌟🌟 `replace` can be used to replace substring
 ```rust,editable
@@ -73,6 +93,10 @@ fn main() {
 }
 ```
 
+{{#playground string_5_0.rs answer}}
+
+
+
 More `String` methods can be found under [String](https://doc.rust-lang.org/std/string/struct.String.html) module.
 
 6. 🌟🌟 You can only concat a `String` with `&str`, and `String`'s ownership can be moved to another variable.
@@ -87,6 +111,10 @@ fn main() {
     println!("{}", s1);
 }
 ```
+
+{{#playground string_6_0.rs answer}}
+
+
 
 ### &str and String
 Opsite to the seldom using of `str`, `&str` and `String` are used everywhere!
@@ -104,6 +132,11 @@ fn greetings(s: String) {
 }
 ```
 
+{{#playground string_7_1.rs answer}}
+{{#playground string_7_0.rs answer}}
+
+
+
 8. 🌟🌟 We can use `String::from` or `to_string` to convert a `&str` to `String`
 
 ```rust,editable
@@ -115,6 +148,12 @@ fn main() {
     println!("Success!");
 }
 ```
+
+{{#playground string_8_0.rs answer}}
+{{#playground string_8_1.rs answer}}
+{{#playground string_8_2.rs answer}}
+
+
 
 ### String escapes
 9. 🌟 
@@ -142,6 +181,10 @@ fn main() {
 }
 ```
 
+{{#playground string_9_0.rs answer}}
+
+
+
 10. 🌟🌟🌟 Sometimes there are just too many characters that need to be escaped or it's just much more convenient to write a string out as-is. This is where raw string literals come into play.
 
 ```rust,editable
@@ -165,6 +208,10 @@ fn main() {
     println!("Success!");
 }
 ```
+
+{{#playground string_10_0.rs answer}}
+
+
 
 ### Byte string
 Want a string that's not UTF-8? (Remember, str and String must be valid UTF-8). Or maybe you want an array of bytes that's mostly text? Byte strings to the rescue!
@@ -228,6 +275,10 @@ fn main() {
 }
 ```
 
+{{#playground string_11_0.rs answer}}
+
+
+
 ### Operate on UTF8 string
 12. 🌟
 ```rust,editable
@@ -238,6 +289,10 @@ fn main() {
     }
 }
 ```
+
+{{#playground string_12_0.rs answer}}
+
+
 
 #### utf8_slice
 You can use [utf8_slice](https://docs.rs/utf8_slice/1.0.0/utf8_slice/fn.slice.html) to slice UTF8 string, it can index chars instead of bytes.

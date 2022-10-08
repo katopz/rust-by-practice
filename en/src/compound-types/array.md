@@ -23,6 +23,10 @@ fn main() {
 }
 ```
 
+{{#playground array_1_0.rs answer}}
+
+
+
 2. 🌟🌟
 ```rust,editable
 fn main() {
@@ -39,6 +43,10 @@ fn main() {
 }
 ```
 
+{{#playground array_2_0.rs answer}}
+
+
+
 3. 🌟 All elements in an array can be initialized to the same value at once.
 
 ```rust,editable
@@ -53,6 +61,10 @@ fn main() {
 }
 ```
 
+{{#playground array_3_0.rs answer}}
+
+
+
 4. 🌟 All elements in an array must be of the same type
 ```rust,editable
 fn main() {
@@ -62,6 +74,10 @@ fn main() {
     println!("Success!");
 }
 ```
+
+{{#playground array_4_0.rs answer}}
+
+
 
 5. 🌟 Indexing starts at 0.
 ```rust,editable
@@ -75,6 +91,10 @@ fn main() {
     println!("Success!");
 }
 ```
+
+{{#playground array_5_0.rs answer}}
+
+
 
 6. 🌟 Out of bounds indexing causes `panic`.
 ```rust,editable
@@ -91,5 +111,9 @@ fn main() {
     println!("Success!");
 }
 ```
+
+{{#playground array_6_0.rs answer}}
+
+
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it

@@ -137,6 +137,10 @@ fn main() {
 }
 ```
 
+{{#playground method_1_0.rs answer}}
+
+
+
 2. 🌟🌟 `self` will take the ownership of current struct instance, however, `&self` will only borrow a reference from the instance.
 
 ```rust,editable
@@ -161,6 +165,10 @@ fn main() {
     println!("{:?}", light);
 }
 ```
+
+{{#playground method_2_0.rs answer}}
+
+
 3. 🌟🌟 The `&self` is actually short for `self: &Self`. Within an `impl` block, the type `Self` is an alias for the type that the `impl` block is for. Methods must have a parameter named `self` of type `Self` for their first parameter, so Rust lets you abbreviate this with only the name `self` in the first parameter spot. 
 ```rust,editable
 struct TrafficLight {
@@ -182,6 +190,10 @@ fn main() {
     println!("Success!");
 }
 ```
+
+{{#playground method_3_0.rs answer}}
+
+
 
 
 ### Associated functions
@@ -213,6 +225,10 @@ fn main() {
 }
 ```
 
+{{#playground method_4_0.rs answer}}
+
+
+
 ### Multiple `impl` blocks
 5. 🌟 Each struct is allowed to have multiple impl blocks. 
 ```rust,editable
@@ -237,6 +253,10 @@ fn main() {
 }
 ```
 
+{{#playground method_5_0.rs answer}}
+
+
+
 ### Enums
 6. 🌟🌟🌟 We can also implement methods for enums.
 
@@ -259,6 +279,10 @@ fn main() {
     println!("{:?}", c);
 }
 ```
+
+{{#playground method_6_0.rs answer}}
+
+
 
 ## Practice
 

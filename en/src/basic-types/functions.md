@@ -17,6 +17,10 @@ fn sum(x, y: i32) {
 }
 ```
 
+{{#playground functions_1_0.rs answer}}
+
+
+
 
 2. 🌟
 ```rust,editable
@@ -29,6 +33,10 @@ fn print() -> i32 {
     println!("Success!");
 }
 ```
+
+{{#playground functions_2_0.rs answer}}
+
+
 
 
 3. 🌟🌟🌟
@@ -46,6 +54,11 @@ fn never_return() -> ! {
     // Implement this function, don't modify the fn signatures
 }
 ```
+
+{{#playground functions_3_0.rs answer}}
+{{#playground functions_3_1.rs answer}}
+
+
 
 ### Diverging functions 
 Diverging functions never return to the caller, so they may be used in places where a value of any type is expected.
@@ -76,6 +89,13 @@ fn never_return_fn() -> ! {
 }
 ```
 
+{{#playground functions_4_1.rs answer}}
+{{#playground functions_4_0.rs answer}}
+{{#playground functions_4_3.rs answer}}
+{{#playground functions_4_2.rs answer}}
+
+
+
 5. 🌟🌟
 ```rust,editable
 fn main() {
@@ -94,5 +114,9 @@ fn main() {
     println!("Exercise Failed if printing out this line!");
 }
 ```
+
+{{#playground functions_5_0.rs answer}}
+
+
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it

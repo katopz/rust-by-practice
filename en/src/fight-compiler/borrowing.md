@@ -29,3 +29,7 @@ impl test {
 
 fn main() {}
 ```
+
+{{#playground borrowing_1_0.rs answer}}
+
+

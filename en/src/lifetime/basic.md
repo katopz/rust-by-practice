@@ -40,6 +40,11 @@ fn main() {
 }                         // ----------+
 ```
 
+{{#playground basic_2_0.rs answer}}
+{{#playground basic_2_1.rs answer}}
+
+
+
 
 ```rust,editable
 /* annotate `r` and `x` as above, and explain why this code fails to compile, in the lifetime aspect. */

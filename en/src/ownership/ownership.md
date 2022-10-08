@@ -10,6 +10,13 @@ fn main() {
 }
 ```
 
+{{#playground ownership_1_1.rs answer}}
+{{#playground ownership_1_0.rs answer}}
+{{#playground ownership_1_3.rs answer}}
+{{#playground ownership_1_2.rs answer}}
+
+
+
 2. 🌟🌟
 ```rust,editable
 // Don't modify code in main!
@@ -25,6 +32,10 @@ fn take_ownership(s: String) {
     println!("{}", s);
 }
 ```
+
+{{#playground ownership_2_0.rs answer}}
+
+
 
 
 3. 🌟🌟
@@ -43,6 +54,11 @@ fn give_ownership() -> String {
 }
 ```
 
+{{#playground ownership_3_1.rs answer}}
+{{#playground ownership_3_0.rs answer}}
+
+
+
 4. 🌟🌟
 ```rust,editable
 // Fix the error without removing code line
@@ -59,6 +75,11 @@ fn print_str(s: String) {
 }
 ```
 
+{{#playground ownership_4_0.rs answer}}
+{{#playground ownership_4_1.rs answer}}
+
+
+
 5. 🌟🌟 
 ```rust,editable
 // Don't use clone ,use copy instead
@@ -68,6 +89,10 @@ fn main() {
     println!("{:?}, {:?}", x, y);
 }
 ```
+
+{{#playground ownership_5_0.rs answer}}
+
+
 
 #### Mutability
 Mutability can be changed when ownership is transferred.
@@ -86,6 +111,10 @@ fn main() {
 }
 ```
 
+{{#playground ownership_6_0.rs answer}}
+
+
+
 7. 🌟🌟🌟
 ```rust,editable
 
@@ -101,6 +130,10 @@ fn main() {
     println!("Success!");
 }
 ```
+
+{{#playground ownership_7_0.rs answer}}
+
+
 
 ### Partial move
 Within the destructuring of a single variable, both by-move and by-reference pattern bindings can be used at the same time. Doing this will result in a partial move of the variable, which means that parts of the variable will be moved while other parts stay. In such a case, the parent variable cannot be used afterwards as a whole, however the parts that are only referenced (and not moved) can still be used.
@@ -149,6 +182,10 @@ fn main() {
 }
 ```
 
+{{#playground ownership_8_0.rs answer}}
+
+
+
 9. 🌟🌟
 ```rust,editable
 fn main() {
@@ -160,6 +197,10 @@ fn main() {
     println!("{:?}, {:?}, {:?}", s1, s2, t); // -> "hello", "world", ("hello", "world")
 }
 ```
+
+{{#playground ownership_9_0.rs answer}}
+
+
 
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it

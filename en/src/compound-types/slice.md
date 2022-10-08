@@ -14,6 +14,10 @@ fn main() {
 }
 ```
 
+{{#playground slice_1_0.rs answer}}
+
+
+
 A slice reference is a two-word object, for simplicity reasons, from now on we will use slice instead of `slice reference`.  The first word is a pointer to the data, and the second word is the length of the slice. The word size is the same as usize, determined by the processor architecture, eg 64 bits on an x86-64. Slices can be used to borrow a section of an array, and have the type signature `&[T]`.
 
 2. 🌟🌟🌟
@@ -31,6 +35,10 @@ fn main() {
 }
 ```
 
+{{#playground slice_2_0.rs answer}}
+
+
+
 3. 🌟🌟
 ```rust,editable
 fn main() {
@@ -42,6 +50,10 @@ fn main() {
     println!("Success!");
 }
 ```
+
+{{#playground slice_3_0.rs answer}}
+
+
 
 ### String slices
 4. 🌟 
@@ -59,6 +71,10 @@ fn main() {
 }
 ```
 
+{{#playground slice_4_0.rs answer}}
+
+
+
 5. 🌟
 ```rust,editable
 fn main() {
@@ -71,6 +87,10 @@ fn main() {
     println!("Success!");
 }
 ```
+
+{{#playground slice_5_0.rs answer}}
+
+
 
 6. 🌟🌟 `&String` can be implicitly converted into `&str`.
 ```rust,editable
@@ -90,5 +110,9 @@ fn first_word(s: &str) -> &str {
     &s[..1]
 }
 ```
+
+{{#playground slice_6_0.rs answer}}
+
+
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it

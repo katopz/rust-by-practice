@@ -36,6 +36,10 @@ mod front_of_house {
 }
 ```
 
+{{#playground module_1_0.rs answer}}
+
+
+
 
 2. 🌟🌟 Let's call `add_to_waitlist` from a function `eat_at_restaurant` which is within the library crate root.
 
@@ -57,6 +61,10 @@ pub fn eat_at_restaurant() {
 }
 ```
 
+{{#playground module_2_0.rs answer}}
+
+
+
 3. 🌟🌟 You can use `super` to import items within the parent module
 ```rust,editable
 // In lib.rs
@@ -73,6 +81,11 @@ mod back_of_house {
     fn cook_order() {}
 }
 ```
+
+{{#playground module_3_1.rs answer}}
+{{#playground module_3_0.rs answer}}
+
+
 
 
 ### Separating modules into different files
@@ -138,6 +151,14 @@ pub mod back_of_house {
 // IMPLEMENT...
 ```
 
+{{#playground module_4_2.rs answer}}
+{{#playground module_4_3.rs answer}}
+{{#playground module_4_0.rs answer}}
+{{#playground module_4_4.rs answer}}
+{{#playground module_4_1.rs answer}}
+
+
+
 ```rust,editable
 // In src/back_of_house.rs
 
@@ -191,5 +212,9 @@ fn main() {
     assert_eq!(__, "yummy yummy!");
 }
 ```
+
+{{#playground module_5_0.rs answer}}
+
+
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice) (under the solutions path), but only use it when you need it :)

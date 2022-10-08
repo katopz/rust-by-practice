@@ -20,6 +20,12 @@ fn main() {
 }
 ```
 
+{{#playground numbers_1_0.rs answer}}
+{{#playground numbers_11_0.rs answer}}
+{{#playground numbers_10_0.rs answer}}
+
+
+
 2. 🌟
 ```rust,editable
 //  Fill the blank
@@ -29,6 +35,10 @@ fn main() {
     println!("Success!");
 }
 ```
+
+{{#playground numbers_2_0.rs answer}}
+
+
 
 3. 🌟🌟🌟  
 
@@ -49,6 +59,10 @@ fn type_of<T>(_: &T) -> String {
 }
 ```
 
+{{#playground numbers_3_0.rs answer}}
+
+
+
 4. 🌟🌟 
 ```rust,editable
 // Fill the blanks to make it work
@@ -60,6 +74,10 @@ fn main() {
 }
 ```
 
+{{#playground numbers_4_0.rs answer}}
+
+
+
 5. 🌟🌟 
 ```rust,editable
 // Fix errors and panics to make it work
@@ -69,6 +87,10 @@ fn main() {
     println!("{},{}", v1, v2);
 }
 ```
+
+{{#playground numbers_5_0.rs answer}}
+
+
 
 6. 🌟🌟
 ```rust,editable
@@ -80,6 +102,10 @@ fn main() {
     println!("Success!");
 }
 ```
+
+{{#playground numbers_6_0.rs answer}}
+
+
 
 
 ### Floating-Point
@@ -96,6 +122,10 @@ fn main() {
 }
 ```
 
+{{#playground numbers_7_0.rs answer}}
+
+
+
 8. 🌟🌟 Make it work in two distinct ways
 
 ```rust,editable
@@ -105,6 +135,11 @@ fn main() {
     println!("Success!");
 }
 ```
+
+{{#playground numbers_8_0.rs answer}}
+{{#playground numbers_8_1.rs answer}}
+
+
 
 ### Range
 9. 🌟🌟 Two goals: 1. Modify `assert!` to make it work 2. Make `println!` output: 97 - 122
@@ -124,6 +159,10 @@ fn main() {
 }
 ```
 
+{{#playground numbers_9_0.rs answer}}
+
+
+
 10. 🌟🌟 
 ```rust,editable
 // Fill the blanks
@@ -135,6 +174,10 @@ fn main() {
     println!("Success!");
 }
 ```
+
+{{#playground numbers_10_0.rs answer}}
+
+
 
 ### Computations
 
@@ -167,5 +210,9 @@ fn main() {
     println!("0x80 >> 2 is 0x{:x}", 0x80u32 >> 2);
 }
 ```
+
+{{#playground numbers_11_0.rs answer}}
+
+
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it

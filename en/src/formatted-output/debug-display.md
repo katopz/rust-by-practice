@@ -31,6 +31,12 @@ fn main() {
 }
 ```
 
+{{#playground debug-display_1_0.rs answer}}
+
+{{#playground debug-display_1_0.rs answer}}
+
+{{#playground debug-display_1_0.rs answer}}
+
 2. 🌟🌟 So `fmt::Debug` definitely makes one type printable, but sacrifices some elegance. Maybe we can get more elegant by replacing `{:?}` with something else( but not `{}` !) 
 ```rust,editable
 #[derive(Debug)]
@@ -55,6 +61,12 @@ fn main() {
 }
 ```
 
+{{#playground debug-display_2_0.rs answer}}
+
+{{#playground debug-display_2_0.rs answer}}
+
+{{#playground debug-display_2_0.rs answer}}
+
 3. 🌟🌟 We can also manually implement `Debug` trait for our types
 ```rust,editable
 #[derive(Debug)]
@@ -71,6 +83,15 @@ fn main() {
     println!("Now {:?} will print!", Deep(Structure(7)));
 }
 ```
+
+{{#playground debug-display_3_1.rs answer}}
+{{#playground debug-display_3_0.rs answer}}
+
+{{#playground debug-display_3_1.rs answer}}
+{{#playground debug-display_3_0.rs answer}}
+
+{{#playground debug-display_3_1.rs answer}}
+{{#playground debug-display_3_0.rs answer}}
 
 ## Display
 Yeah, `Debug` is simple and easy to use. But sometimes we want to customize the output appearance of our type. This is where `Display` really shines.
@@ -153,4 +174,10 @@ fn main() {
     println!("Success!")
 }
 ```
+
+{{#playground debug-display_5_0.rs answer}}
+
+{{#playground debug-display_5_0.rs answer}}
+
+{{#playground debug-display_5_0.rs answer}}
 

@@ -13,6 +13,10 @@ fn main() {
 }
 ```
 
+{{#playground variables_1_0.rs answer}}
+
+
+
 2. 🌟 Use `mut` to mark a variable as mutable.
 ```rust,editable
 // Fill the blanks in the code to make it compile
@@ -24,6 +28,10 @@ fn main() {
     println!("Success!");
 }
 ```
+
+{{#playground variables_2_0.rs answer}}
+
+
 
 ### Scope
 A scope is the range within the program for which the item is valid.
@@ -41,6 +49,10 @@ fn main() {
 }
 ```
 
+{{#playground variables_3_0.rs answer}}
+
+
+
 4. 🌟🌟 
 ```rust,editable
 // Fix the error with the use of define_x
@@ -52,6 +64,11 @@ fn define_x() {
     let x = "hello";
 }
 ```
+
+{{#playground variables_4_1.rs answer}}
+{{#playground variables_4_0.rs answer}}
+
+
 
 ### Shadowing
 You can declare a new variable with the same name as a previous variable, here we can say **the first one is shadowed by the second one.
@@ -73,6 +90,10 @@ fn main() {
 }
 ```
 
+{{#playground variables_5_0.rs answer}}
+
+
+
 6. 🌟🌟 
 ```rust,editable
 // Remove a line in the code to make it compile
@@ -91,6 +112,10 @@ fn main() {
 }
 ```
 
+{{#playground variables_6_0.rs answer}}
+
+
+
 ### Unused variables
 7. Fix the warning below with :
 
@@ -106,6 +131,11 @@ fn main() {
 
 // Warning: unused variable: `x`
 ```
+
+{{#playground variables_7_0.rs answer}}
+{{#playground variables_7_1.rs answer}}
+
+
 
 ### Destructuring
 8. 🌟🌟 We can use a pattern with `let` to destructure a tuple to separate variables.
@@ -125,6 +155,11 @@ fn main() {
 }
 ```
 
+{{#playground variables_8_1.rs answer}}
+{{#playground variables_8_0.rs answer}}
+
+
+
 ### Destructuring assignments
 Introduced in Rust 1.59: You can now use tuple, slice, and struct patterns as the left-hand side of an assignment.
 
@@ -143,6 +178,10 @@ fn main() {
     println!("Success!");
 }
 ```
+
+{{#playground variables_9_0.rs answer}}
+
+
 
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it
