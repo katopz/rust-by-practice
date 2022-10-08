@@ -13,7 +13,10 @@ impl Rectangle {
 }
 
 fn main() {
-    let rect1 = Rectangle { width: 30, height: 50 };
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
 
     assert_eq!(rect1.area(), 1500);
 }
@@ -80,7 +83,7 @@ impl TrafficLight {
     // 3. must use `Self`, DONT use `TrafficLight`
     pub fn new() -> Self {
         Self {
-            color: "red".to_string()
+            color: "red".to_string(),
         }
     }
 

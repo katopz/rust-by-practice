@@ -11,7 +11,7 @@ fn main() {
     } else {
         println!("{} is zero", n);
     }
-} 
+}
 ```
 
 2.
@@ -20,19 +20,18 @@ fn main() {
 fn main() {
     let n = 5;
 
-    let big_n =
-        if n < 10 && n > -10 {
-            println!(", and is a small number, increase ten-fold");
+    let big_n = if n < 10 && n > -10 {
+        println!(", and is a small number, increase ten-fold");
 
-            10 * n
-        } else {
-            println!(", and is a big number, halve the number");
+        10 * n
+    } else {
+        println!(", and is a big number, halve the number");
 
-            n / 2
-        };
+        n / 2
+    };
 
     println!("{} -> {}", n, big_n);
-} 
+}
 ```
 
 3.
@@ -44,7 +43,7 @@ fn main() {
             panic!("NEVER LET THIS RUN")
         }
     }
-} 
+}
 ```
 
 4.
@@ -65,7 +64,7 @@ fn main() {
     }
 
     println!("{:?}", numbers);
-} 
+}
 ```
 
 5.
@@ -99,7 +98,6 @@ fn main() {
         } else {
             println!("{}", n);
         }
-
 
         n += 1;
     }
@@ -201,7 +199,7 @@ fn main() {
         'inner1: loop {
             if count >= 20 {
                 // This would break only the inner1 loop
-                break 'inner1; // `break` is also ok 
+                break 'inner1; // `break` is also ok
             }
             count += 2;
         }

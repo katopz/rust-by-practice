@@ -20,12 +20,11 @@ enum Number2 {
     Two = 2,
 }
 
-
 fn main() {
     // a enum variant can be converted to a integer by `as`
     assert_eq!(Number::One as u8, Number1::One as u8);
     assert_eq!(Number1::One as u8, Number2::One as u8);
-} 
+}
 ```
 
 2.
@@ -39,9 +38,9 @@ enum Message {
 }
 
 fn main() {
-    let msg1 = Message::Move{x: 1, y: 2}; // instantiating with x = 1, y = 2 
+    let msg1 = Message::Move { x: 1, y: 2 }; // instantiating with x = 1, y = 2
     let msg2 = Message::Write(String::from("hello, world")); // instantiating with "hello, world!"
-} 
+}
 ```
 
 3.
@@ -55,14 +54,14 @@ enum Message {
 }
 
 fn main() {
-    let msg = Message::Move{x: 1, y: 1};
+    let msg = Message::Move { x: 1, y: 1 };
 
-    if let Message::Move{x: a, y: b} = msg {
+    if let Message::Move { x: a, y: b } = msg {
         assert_eq!(a, b);
     } else {
         panic!("NEVER LET THIS RUN！");
     }
-} 
+}
 ```
 
 4.
@@ -80,7 +79,7 @@ fn main() {
     let msgs: [Message; 3] = [
         Message::Quit,
         Message::Move { x: 1, y: 3 },
-        Message::ChangeColor(255, 255, 0)
+        Message::ChangeColor(255, 255, 0),
     ];
 
     for msg in msgs {
@@ -103,11 +102,11 @@ fn main() {
 
     if let Some(n) = six {
         println!("{}", n);
-        return
-    } 
-    
+        return;
+    }
+
     panic!("NEVER LET THIS RUN！");
-} 
+}
 
 fn plus_one(x: Option<i32>) -> Option<i32> {
     match x {
@@ -150,14 +149,14 @@ impl List {
         // `self` has type `&List`, and `*self` has type `List`, matching on a
         // concrete type `T` is preferred over a match on a reference `&T`
         // after Rust 2018 you can use self here and tail (with no ref) below as well,
-        // rust will infer &s and ref tail. 
+        // rust will infer &s and ref tail.
         // See https://doc.rust-lang.org/edition-guide/rust-2018/ownership-and-lifetimes/default-match-bindings.html
         match *self {
             // Can't take ownership of the tail, because `self` is borrowed;
             // instead take a reference to the tail
             Cons(_, ref tail) => 1 + tail.len(),
             // Base Case: An empty list has zero length
-            Nil => 0
+            Nil => 0,
         }
     }
 

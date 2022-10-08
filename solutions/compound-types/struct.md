@@ -4,16 +4,16 @@
 struct Person {
     name: String,
     age: u8,
-    hobby: String
+    hobby: String,
 }
 fn main() {
     let age = 30;
     let p = Person {
         name: String::from("sunface"),
         age,
-        hobby: "coding".to_string()
+        hobby: "coding".to_string(),
     };
-} 
+}
 ```
 
 2.
@@ -26,14 +26,14 @@ trait SomeTrait {
 
 // We don't care the the fields are in Unit, but we care its behaviors.
 // So we use a struct with no fields and implement some behaviors for it
-impl SomeTrait for Unit {  }
+impl SomeTrait for Unit {}
 fn main() {
     let u = Unit;
     do_something_with_unit(u);
-} 
+}
 
 // fill the blank to make the code work
-fn do_something_with_unit(u: Unit) {   }
+fn do_something_with_unit(u: Unit) {}
 ```
 
 3.
@@ -44,7 +44,7 @@ struct Point(i32, i32, i32);
 fn main() {
     let v = Point(0, 127, 255);
     check_color(v);
-}   
+}
 
 fn check_color(p: Point) {
     let Point(x, _, _) = p;
@@ -68,7 +68,7 @@ fn main() {
         age,
     };
 
-    // how can you believe sunface is only 18? 
+    // how can you believe sunface is only 18?
     p.age = 30;
 
     p.name = String::from("sunfei");
@@ -82,13 +82,10 @@ struct Person {
     name: String,
     age: u8,
 }
-fn main() {} 
+fn main() {}
 
 fn build_person(name: String, age: u8) -> Person {
-    Person {
-        age,
-        name
-    }
+    Person { age, name }
 }
 ```
 
@@ -110,7 +107,7 @@ fn main() {
     };
 
     let u2 = set_email(u1);
-} 
+}
 
 fn set_email(u: User) -> User {
     User {
@@ -153,11 +150,11 @@ struct File {
 fn main() {
     let f = File {
         name: String::from("readme.md"),
-        data: "Rust By Practice".to_string()
+        data: "Rust By Practice".to_string(),
     };
 
     let _name = f.name;
 
     println!("{}", f.data);
-} 
+}
 ```

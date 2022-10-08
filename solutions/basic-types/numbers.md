@@ -6,7 +6,7 @@ fn main() {
     let mut y = 5;
 
     y = x;
-    
+
     let z = 10; // type of z : i32
 }
 ```
@@ -37,8 +37,8 @@ fn type_of<T>(_: &T) -> String {
 
 ```rust
 fn main() {
-    assert_eq!(i8::MAX, 127); 
-    assert_eq!(u8::MAX, 255); 
+    assert_eq!(i8::MAX, 127);
+    assert_eq!(u8::MAX, 255);
 }
 ```
 
@@ -48,34 +48,34 @@ fn main() {
 fn main() {
     let v1 = 247_u8 + 8;
     let v2 = i8::checked_add(119, 8).unwrap();
-    println!("{},{}",v1,v2);
- }
- ```
+    println!("{},{}", v1, v2);
+}
+```
 
 6.
 
- ```rust
- fn main() {
+```rust
+fn main() {
     let v = 1_024 + 0xff + 0o77 + 0b1111_1111;
     assert!(v == 1597);
 }
- ```
+```
 
 7.
 
- ```rust
- fn main() {
+```rust
+fn main() {
     let x = 1_000.000_1; // f64
     let y: f32 = 0.12; // f32
     let z = 0.01_f64; // f64
 }
- ```
+```
 
 8.
 
 ```rust
 fn main() {
-    assert!(0.1_f32+0.2_f32==0.3_f32);
+    assert!(0.1_f32 + 0.2_f32 == 0.3_f32);
 }
 ```
 
@@ -97,7 +97,7 @@ fn main() {
     assert!(sum == -5);
 
     for c in 'a'..='z' {
-        println!("{}",c as u8);
+        println!("{}", c as u8);
     }
 }
 ```
@@ -107,7 +107,7 @@ fn main() {
 ```rust
 use std::ops::{Range, RangeInclusive};
 fn main() {
-    assert_eq!((1..5), Range{ start: 1, end: 5 });
+    assert_eq!((1..5), Range { start: 1, end: 5 });
     assert_eq!((1..=5), RangeInclusive::new(1, 5));
 }
 ```
@@ -122,7 +122,7 @@ fn main() {
     // Integer subtraction
     assert!(1i32 - 2 == -1);
     assert!(1i8 - 2 == -1);
-    
+
     assert!(3 * 50 == 150);
 
     assert!(9 / 3 == 3); // error ! make it work

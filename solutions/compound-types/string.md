@@ -3,7 +3,7 @@
 ```rust
 fn main() {
     let s: &str = "hello, world";
- }
+}
 ```
 
 2.
@@ -12,11 +12,11 @@ fn main() {
 fn main() {
     let s: Box<str> = "hello, world".into();
     greetings(&s)
- }
- 
- fn greetings(s: &str) {
-     println!("{}",s)
- }
+}
+
+fn greetings(s: &str) {
+    println!("{}", s)
+}
 ```
 
 ```rust
@@ -37,9 +37,9 @@ fn main() {
     let mut s = String::new();
     s.push_str("hello, world");
     s.push('!');
- 
+
     assert_eq!(s, "hello, world!");
- }
+}
 ```
 
 4.
@@ -47,12 +47,12 @@ fn main() {
 ```rust
 fn main() {
     let mut s = String::from("hello");
-     s.push(',');
-     s.push_str(" world");
-     s += "!";
- 
-     println!("{}", s)
- }
+    s.push(',');
+    s.push_str(" world");
+    s += "!";
+
+    println!("{}", s)
+}
 ```
 
 5.
@@ -62,9 +62,9 @@ fn main() {
     let s = String::from("I like dogs");
     // Allocate new memory and store the modified string there
     let s1 = s.replace("dogs", "cats");
- 
+
     assert_eq!(s1, "I like cats")
- }
+}
 ```
 
 6.
@@ -73,9 +73,9 @@ fn main() {
 fn main() {
     let s1 = String::from("hello,");
     let s2 = String::from("world!");
-    let s3 = s1.clone() + &s2; 
-    assert_eq!(s3,"hello,world!");
-    println!("{}",s1);
+    let s3 = s1.clone() + &s2;
+    assert_eq!(s3, "hello,world!");
+    println!("{}", s1);
 }
 ```
 
@@ -88,7 +88,7 @@ fn main() {
 }
 
 fn greetings(s: String) {
-    println!("{}",s)
+    println!("{}", s)
 }
 ```
 
@@ -139,10 +139,12 @@ fn main() {
     let unicode_codepoint = "\u{211D}";
     let character_name = "\"DOUBLE-STRUCK CAPITAL R\"";
 
-    println!("Unicode character {} (U+211D) is called {}",
-                unicode_codepoint, character_name );
+    println!(
+        "Unicode character {} (U+211D) is called {}",
+        unicode_codepoint, character_name
+    );
 
-   let long_string = "String literals
+    let long_string = "String literals
                         can span multiple lines.
                         The linebreak and indentation here \
                          can be escaped too!";
@@ -164,7 +166,7 @@ fn main() {
 
     // If you need "# in your string, just use more #s in the delimiter.
     // You can use up to 65535 #s.
-    let  delimiter = r###"A string with "# in it. And even "##!"###;
+    let delimiter = r###"A string with "# in it. And even "##!"###;
     println!("{}", delimiter);
 
     // fill the blank
@@ -178,7 +180,7 @@ fn main() {
 ```rust
 fn main() {
     let s1 = String::from("hi,中国");
-    let h = &s1[0..1]; 
+    let h = &s1[0..1];
     assert_eq!(h, "h");
 
     let h1 = &s1[3..6];

@@ -6,9 +6,9 @@ fn main() {
         let mut x = 1;
         x += 2
     };
- 
+
     assert_eq!(v, ());
- }
+}
 ```
 
 ```rust
@@ -31,7 +31,7 @@ fn main() {
         let x = 3;
         x
     };
- 
+
     assert!(v == 3);
 }
 ```
@@ -40,7 +40,7 @@ fn main() {
 
 ```rust
 fn main() {
-    let s = sum(1 , 2);
+    let s = sum(1, 2);
     assert_eq!(s, 3);
 }
 
