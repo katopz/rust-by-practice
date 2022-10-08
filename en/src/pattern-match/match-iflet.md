@@ -1,7 +1,9 @@
 # Match, if let
 
 ### Match
+
 1. 🌟🌟
+
 ```rust,editable
 // Fill the blanks
 enum Direction {
@@ -24,13 +26,8 @@ fn main() {
 }
 ```
 
-{{#playground match-iflet_1_0.rs answer}}
-
-{{#playground match-iflet_1_0.rs answer}}
-
-{{#playground match-iflet_1_0.rs answer}}
-
 2. 🌟🌟 Match is an expression, so we can use it in assignments.
+
 ```rust,editable
 fn main() {
     let boolean = true;
@@ -47,13 +44,8 @@ fn main() {
 }
 ```
 
-{{#playground match-iflet_2_0.rs answer}}
-
-{{#playground match-iflet_2_0.rs answer}}
-
-{{#playground match-iflet_2_0.rs answer}}
-
 3. 🌟🌟 Using match to get the data an enum variant holds.
+
 ```rust,editable
 // Fill in the blanks
 enum Message {
@@ -93,16 +85,12 @@ fn show_message(msg: Message) {
 }
 ```
 
-{{#playground match-iflet_3_0.rs answer}}
-
-{{#playground match-iflet_3_0.rs answer}}
-
-{{#playground match-iflet_3_0.rs answer}}
-
 ### matches!
+
 [`matches!`](https://doc.rust-lang.org/stable/core/macro.matches.html) looks like `match`, but can do something different.
 
 4. 🌟🌟
+
 ```rust,editable
 fn main() {
     let alphabets = ['a', 'E', 'Z', '0', 'x', '9', 'Y'];
@@ -116,13 +104,8 @@ fn main() {
 }
 ```
 
-{{#playground match-iflet_4_0.rs answer}}
-
-{{#playground match-iflet_4_0.rs answer}}
-
-{{#playground match-iflet_4_0.rs answer}}
-
 5. 🌟🌟
+
 ```rust,editable
 enum MyEnum {
     Foo,
@@ -146,16 +129,12 @@ fn main() {
 }
 ```
 
-{{#playground match-iflet_5_0.rs answer}}
-
-{{#playground match-iflet_5_0.rs answer}}
-
-{{#playground match-iflet_5_0.rs answer}}
-
 ### If let
+
 For some cases, when matching enums, `match` is too heavy. We can use `if let` instead.
 
-6. 🌟 
+6. 🌟
+
 ```rust,editable
 fn main() {
     let o = Some(7);
@@ -172,13 +151,8 @@ fn main() {
 }
 ```
 
-{{#playground match-iflet_6_0.rs answer}}
-
-{{#playground match-iflet_6_0.rs answer}}
-
-{{#playground match-iflet_6_0.rs answer}}
-
 7. 🌟🌟
+
 ```rust,editable
 
 // Fill in the blank
@@ -197,13 +171,8 @@ fn main() {
 }
 ```
 
-{{#playground match-iflet_7_0.rs answer}}
-
-{{#playground match-iflet_7_0.rs answer}}
-
-{{#playground match-iflet_7_0.rs answer}}
-
 8. 🌟🌟
+
 ```rust,editable
 enum Foo {
     Bar,
@@ -225,14 +194,10 @@ fn main() {
 }
 ```
 
-{{#playground match-iflet_8_0.rs answer}}
-
-{{#playground match-iflet_8_0.rs answer}}
-
-{{#playground match-iflet_8_0.rs answer}}
-
 ### Shadowing
+
 9. 🌟🌟
+
 ```rust,editable
 // Fix the errors in-place
 fn main() {
@@ -249,11 +214,5 @@ fn main() {
     }
 }
 ```
-
-{{#playground match-iflet_9_0.rs answer}}
-
-{{#playground match-iflet_9_0.rs answer}}
-
-{{#playground match-iflet_9_0.rs answer}}
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it

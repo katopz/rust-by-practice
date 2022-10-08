@@ -1,4 +1,5 @@
 # Enum
+
 1. 🌟🌟 Enums can be created with explicit discriminator.
 
 ```rust,editable
@@ -31,11 +32,8 @@ fn main() {
 }
 ```
 
-{{#playground enum_1_0.rs answer}}
-
-
-
 2. 🌟 Each enum variant can hold its own data.
+
 ```rust,editable
 // Fill in the blank
 enum Message {
@@ -53,11 +51,8 @@ fn main() {
 }
 ```
 
-{{#playground enum_2_0.rs answer}}
-
-
-
 3. 🌟🌟 We can get the data which an enum variant is holding by pattern match.
+
 ```rust,editable
 // Fill in the blank and fix the error
 enum Message {
@@ -80,11 +75,7 @@ fn main() {
 }
 ```
 
-{{#playground enum_3_0.rs answer}}
-
-
-
-4. 🌟🌟 
+4. 🌟🌟
 
 ```rust,editable
 // Fill in the blank and fix the errors
@@ -112,11 +103,8 @@ fn show_message(msg: Message) {
 }
 ```
 
-{{#playground enum_4_0.rs answer}}
+5. 🌟🌟 Since there is no `null` in Rust, we have to use enum `Option<T>` to deal with the cases when the value is absent.
 
-
-
-5. 🌟🌟 Since there is no `null` in Rust, we have to use enum  `Option<T>`  to deal with the cases when the value is absent.
 ```rust,editable
 // Fill in the blank to make the `println` work.
 // Also add some code to prevent the `panic` from running.
@@ -141,11 +129,6 @@ fn plus_one(x: Option<i32>) -> Option<i32> {
     }
 }
 ```
-
-{{#playground enum_5_0.rs answer}}
-
-
-
 
 6. 🌟🌟🌟🌟 Implement a `linked-list` via enums.
 
@@ -181,7 +164,7 @@ impl List {
         // `self` has type `&List`, and `*self` has type `List`, matching on a
         // concrete type `T` is preferred over a match on a reference `&T`
         // After Rust 2018 you can use self here and tail (with no ref) below as well,
-        // rust will infer &s and ref tail. 
+        // rust will infer &s and ref tail.
         // See https://doc.rust-lang.org/edition-guide/rust-2018/ownership-and-lifetimes/default-match-bindings.html
         match *self {
             // Can't take ownership of the tail, because `self` is borrowed;
@@ -221,9 +204,5 @@ fn main() {
     println!("{}", list.stringify());
 }
 ```
-
-{{#playground enum_6_0.rs answer}}
-
-
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it

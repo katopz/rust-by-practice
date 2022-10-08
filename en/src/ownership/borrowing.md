@@ -1,7 +1,9 @@
 # Reference and Borrowing
 
 ### Reference
+
 1. 🌟
+
 ```rust,editable
 fn main() {
     let x = 5;
@@ -12,13 +14,8 @@ fn main() {
 }
 ```
 
-{{#playground borrowing_1_0.rs answer}}
-{{#playground borrowing_11_0.rs answer}}
-{{#playground borrowing_10_0.rs answer}}
-
-
-
 2. 🌟
+
 ```rust,editable
 fn main() {
     let x = 5;
@@ -31,11 +28,8 @@ fn main() {
 }
 ```
 
-{{#playground borrowing_2_0.rs answer}}
-
-
-
 3. 🌟
+
 ```rust,editable
 // Fix error
 fn main() {
@@ -49,11 +43,8 @@ fn main() {
 fn borrow_object(s: &String) {}
 ```
 
-{{#playground borrowing_3_0.rs answer}}
-
-
-
 4. 🌟
+
 ```rust,editable
 // Fix error
 fn main() {
@@ -69,11 +60,8 @@ fn push_str(s: &mut String) {
 }
 ```
 
-{{#playground borrowing_4_0.rs answer}}
-
-
-
 5. 🌟🌟
+
 ```rust,editable
 fn main() {
     let mut s = String::from("hello, ");
@@ -87,14 +75,12 @@ fn main() {
 }
 ```
 
-{{#playground borrowing_5_0.rs answer}}
-
-
-
 #### Ref
+
 `ref` can be used to take references to a value, similar to `&`.
 
 6. 🌟🌟🌟
+
 ```rust,editable
 
 fn main() {
@@ -105,7 +91,7 @@ fn main() {
     let __ r2 = c;
 
     assert_eq!(*r1, *r2);
-    
+
     // Check the equality of the two address strings
     assert_eq!(get_addr(r1),get_addr(r2));
 
@@ -118,12 +104,10 @@ fn get_addr(r: &char) -> String {
 }
 ```
 
-{{#playground borrowing_6_0.rs answer}}
-
-
-
 ### Borrowing rules
+
 7. 🌟
+
 ```rust,editable
 // Remove something to make it work
 // Don't remove a whole line !
@@ -139,12 +123,10 @@ fn main() {
 }
 ```
 
-{{#playground borrowing_7_0.rs answer}}
-
-
-
 #### Mutability
+
 8. 🌟 Error: Borrow an immutable object as mutable
+
 ```rust,editable
 fn main() {
     // Fix error by modifying this line
@@ -158,11 +140,8 @@ fn main() {
 fn borrow_object(s: &mut String) {}
 ```
 
-{{#playground borrowing_8_0.rs answer}}
-
-
-
 9. 🌟🌟 Ok: Borrow a mutable object as immutable
+
 ```rust,editable
 // This code has no errors!
 fn main() {
@@ -178,12 +157,10 @@ fn main() {
 fn borrow_object(s: &String) {}
 ```
 
-{{#playground borrowing_9_0.rs answer}}
-
-
-
 ### NLL
+
 10. 🌟🌟
+
 ```rust,editable
 // Comment one line to make it work
 fn main() {
@@ -198,11 +175,8 @@ fn main() {
 }
 ```
 
-{{#playground borrowing_10_0.rs answer}}
-
-
-
 11. 🌟🌟
+
 ```rust,editable
 fn main() {
     let mut s = String::from("hello, ");
@@ -214,9 +188,5 @@ fn main() {
     // You can't use r1 and r2 at the same time
 }
 ```
-
-{{#playground borrowing_11_0.rs answer}}
-
-
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it

@@ -1,7 +1,9 @@
 # Convert by `as`
+
 Rust provides no implicit type conversion(coercion) between primitive types. But explicit type conversions can be performed using the `as` keyword.
 
 1. 🌟
+
 ```rust,editable
 // FIX the errors and FILL in the blank
 // DON'T remove any code
@@ -19,11 +21,8 @@ fn main() {
 }
 ```
 
-{{#playground as_1_0.rs answer}}
-
-
-
 2. 🌟🌟 By default, overflow will cause compile errors, but we can add an global annotation to suppress these errors.
+
 ```rust,editable
 fn main() {
     assert_eq!(u8::MAX, 255);
@@ -37,11 +36,8 @@ fn main() {
 }
 ```
 
-{{#playground as_2_0.rs answer}}
+3. 🌟🌟 When casting any value to an unsigned type `T`, `T::MAX + 1` is added or subtracted until the value fits into the new type.
 
-
-
-3. 🌟🌟  When casting any value to an unsigned type `T`, `T::MAX + 1` is added or subtracted until the value fits into the new type.
 ```rust,editable
 fn main() {
     assert_eq!(1000 as u16, __);
@@ -74,37 +70,30 @@ fn main() {
 }
 ```
 
-{{#playground as_3_0.rs answer}}
-
-
-
 4. 🌟🌟🌟 Raw pointers can be converted to memory address (integer) and vice versa.
+
 ```rust,editable
 
 // FILL in the blanks
 fn main() {
     let mut values: [i32; 2] = [1, 2];
     let p1: *mut i32 = values.as_mut_ptr();
-    let first_address: usize = p1 __; 
+    let first_address: usize = p1 __;
     let second_address = first_address + 4; // 4 == std::mem::size_of::<i32>()
     let p2: *mut i32 = second_address __; // p2 points to the 2nd element in values
     unsafe {
         // Add one to the second element
         __
     }
-    
+
     assert_eq!(values[1], 3);
 
     println!("Success!");
 }
 ```
 
-{{#playground as_4_0.rs answer}}
+5. 🌟🌟🌟
 
-
-
-
-5. 🌟🌟🌟 
 ```rust,editable
 fn main() {
     let arr: [u64; 13] = [0; 13];
@@ -116,9 +105,5 @@ fn main() {
     println!("Success!");
 }
 ```
-
-{{#playground as_5_0.rs answer}}
-
-
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice/blob/master/solutions/type-conversions/as.md)(under the solutions path), but only use it when you need it

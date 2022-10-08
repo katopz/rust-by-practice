@@ -1,7 +1,9 @@
 # Struct
 
 ### The types of structs
+
 1. 🌟 We must specify concrete values for each of the fields in struct.
+
 ```rust,editable
 // Fix the error
 struct Person {
@@ -20,12 +22,8 @@ fn main() {
 }
 ```
 
-{{#playground struct_1_0.rs answer}}
+2. 🌟 Unit struct don't have any fields. It can be useful when you need to implement a trait on some type but don’t have any data that you want to store in the type itself.
 
-
-
-
-2. 🌟 Unit struct don't have any fields. It can be useful when you need to implement a trait on some type but don’t have any data that you want to store in the type itself. 
 ```rust,editable
 struct Unit;
 trait SomeTrait {
@@ -45,10 +43,6 @@ fn main() {
 // Fill the blank to make the code work
 fn do_something_with_unit(u: __) {}
 ```
-
-{{#playground struct_2_0.rs answer}}
-
-
 
 3. 🌟🌟🌟 Tuple struct looks similar to tuples, it has added meaning the struct name provides but has no named fields. It's useful when you want to give the whole tuple a name, but don't care about the fields's names.
 
@@ -70,10 +64,6 @@ fn check_color(p: Color) {
     assert_eq!(__, 255);
 }
 ```
-
-{{#playground struct_3_0.rs answer}}
-
-
 
 ### Operating on structs
 
@@ -102,11 +92,8 @@ fn main() {
 }
 ```
 
-{{#playground struct_4_0.rs answer}}
+5. 🌟 Using _field init shorthand syntax_ to reduce repetitions.
 
-
-
-5. 🌟 Using *field init shorthand syntax* to reduce repetitions.
 ```rust,editable
 // Fill the blank
 struct Person {
@@ -122,11 +109,8 @@ fn build_person(name: String, age: u8) -> Person {
 }
 ```
 
-{{#playground struct_5_0.rs answer}}
+6. 🌟 You can create instance from other instance with _struct update syntax_
 
-
-
-6. 🌟 You can create instance from other instance with *struct update syntax*
 ```rust,editable
 // Fill the blank to make the code work
 struct User {
@@ -156,12 +140,9 @@ fn set_email(u: User) -> User {
 }
 ```
 
-{{#playground struct_6_0.rs answer}}
-
-
-
 ### Print the structs
-7. 🌟🌟 We can use `#[derive(Debug)]` to [make a struct printable](https://doc.rust-lang.org/book/ch05-02-example-structs.html?highlight=%23%5Bderive(Debug)%5D#adding-useful-functionality-with-derived-traits).
+
+7. 🌟🌟 We can use `#[derive(Debug)]` to [make a struct printable](<https://doc.rust-lang.org/book/ch05-02-example-structs.html?highlight=%23%5Bderive(Debug)%5D#adding-useful-functionality-with-derived-traits>).
 
 ```rust,editable
 // Fill the blanks to make the code work
@@ -184,14 +165,12 @@ fn main() {
 }
 ```
 
-{{#playground struct_7_0.rs answer}}
-
-
-
 ### Partial move
+
 Within the destructuring of a single variable, both by-move and by-reference pattern bindings can be used at the same time. Doing this will result in a partial move of the variable, which means that parts of the variable will be moved while other parts stay. In such a case, the parent variable cannot be used afterwards as a whole, however the parts that are only referenced (and not moved) can still be used.
 
 #### Example
+
 ```rust,editable
 
 fn main() {
@@ -221,10 +200,10 @@ fn main() {
 }
 ```
 
-
 #### Exercises
 
 8. 🌟🌟
+
 ```rust,editable
 // Fix errors to make it work
 #[derive(Debug)]
@@ -244,9 +223,5 @@ fn main() {
     println!("{}, {}, {:?}", f.name, f.data, f);
 }
 ```
-
-{{#playground struct_8_0.rs answer}}
-
-
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it

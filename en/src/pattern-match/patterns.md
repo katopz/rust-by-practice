@@ -1,6 +1,7 @@
 # Patterns
 
 1. 🌟🌟 Use `|` to match several values, use `..=` to match an inclusive range.
+
 ```rust,editable
 fn main() {}
 fn match_number(n: i32) {
@@ -20,11 +21,8 @@ fn match_number(n: i32) {
 }
 ```
 
-{{#playground patterns_1_0.rs answer}}
-
-
-
 2. 🌟🌟🌟 The `@` operator lets us create a variable that holds a value, at the same time we are testing that value to see whether it matches a pattern.
+
 ```rust,editable
 struct Point {
     x: i32,
@@ -46,10 +44,6 @@ fn main() {
     }
 }
 ```
-
-{{#playground patterns_2_0.rs answer}}
-
-
 
 3. 🌟🌟🌟
 
@@ -74,11 +68,8 @@ fn main() {
 }
 ```
 
-{{#playground patterns_3_0.rs answer}}
-
-
-
 4. 🌟🌟 A match guard is an additional if condition specified after the pattern in a match arm that must also match, along with the pattern matching, for that arm to be chosen.
+
 ```rust,editable
 
 // Fill in the blank to make the code work, `split` MUST be used
@@ -95,11 +86,8 @@ fn main() {
 }
 ```
 
-{{#playground patterns_4_0.rs answer}}
-
-
-
 5. 🌟🌟 Ignoring remaining parts of the value with `..`
+
 ```rust,editable
 // Fill the blank to make the code work
 fn main() {
@@ -116,11 +104,8 @@ fn main() {
 }
 ```
 
-{{#playground patterns_5_0.rs answer}}
+6. 🌟🌟 Using pattern `&mut V` to match a mutable reference needs you to be very careful, due to `V` being a value after matching.
 
-
-
-6. 🌟🌟 Using pattern `&mut V` to match a mutable reference needs you to be very careful, due to `V` being a value  after matching.
 ```rust,editable
 // FIX the error with least changing
 // DON'T remove any code line
@@ -133,9 +118,5 @@ fn main() {
     }
 }
 ```
-
-{{#playground patterns_6_0.rs answer}}
-
-
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it

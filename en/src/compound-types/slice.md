@@ -1,7 +1,9 @@
 # Slice
+
 Slices are similar to arrays, but their length is not known at compile time, so you can't use slice directly.
 
 1. 🌟🌟 Here, both `[i32]` and `str` are slice types, but directly using it will cause errors. You have to use the reference of the slice instead: `&[i32]`, `&str`.
+
 ```rust,editable
 // Fix the errors, DON'T add new lines!
 fn main() {
@@ -14,13 +16,10 @@ fn main() {
 }
 ```
 
-{{#playground slice_1_0.rs answer}}
-
-
-
-A slice reference is a two-word object, for simplicity reasons, from now on we will use slice instead of `slice reference`.  The first word is a pointer to the data, and the second word is the length of the slice. The word size is the same as usize, determined by the processor architecture, eg 64 bits on an x86-64. Slices can be used to borrow a section of an array, and have the type signature `&[T]`.
+A slice reference is a two-word object, for simplicity reasons, from now on we will use slice instead of `slice reference`. The first word is a pointer to the data, and the second word is the length of the slice. The word size is the same as usize, determined by the processor architecture, eg 64 bits on an x86-64. Slices can be used to borrow a section of an array, and have the type signature `&[T]`.
 
 2. 🌟🌟🌟
+
 ```rust,editable
 fn main() {
     let arr: [char; 3] = ['中', '国', '人'];
@@ -35,11 +34,8 @@ fn main() {
 }
 ```
 
-{{#playground slice_2_0.rs answer}}
-
-
-
 3. 🌟🌟
+
 ```rust,editable
 fn main() {
     let arr: [i32; 5] = [1, 2, 3, 4, 5];
@@ -51,12 +47,10 @@ fn main() {
 }
 ```
 
-{{#playground slice_3_0.rs answer}}
-
-
-
 ### String slices
-4. 🌟 
+
+4. 🌟
+
 ```rust,editable
 fn main() {
     let s = String::from("hello");
@@ -71,11 +65,8 @@ fn main() {
 }
 ```
 
-{{#playground slice_4_0.rs answer}}
-
-
-
 5. 🌟
+
 ```rust,editable
 fn main() {
     let s = "你好，世界";
@@ -88,11 +79,8 @@ fn main() {
 }
 ```
 
-{{#playground slice_5_0.rs answer}}
-
-
-
 6. 🌟🌟 `&String` can be implicitly converted into `&str`.
+
 ```rust,editable
 // Fix errors
 fn main() {
@@ -110,9 +98,5 @@ fn first_word(s: &str) -> &str {
     &s[..1]
 }
 ```
-
-{{#playground slice_6_0.rs answer}}
-
-
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it

@@ -3,6 +3,7 @@
 ## Positional arguments
 
 1.🌟🌟
+
 ```rust,editable
 /* Fill in the blanks */
 fn main() {
@@ -13,13 +14,10 @@ fn main() {
 }
 ```
 
-{{#playground formatting_1_0.rs answer}}
-
-
-
 ## Named arguments
 
 2.🌟🌟
+
 ```rust,editable
 fn main() {
     println!("{argument}", argument = "test"); // => "test"
@@ -36,13 +34,10 @@ fn main() {
 }
 ```
 
-{{#playground formatting_2_0.rs answer}}
-
-
-
 ## Padding with string
 
 3.🌟🌟 By default, you can pad string with spaces
+
 ```rust,editable
 fn main() {
     // the following two are padding with 5 spaces
@@ -57,11 +52,8 @@ fn main() {
 }
 ```
 
-{{#playground formatting_3_0.rs answer}}
-
-
-
 4.🌟🌟🌟 Left align, right align, pad with specified characters.
+
 ```rust,editable
 fn main() {
     // left align
@@ -78,11 +70,8 @@ fn main() {
 }
 ```
 
-{{#playground formatting_4_0.rs answer}}
-
-
-
 5.🌟🌟 You can pad numbers with extra zeros.
+
 ```rust,editable
 fn main() {
     println!("Hello {:5}!", 5); // => Hello     5!
@@ -97,12 +86,10 @@ fn main() {
 }
 ```
 
-{{#playground formatting_5_0.rs answer}}
-
-
-
 ## precision
+
 6.🌟🌟 Floating point precision
+
 ```rust,editable
 /* Fill in the blanks */
 fn main() {
@@ -118,11 +105,8 @@ fn main() {
 }
 ```
 
-{{#playground formatting_6_0.rs answer}}
-
-
-
 7.🌟🌟🌟 string length
+
 ```rust,editable
 fn main() {
     let s = "Hello, world!";
@@ -133,15 +117,15 @@ fn main() {
 
     println!("Success!")
 }
-```   
+```
 
 ## binary, octal, hex
 
 - format!("{}", foo) -> "3735928559"
 - format!("0x{:X}", foo) -> "0xDEADBEEF"
 - format!("0o{:o}", foo) -> "0o33653337357"
-  
-8.🌟🌟
+  8.🌟🌟
+
 ```rust,editable
 fn main() {
     assert_eq!(format!("__", 27), "0b11011");
@@ -157,12 +141,10 @@ fn main() {
 }
 ```
 
-{{#playground formatting_7_0.rs answer}}
-
-
-
 ## Capture the environments
+
 9.🌟🌟🌟
+
 ```rust,editable
 fn get_person() -> String {
     String::from("sunface")
@@ -188,14 +170,10 @@ fn main() {
 }
 ```
 
-{{#playground formatting_9_0.rs answer}}
-
-
-
-
 ## Others
 
 **Example**
+
 ```rust,editable
 fn main() {
     // exponent

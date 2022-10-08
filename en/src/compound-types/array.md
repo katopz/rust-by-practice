@@ -1,7 +1,9 @@
 # Array
+
 The type of array is `[T; Length]`, as you can see, array's length is part of their type signature. So their length must be known at compile time.
 
 For example, you cant initialize an array like below:
+
 ```rust
 fn init_arr(n: i32) {
     let arr = [1; n];
@@ -10,7 +12,8 @@ fn init_arr(n: i32) {
 
 This will cause an error, because the compiler has no idea of the exact size of the array at compile time.
 
-1. 🌟 
+1. 🌟
+
 ```rust,editable
 fn main() {
     // Fill the blank with proper array type
@@ -23,11 +26,8 @@ fn main() {
 }
 ```
 
-{{#playground array_1_0.rs answer}}
-
-
-
 2. 🌟🌟
+
 ```rust,editable
 fn main() {
     // We can ignore parts of the array type or even the whole type, let the compiler infer it for us
@@ -43,10 +43,6 @@ fn main() {
 }
 ```
 
-{{#playground array_2_0.rs answer}}
-
-
-
 3. 🌟 All elements in an array can be initialized to the same value at once.
 
 ```rust,editable
@@ -61,11 +57,8 @@ fn main() {
 }
 ```
 
-{{#playground array_3_0.rs answer}}
-
-
-
 4. 🌟 All elements in an array must be of the same type
+
 ```rust,editable
 fn main() {
     // Fix the error
@@ -75,11 +68,8 @@ fn main() {
 }
 ```
 
-{{#playground array_4_0.rs answer}}
-
-
-
 5. 🌟 Indexing starts at 0.
+
 ```rust,editable
 fn main() {
     let arr = ['a', 'b', 'c'];
@@ -92,11 +82,8 @@ fn main() {
 }
 ```
 
-{{#playground array_5_0.rs answer}}
-
-
-
 6. 🌟 Out of bounds indexing causes `panic`.
+
 ```rust,editable
 // Fix the error
 fn main() {
@@ -111,9 +98,5 @@ fn main() {
     println!("Success!");
 }
 ```
-
-{{#playground array_6_0.rs answer}}
-
-
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it

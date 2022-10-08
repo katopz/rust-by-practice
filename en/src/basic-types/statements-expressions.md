@@ -1,6 +1,7 @@
 # Statements and Expressions
 
 ### Examples
+
 ```rust,editable
 fn main() {
     let x = 5u32;
@@ -25,7 +26,9 @@ fn main() {
 ```
 
 ### Exercises
+
 1. 🌟🌟
+
 ```rust,editable
 // Make it work with two ways
 fn main() {
@@ -40,16 +43,8 @@ fn main() {
 }
 ```
 
-{{#playground statements-expressions_1_0.rs answer}}
-{{#playground statements-expressions_1_1.rs answer}}
-
-{{#playground statements-expressions_1_0.rs answer}}
-{{#playground statements-expressions_1_1.rs answer}}
-
-{{#playground statements-expressions_1_0.rs answer}}
-{{#playground statements-expressions_1_1.rs answer}}
-
 2. 🌟
+
 ```rust,editable
 fn main() {
     let v = (let x = 3);
@@ -60,13 +55,8 @@ fn main() {
 }
 ```
 
-{{#playground statements-expressions_2_0.rs answer}}
-
-{{#playground statements-expressions_2_0.rs answer}}
-
-{{#playground statements-expressions_2_0.rs answer}}
-
 3. 🌟
+
 ```rust,editable
 fn main() {
     let s = sum(1, 2);
@@ -79,11 +69,5 @@ fn sum(x: i32, y: i32) -> i32 {
     x + y;
 }
 ```
-
-{{#playground statements-expressions_3_0.rs answer}}
-
-{{#playground statements-expressions_3_0.rs answer}}
-
-{{#playground statements-expressions_3_0.rs answer}}
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it

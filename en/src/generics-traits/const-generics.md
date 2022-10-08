@@ -1,8 +1,11 @@
 # Const Generics
+
 Const generics are generic arguments that range over constant values, rather than types or lifetimes. This allows, for instance, types to be parameterized by integers. In fact, there has been one example of const generic types since early on in Rust's development: the array types [T; N], for some type T and N: usize. However, there has previously been no way to abstract over arrays of an arbitrary size: if you wanted to implement a trait for arrays of any size, you would have to do so manually for each possible value. For a long time, even the standard library methods for arrays were limited to arrays of length at most 32 due to this problem.
 
 ## Examples
+
 1. Here's an example of a type and implementation making use of const generics: a type wrapping a pair of arrays of the same size.
+
 ```rust,editable
 struct ArrayPair<T, const N: usize> {
     left: [T; N],
@@ -14,19 +17,12 @@ impl<T: Debug, const N: usize> Debug for ArrayPair<T, N> {
 }
 ```
 
-{{#playground const-generics_1_0.rs answer}}
-
-{{#playground const-generics_1_0.rs answer}}
-
-{{#playground const-generics_1_0.rs answer}}
-
-
 2. Currently, const parameters may only be instantiated by const arguments of the following forms:
 
 - A standalone const parameter.
 - A literal (i.e. an integer, bool, or character).
 - A concrete constant expression (enclosed by {}), involving no generic parameters.
-  
+
 ```rust,editable
 fn foo<const N: usize>() {}
 
@@ -45,13 +41,8 @@ fn bar<T, const M: usize>() {
 fn main() {}
 ```
 
-{{#playground const-generics_2_0.rs answer}}
-
-{{#playground const-generics_2_0.rs answer}}
-
-{{#playground const-generics_2_0.rs answer}}
-
 3. Const generics can also let us avoid some runtime checks.
+
 ```rust
 /// A region of memory containing at least `N` `T`s.
 pub struct MinSlice<T, const N: usize> {
@@ -79,16 +70,10 @@ fn main() {
 }
 ```
 
-{{#playground const-generics_3_0.rs answer}}
-
-{{#playground const-generics_3_0.rs answer}}
-
-{{#playground const-generics_3_0.rs answer}}
-
-
 ## Exercises
+
 1. 🌟🌟 `<T, const N: usize>` is part of the struct type, it means `Array<i32, 3>` and `Array<i32, 4>` are different types.
-   
+
 ```rust,editable
 struct Array<T, const N: usize> {
     data: [T; N],
@@ -107,13 +92,8 @@ fn main() {
 }
 ```
 
-{{#playground const-generics_1_0.rs answer}}
+2. 🌟🌟
 
-{{#playground const-generics_1_0.rs answer}}
-
-{{#playground const-generics_1_0.rs answer}}
-
-2. 🌟🌟 
 ```rust,editable
 
 // Fill in the blanks to make it work.
@@ -129,14 +109,8 @@ fn main() {
 }
 ```
 
-{{#playground const-generics_2_0.rs answer}}
-
-{{#playground const-generics_2_0.rs answer}}
-
-{{#playground const-generics_2_0.rs answer}}
-
 3. 🌟🌟🌟 Sometimes we want to limit the size of a variable, e.g when using in embedding environments, then `const expressions` will fit your needs.
-   
+
 ```rust,editable
 #![allow(incomplete_features)]
 #![feature(generic_const_exprs)]
@@ -165,11 +139,5 @@ pub trait IsTrue {}
 
 impl IsTrue for Assert<true> {}
 ```
-
-{{#playground const-generics_3_0.rs answer}}
-
-{{#playground const-generics_3_0.rs answer}}
-
-{{#playground const-generics_3_0.rs answer}}
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it :)

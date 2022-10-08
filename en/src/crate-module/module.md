@@ -1,8 +1,9 @@
 # Module
+
 Modules let us organize the code within a crate into groups for readability and ease of reuse. Module also controls the privacy of items, which is whether an item can be seen by outside code( public ), or is just an internal implementation and not available for outside code( private ).
 
-
 We have created a package named `hello-package` in previous chapter, and it looks like this:
+
 ```shell
 .
 ├── Cargo.toml
@@ -14,6 +15,7 @@ We have created a package named `hello-package` in previous chapter, and it look
 Now it's time to create some modules in the library crate and use them in the binary crate, let's start.
 
 1. 🌟🌟 Implement module `front_of_house` based on the module tree below:
+
 ```shell
 library crate root
  └── front_of_house
@@ -36,11 +38,6 @@ mod front_of_house {
 }
 ```
 
-{{#playground module_1_0.rs answer}}
-
-
-
-
 2. 🌟🌟 Let's call `add_to_waitlist` from a function `eat_at_restaurant` which is within the library crate root.
 
 ```rust,editable
@@ -61,11 +58,8 @@ pub fn eat_at_restaurant() {
 }
 ```
 
-{{#playground module_2_0.rs answer}}
-
-
-
 3. 🌟🌟 You can use `super` to import items within the parent module
+
 ```rust,editable
 // In lib.rs
 
@@ -82,13 +76,8 @@ mod back_of_house {
 }
 ```
 
-{{#playground module_3_1.rs answer}}
-{{#playground module_3_0.rs answer}}
-
-
-
-
 ### Separating modules into different files
+
 ```rust,editable
 // In lib.rs
 pub mod front_of_house {
@@ -109,13 +98,13 @@ pub mod front_of_house {
 
         // Maybe you don't want the guest hearing the your complaining about them
         // So just make it private
-        fn complain() {} 
+        fn complain() {}
     }
 }
 
 pub fn eat_at_restaurant() -> String {
     front_of_house::hosting::add_to_waitlist();
-    
+
     back_of_house::cook_order();
 
     String::from("yummy yummy!")
@@ -132,6 +121,7 @@ pub mod back_of_house {
 ```
 
 4. 🌟🌟🌟🌟 Please separate the modules and codes above into files resident in below dir tree :
+
 ```shell
 .
 ├── Cargo.toml
@@ -151,20 +141,11 @@ pub mod back_of_house {
 // IMPLEMENT...
 ```
 
-{{#playground module_4_2.rs answer}}
-{{#playground module_4_3.rs answer}}
-{{#playground module_4_0.rs answer}}
-{{#playground module_4_4.rs answer}}
-{{#playground module_4_1.rs answer}}
-
-
-
 ```rust,editable
 // In src/back_of_house.rs
 
 // IMPLEMENT...
 ```
-
 
 ```rust,editable
 // In src/front_of_house/mod.rs
@@ -185,9 +166,11 @@ pub mod back_of_house {
 ```
 
 ### Accessing code in library crate from binary crate
+
 **Please ensure you have completed the 4th exercise before making further progress.**
 
-You should have below structures and the corresponding codes in them when reaching here: 
+You should have below structures and the corresponding codes in them when reaching here:
+
 ```shell
 .
 ├── Cargo.toml
@@ -212,9 +195,5 @@ fn main() {
     assert_eq!(__, "yummy yummy!");
 }
 ```
-
-{{#playground module_5_0.rs answer}}
-
-
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice) (under the solutions path), but only use it when you need it :)

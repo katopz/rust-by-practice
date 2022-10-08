@@ -1,5 +1,7 @@
 # Tuple
+
 1. 🌟 Elements in a tuple can have different types. Tuple's type signature is `(T1, T2, ...)`, where `T1`, `T2` are the types of tuple's members.
+
 ```rust,editable
 fn main() {
     let _t0: (u8, i16) = (0, -1);
@@ -12,11 +14,8 @@ fn main() {
 }
 ```
 
-{{#playground tuple_1_0.rs answer}}
-
-
-
 2. 🌟 Members can be extracted from the tuple using indexing.
+
 ```rust,editable
 // Make it work
 fn main() {
@@ -27,11 +26,8 @@ fn main() {
 }
 ```
 
-{{#playground tuple_2_0.rs answer}}
+3. 🌟 Long tuples cannot be printed
 
-
-
-3. 🌟 Long tuples  cannot be printed
 ```rust,editable
 // Fix the error
 fn main() {
@@ -40,11 +36,8 @@ fn main() {
 }
 ```
 
-{{#playground tuple_3_0.rs answer}}
-
-
-
 4. 🌟 Destructuring tuple with pattern.
+
 ```rust,editable
 fn main() {
     let tup = (1, 6.4, "hello");
@@ -60,11 +53,8 @@ fn main() {
 }
 ```
 
-{{#playground tuple_4_0.rs answer}}
-
-
-
 5. 🌟🌟 Destructure assignments.
+
 ```rust,editable
 fn main() {
     let (x, y, z);
@@ -80,11 +70,8 @@ fn main() {
 }
 ```
 
-{{#playground tuple_5_0.rs answer}}
-
-
-
 6. 🌟🌟 Tuples can be used as function arguments and return values
+
 ```rust,editable
 fn main() {
     // Fill the blank, need a few computations here.
@@ -100,9 +87,5 @@ fn sum_multiply(nums: (i32, i32)) -> (i32, i32) {
     (nums.0 + nums.1, nums.0 * nums.1)
 }
 ```
-
-{{#playground tuple_6_0.rs answer}}
-
-
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it

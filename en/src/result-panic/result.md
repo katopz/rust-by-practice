@@ -1,5 +1,6 @@
 # result and ?
-`Result<T>` is an enum to describe possible errors. It has two variants: 
+
+`Result<T>` is an enum to describe possible errors. It has two variants:
 
 - `Ok(T)`: A value T was found
 - `Err(e)`: An error was found with a value `e`
@@ -7,6 +8,7 @@
 In short words, the expected outcome is `Ok`, while the unexpected outcome is `Err`.
 
 1. 🌟🌟
+
 ```rust,editable
 // FILL in the blanks and FIX the errors
 use std::num::ParseIntError;
@@ -28,14 +30,12 @@ fn main() {
 }
 ```
 
-{{#playground result_1_0.rs answer}}
+### ?
 
-
-
-### ? 
 `?` is almost exactly equivalent to `unwrap`, but `?` returns instead of panic on `Err`.
 
 2. 🌟🌟
+
 ```rust,editable
 use std::num::ParseIntError;
 
@@ -49,11 +49,8 @@ fn main() {
 }
 ```
 
-{{#playground result_2_0.rs answer}}
-
-
-
 3. 🌟🌟
+
 ```rust,editable
 use std::fs::File;
 use std::io::{self, Read};
@@ -91,14 +88,11 @@ fn main() {
 }
 ```
 
-{{#playground result_3_0.rs answer}}
-
-
-
 ### map & and_then
+
 [map](https://doc.rust-lang.org/stable/std/result/enum.Result.html#method.map) and [and_then](https://doc.rust-lang.org/stable/std/result/enum.Result.html#method.and_then) are two common combinators for `Result<T, E>` (also for `Option<T>`).
 
-4. 🌟🌟 
+4. 🌟🌟
 
 ```rust,editable
 use std::num::ParseIntError;
@@ -115,12 +109,8 @@ fn main() {
 }
 ```
 
-{{#playground result_4_0.rs answer}}
-{{#playground result_4_1.rs answer}}
-
-
-
 5. 🌟🌟🌟
+
 ```rust,editable
 use std::num::ParseIntError;
 
@@ -162,16 +152,14 @@ fn main() {
 }
 ```
 
-{{#playground result_5_0.rs answer}}
-
-
-
 ### Type alias
+
 Using `std::result::Result<T, ParseIntError>` everywhere is verbose and tedious, we can use alias for this purpose.
 
-At a module level, creating aliases can be particularly helpful. Errors found in  a specific module often has the same `Err` type, so a single alias can succinctly defined all associated `Results`. This is so useful even the `std` library even supplies one: [`io::Result`](https://doc.rust-lang.org/std/io/type.Result.html).
+At a module level, creating aliases can be particularly helpful. Errors found in a specific module often has the same `Err` type, so a single alias can succinctly defined all associated `Results`. This is so useful even the `std` library even supplies one: [`io::Result`](https://doc.rust-lang.org/std/io/type.Result.html).
 
 6. 🌟
+
 ```rust,editable
 use std::num::ParseIntError;
 
@@ -203,12 +191,10 @@ fn main() {
 }
 ```
 
-{{#playground result_6_0.rs answer}}
-
-
-
 ### Using Result in `fn main`
-Typically `the` main function will look like this: 
+
+Typically `the` main function will look like this:
+
 ```rust
 fn main() {
     println!("Hello World!");
@@ -218,6 +204,7 @@ fn main() {
 However `main` is also able to have a return type of `Result`. If an error occurs within the `main` function it will return an error code and print a debug representation of the error( Debug trait ).
 
 The following example shows such a scenario:
+
 ```rust,editable
 
 use std::num::ParseIntError;

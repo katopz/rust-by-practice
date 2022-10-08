@@ -1,7 +1,9 @@
 # Generics
 
 ### Functions
+
 1. 🌟🌟🌟
+
 ```rust,editable
 // Fill in the blanks to make it work
 struct A; // Concrete type `A`.
@@ -32,11 +34,8 @@ fn main() {
 }
 ```
 
-{{#playground generics_1_0.rs answer}}
-
-
-
 2. 🌟🌟 A function call with explicitly specified type parameters looks like: `fun::<A, B, ...>()`.
+
 ```rust,editable
 
 // Implement the generic function below.
@@ -51,14 +50,10 @@ fn main() {
 }
 ```
 
-{{#playground generics_2_0.rs answer}}
-
-
-
-
 ### Struct and `impl`
 
 3. 🌟
+
 ```rust,editable
 // Implement struct Point to make it work.
 
@@ -70,11 +65,8 @@ fn main() {
 }
 ```
 
-{{#playground generics_3_0.rs answer}}
-
-
-
 4. 🌟🌟
+
 ```rust,editable
 // Modify this struct to make the code work
 struct Point<T> {
@@ -93,11 +85,8 @@ fn main() {
 }
 ```
 
-{{#playground generics_4_0.rs answer}}
-
-
-
 5. 🌟🌟
+
 ```rust,editable
 // Add generic for Val to make the code work, DON'T modify the code in `main`.
 struct Val {
@@ -119,12 +108,9 @@ fn main() {
 }
 ```
 
-{{#playground generics_5_0.rs answer}}
-
-
-
 ### Method
-6. 🌟🌟🌟 
+
+6. 🌟🌟🌟
 
 ```rust,editable
 struct Point<T, U> {
@@ -150,11 +136,8 @@ fn main() {
 }
 ```
 
-{{#playground generics_6_0.rs answer}}
-
-
-
 7. 🌟🌟
+
 ```rust,editable
 // Fix the errors to make the code work.
 struct Point<T> {
@@ -174,9 +157,4 @@ fn main() {
 }
 ```
 
-{{#playground generics_7_0.rs answer}}
-
-
-
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it
-

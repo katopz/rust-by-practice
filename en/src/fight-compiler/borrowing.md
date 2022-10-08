@@ -1,6 +1,7 @@
 # Borrowing
 
 1. 🌟🌟
+
 ```rust,editable
 // FIX the error without removing any code line
 struct test {
@@ -29,7 +30,3 @@ impl test {
 
 fn main() {}
 ```
-
-{{#playground borrowing_1_0.rs answer}}
-
-
