@@ -34,6 +34,8 @@ fn main() {
 }
 ```
 
+{{#playground generics_1_0.rs answer}}
+
 2. 🌟🌟 A function call with explicitly specified type parameters looks like: `fun::<A, B, ...>()`.
 
 ```rust,editable
@@ -50,6 +52,8 @@ fn main() {
 }
 ```
 
+{{#playground generics_2_0.rs answer}}
+
 ### Struct and `impl`
 
 3. 🌟
@@ -64,6 +68,8 @@ fn main() {
     println!("Success!");
 }
 ```
+
+{{#playground generics_3_0.rs answer}}
 
 4. 🌟🌟
 
@@ -84,6 +90,8 @@ fn main() {
     println!("Success!");
 }
 ```
+
+{{#playground generics_4_0.rs answer}}
 
 5. 🌟🌟
 
@@ -107,6 +115,8 @@ fn main() {
     println!("{}, {}", x.value(), y.value());
 }
 ```
+
+{{#playground generics_5_0.rs answer}}
 
 ### Method
 
@@ -136,6 +146,8 @@ fn main() {
 }
 ```
 
+{{#playground generics_6_0.rs answer}}
+
 7. 🌟🌟
 
 ```rust,editable
@@ -156,5 +168,7 @@ fn main() {
     println!("{}", p.distance_from_origin());
 }
 ```
+
+{{#playground generics_7_0.rs answer}}
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it

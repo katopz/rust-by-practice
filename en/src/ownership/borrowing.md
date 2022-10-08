@@ -14,6 +14,8 @@ fn main() {
 }
 ```
 
+{{#playground borrowing_1_0.rs answer}}
+
 2. 🌟
 
 ```rust,editable
@@ -27,6 +29,8 @@ fn main() {
     println!("Success!");
 }
 ```
+
+{{#playground borrowing_2_0.rs answer}}
 
 3. 🌟
 
@@ -42,6 +46,8 @@ fn main() {
 
 fn borrow_object(s: &String) {}
 ```
+
+{{#playground borrowing_3_0.rs answer}}
 
 4. 🌟
 
@@ -60,6 +66,8 @@ fn push_str(s: &mut String) {
 }
 ```
 
+{{#playground borrowing_4_0.rs answer}}
+
 5. 🌟🌟
 
 ```rust,editable
@@ -74,6 +82,8 @@ fn main() {
     println!("Success!");
 }
 ```
+
+{{#playground borrowing_5_0.rs answer}}
 
 #### Ref
 
@@ -104,6 +114,8 @@ fn get_addr(r: &char) -> String {
 }
 ```
 
+{{#playground borrowing_6_0.rs answer}}
+
 ### Borrowing rules
 
 7. 🌟
@@ -123,6 +135,8 @@ fn main() {
 }
 ```
 
+{{#playground borrowing_7_0.rs answer}}
+
 #### Mutability
 
 8. 🌟 Error: Borrow an immutable object as mutable
@@ -140,6 +154,8 @@ fn main() {
 fn borrow_object(s: &mut String) {}
 ```
 
+{{#playground borrowing_8_0.rs answer}}
+
 9. 🌟🌟 Ok: Borrow a mutable object as immutable
 
 ```rust,editable
@@ -156,6 +172,8 @@ fn main() {
 
 fn borrow_object(s: &String) {}
 ```
+
+{{#playground borrowing_9_0.rs answer}}
 
 ### NLL
 
@@ -175,6 +193,8 @@ fn main() {
 }
 ```
 
+{{#playground borrowing_10_0.rs answer}}
+
 11. 🌟🌟
 
 ```rust,editable
@@ -188,5 +208,7 @@ fn main() {
     // You can't use r1 and r2 at the same time
 }
 ```
+
+{{#playground borrowing_11_0.rs answer}}
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it

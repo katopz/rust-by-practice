@@ -20,6 +20,8 @@ fn main() {
 }
 ```
 
+{{#playground flow-control_1_0.rs answer}}
+
 2. 🌟🌟 `If/else` expression can be used in assignments.
 
 ```rust,editable
@@ -43,6 +45,8 @@ fn main() {
 }
 ```
 
+{{#playground flow-control_2_0.rs answer}}
+
 ### For
 
 3. 🌟 The `for in` construct can be used to iterate through an Iterator, e.g a range `a..b`.
@@ -59,6 +63,8 @@ fn main() {
     println!("Success!");
 }
 ```
+
+{{#playground flow-control_3_0.rs answer}}
 
 4. 🌟🌟
 
@@ -82,6 +88,8 @@ fn main() {
 }
 ```
 
+{{#playground flow-control_4_0.rs answer}}
+
 5. 🌟
 
 ```rust,editable
@@ -94,6 +102,8 @@ fn main() {
     }
 }
 ```
+
+{{#playground flow-control_5_0.rs answer}}
 
 ### While
 
@@ -126,6 +136,8 @@ fn main() {
 }
 ```
 
+{{#playground flow-control_6_0.rs answer}}
+
 ### Continue and break
 
 7. 🌟 Use `break` to break the loop.
@@ -147,6 +159,8 @@ fn main() {
 }
 ```
 
+{{#playground flow-control_7_0.rs answer}}
+
 8. 🌟🌟 `continue` will skip over the remaining code in current iteration and go to the next iteration.
 
 ```rust,editable
@@ -167,6 +181,8 @@ fn main() {
     println!("Success!");
 }
 ```
+
+{{#playground flow-control_8_0.rs answer}}
 
 ### Loop
 
@@ -205,6 +221,8 @@ fn main() {
 }
 ```
 
+{{#playground flow-control_9_0.rs answer}}
+
 10. 🌟🌟 Loop is an expression, so we can use it with `break` to return a value
 
 ```rust,editable
@@ -225,6 +243,8 @@ fn main() {
     println!("Success!");
 }
 ```
+
+{{#playground flow-control_10_0.rs answer}}
 
 11. 🌟🌟🌟 It's possible to break or continue outer loops when dealing with nested loops. In these cases, the loops must be annotated with some 'label, and the label must be passed to the break/continue statement.
 
@@ -259,5 +279,7 @@ fn main() {
     println!("Success!");
 }
 ```
+
+{{#playground flow-control_11_0.rs answer}}
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it
