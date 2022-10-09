@@ -39,15 +39,22 @@ window.onload = function () {
       let button_text = `🦀 HINT` + (editor.answers.length === 1 ? `` : ` ${i + 1}`)
       button.append(button_text)
       button.className = 'hint'
+      button.alt = button_text
       let uncompleted_text = editor.raw
 
-      button.ondblclick = () => {
-        editor.setValue(uncompleted_text)
-        editor.selection.selectTo(0)
-      }
-
       button.onclick = () => {
+        // Revet
+        if (button.innerText.indexOf('🦀 HINT') === 0) {
+          button.innerText = `✨ UNDO`
+        } else {
+          button.innerText = button.alt
+          editor.setValue(uncompleted_text)
+          editor.selection.selectTo(0)
+          return
+        }
+
         let answer_text = answer.firstChild.textContent
+
         // Patch first comment to make hint easy to focus
         if (uncompleted_text.indexOf('//') === 0) {
           const comments = uncompleted_text.split('\n').filter((e) => e.indexOf('//') === 0)
