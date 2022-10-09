@@ -25,7 +25,7 @@ fn main() {
 2. 🌟
 
 ```rust,editable
-//  Fill the blank
+// Fill the blank
 fn main() {
     let v: u16 = 38_u8 as __;
 
@@ -102,7 +102,7 @@ fn main() {
 7. 🌟
 
 ```rust,editable
-//  Replace ? with your answer
+// Replace ? with your answer
 fn main() {
     let x = 1_000.000_1; // ?
     let y: f32 = 0.12; // f32
