@@ -39,8 +39,14 @@ window.onload = function () {
       let button_text = `🦀 HINT` + (editor.answers.length === 1 ? `` : ` ${i + 1}`)
       button.append(button_text)
       button.className = 'hint'
+      let uncompleted_text = editor.raw
+
+      button.ondblclick = () => {
+        editor.setValue(uncompleted_text)
+        editor.selection.selectTo(0)
+      }
+
       button.onclick = () => {
-        let uncompleted_text = editor.raw
         let answer_text = answer.firstChild.textContent
         // Patch first comment to make hint easy to focus
         if (uncompleted_text.indexOf('//') === 0) {
@@ -53,7 +59,6 @@ window.onload = function () {
 
         // Highlight patched
         const diffs = dmp.diff_main(uncompleted_text, answer_text)
-        console.log('diffs:', diffs)
 
         if (diffs.length >= 0) {
           let col = 0
@@ -71,13 +76,8 @@ window.onload = function () {
             let row1 = row + newline
             let column1 = col + last_hunk_padded.length
 
-            // console.log('row:', row)
-            // console.log('col:', col)
-
             if (patch_type === 1) {
               let range = new ace.Range(row0, column0, row1, column1)
-              // console.log('range:', range)
-
               // skip comment
               if (current_text.indexOf('//') !== 0) {
                 editor.session.addMarker(range, 'ace_step', 'line', false)
