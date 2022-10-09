@@ -42,6 +42,12 @@ window.onload = function () {
       button.onclick = () => {
         let uncompleted_text = editor.raw
         let answer_text = answer.firstChild.textContent
+        // Patch first comment to make hint easy to focus
+        if (uncompleted_text.indexOf('//') === 0) {
+          const comments = uncompleted_text.split('\n').filter((e) => e.indexOf('//') === 0)
+          answer_text = comments.join('\n') + '\n' + answer_text
+        }
+
         editor.setValue(answer_text)
         editor.selection.selectTo(0)
 
@@ -65,14 +71,17 @@ window.onload = function () {
             let row1 = row + newline
             let column1 = col + last_hunk_padded.length
 
-            console.log('row:', row)
-            console.log('col:', col)
+            // console.log('row:', row)
+            // console.log('col:', col)
 
             if (patch_type === 1) {
               let range = new ace.Range(row0, column0, row1, column1)
-              console.log('range:', range)
+              // console.log('range:', range)
 
-              editor.session.addMarker(range, 'ace_step', 'line', false)
+              // skip comment
+              if (current_text.indexOf('//') !== 0) {
+                editor.session.addMarker(range, 'ace_step', 'line', false)
+              }
 
               // Reset column
               if (hunks.length > 1) {
