@@ -15,7 +15,7 @@ As a reference lifetime, `&'static` indicates the data pointed to by the referen
 
 
 
-1.🌟🌟 There are several ways to make a variable with `'static` lifetime, two of them are stored in the read-only memory of the binary。
+1. 🌟🌟 There are several ways to make a variable with `'static` lifetime, two of them are stored in the read-only memory of the binary。
 
 ```rust,editable
 
@@ -110,7 +110,7 @@ As a trait bound, it means the type does not contain any non-static references. 
 
 It's important to understand this means that any owned data always passes a `'static `lifetime bound, but a reference to that owned data generally does no。
 
-5.🌟🌟
+5. 🌟🌟
 ```rust,editable
 /* Make it work */
 use std::fmt::Debug;
@@ -145,7 +145,7 @@ fn main() {
 ```
 
 
-6.🌟🌟🌟
+6. 🌟🌟🌟
 ```rust,editable
 use std::fmt::Display;
 

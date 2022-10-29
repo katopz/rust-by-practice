@@ -13,7 +13,7 @@ fn generic<T>(x: T) where T: 'static {}
 ## &'static
 作为一个引用生命周期，`&'static` 说明该引用指向的数据可以跟程序活得一样久，但是该引用的生命周期依然有可能被强转为一个更短的生命周期。
 
-1.🌟🌟 有好几种方法可以将一个变量标记为  `'static` 生命周期, 其中两种都是和保存在二进制文件中相关( 例如字符串字面量就是保存在二进制文件中，它的生命周期是 `'static` )。
+1. 🌟🌟 有好几种方法可以将一个变量标记为  `'static` 生命周期, 其中两种都是和保存在二进制文件中相关( 例如字符串字面量就是保存在二进制文件中，它的生命周期是 `'static` )。
 
 ```rust,editable
 
@@ -103,7 +103,7 @@ fn main() {
 
 关于 `'static` 的特征约束详细解释，请参见 [Rust 语言圣经](https://course.rs/advance/lifetime/static.html#t-static)，这里就不再赘述。
 
-5.🌟🌟
+5. 🌟🌟
 ```rust,editable
 /* 让代码工作 */
 use std::fmt::Debug;
@@ -137,7 +137,7 @@ fn main() {
 ```
 
 
-6.🌟🌟🌟
+6. 🌟🌟🌟
 ```rust,editable
 use std::fmt::Display;
 
