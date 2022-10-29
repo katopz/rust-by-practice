@@ -5,4 +5,4 @@ fn main() {
     };
 
     assert_eq!(v, ());
- }
+}

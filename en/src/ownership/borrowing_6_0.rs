@@ -8,7 +8,7 @@ fn main() {
     assert_eq!(*r1, *r2);
 
     // check the equality of the two address strings
-    assert_eq!(get_addr(r1),get_addr(r2));
+    assert_eq!(get_addr(r1), get_addr(r2));
 }
 
 // get memory address string

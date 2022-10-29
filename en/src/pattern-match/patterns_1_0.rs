@@ -8,7 +8,7 @@ fn match_number(n: i32) {
         // match an inclusive range
         6..=10 => {
             println!("match 6 -> 10")
-        },
+        }
         _ => {
             println!("match 11 -> +infinite")
         }
