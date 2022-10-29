@@ -1,7 +1,9 @@
 # Match, if let
 
 ### Match
+
 1. 🌟🌟
+
 ```rust,editable
 
 // Fill the blanks
@@ -25,6 +27,7 @@ fn main() {
 ```
 
 2. 🌟🌟 Match is an expression, so we can use it in assignments.
+
 ```rust,editable
 
 fn main() {
@@ -43,6 +46,7 @@ fn main() {
 ```
 
 3. 🌟🌟 Using match to get the data an enum variant holds.
+
 ```rust,editable
 
 // Fill in the blanks
@@ -65,7 +69,7 @@ fn main() {
     }
 
     println!("Success!");
-} 
+}
 
 fn show_message(msg: Message) {
     match msg {
@@ -83,9 +87,11 @@ fn show_message(msg: Message) {
 ```
 
 ### matches!
+
 [`matches!`](https://doc.rust-lang.org/stable/core/macro.matches.html) looks like `match`, but can do something different.
 
 4. 🌟🌟
+
 ```rust,editable
 
 fn main() {
@@ -97,10 +103,11 @@ fn main() {
     }
 
     println!("Success!");
-} 
+}
 ```
 
 5. 🌟🌟
+
 ```rust,editable
 
 enum MyEnum {
@@ -125,15 +132,17 @@ fn main() {
 ```
 
 ### If let
+
 For some cases, when matching enums, `match` is too heavy. We can use `if let` instead.
 
-6. 🌟 
+6. 🌟
+
 ```rust,editable
 
 fn main() {
     let o = Some(7);
 
-    // Remove the whole `match` block, using `if let` instead 
+    // Remove the whole `match` block, using `if let` instead
     match o {
         Some(i) => {
             println!("This is a really long string and `{:?}`", i);
@@ -146,6 +155,7 @@ fn main() {
 ```
 
 7. 🌟🌟
+
 ```rust,editable
 
 // Fill in the blank
@@ -165,6 +175,7 @@ fn main() {
 ```
 
 8. 🌟🌟
+
 ```rust,editable
 
 enum Foo {
@@ -176,7 +187,7 @@ enum Foo {
 fn main() {
     let a = Foo::Qux(10);
 
-    // Remove the codes below, using `match` instead 
+    // Remove the codes below, using `match` instead
     if let Foo::Bar = a {
         println!("match foo::bar")
     } else if let Foo::Baz = a {
@@ -188,7 +199,9 @@ fn main() {
 ```
 
 ### Shadowing
+
 9. 🌟🌟
+
 ```rust,editable
 
 // Fix the errors in-place
@@ -197,14 +210,13 @@ fn main() {
     if let Some(age) = age { // Create a new variable with the same name as previous `age`
        assert_eq!(age, Some(30));
     } // The new variable `age` goes out of scope here
-    
+
     match age {
         // Match can also introduce a new shadowed variable
         Some(age) =>  println!("age is a new variable, it's value is {}",age),
         _ => ()
     }
  }
- ```
-
+```
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it

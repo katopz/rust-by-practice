@@ -3,7 +3,7 @@
 ```rust
 fn main() {
     let arr: [u8; 3] = [1, 2, 3];
-    
+
     let v = Vec::from(arr);
     is_vec(&v);
 
@@ -13,15 +13,15 @@ fn main() {
     // vec!(..) and vec![..] are same macros, so
     let v = vec!(1, 2, 3);
     is_vec(&v);
-    
+
     // in code below, v is Vec<[u8; 3]> , not Vec<u8>
-    // USE `for` to rewrite the below code 
+    // USE `for` to rewrite the below code
     let mut v1 = Vec::new();
     for i in &v {
         v1.push(*i)
     }
     is_vec(&v1);
- 
+
     assert_eq!(format!("{:?}",v), format!("{:?}",v1));
 
     println!("Success!")
@@ -30,12 +30,12 @@ fn main() {
 fn is_vec(v: &Vec<u8>) {}
 
 
-//Another solution 
+//Another solution
 
 
 fn main() {
     let arr: [u8; 3] = [1, 2, 3];
-    
+
     let v = Vec::from(arr);
     is_vec(&v);
 
@@ -45,15 +45,15 @@ fn main() {
     // vec!(..) and vec![..] are same macros, so
     let v = vec!(1, 2, 3);
     is_vec(&v);
-    
+
     // in code below, v is Vec<[u8; 3]> , not Vec<u8>
-    // USE Vec::new and `for` to rewrite the below code 
+    // USE Vec::new and `for` to rewrite the below code
     let mut v1 = vec!();
     for i in &v{
         v1.push(*i);
     }
     is_vec(&v1);
- 
+
     assert_eq!(v, v1);
 
     println!("Success!")
@@ -70,7 +70,7 @@ fn main() {
     let mut v1 = Vec::from([1, 2, 4]);
     v1.pop();
     v1.push(3);
-    
+
     let mut v2 = Vec::new();
     v2.extend([1, 2, 3]);
 
@@ -88,10 +88,10 @@ fn main() {
     let arr = [1, 2, 3];
     let v1 = Vec::from(arr);
     let v2: Vec<i32> = arr.into();
- 
+
     assert_eq!(v1, v2);
- 
-    
+
+
     // String -> Vec
     let s = "hello".to_string();
     let v1: Vec<u8> = s.into();
@@ -106,7 +106,7 @@ fn main() {
 
     println!("Success!")
  }
- ```
+```
 
 4.
 
@@ -124,14 +124,14 @@ fn main() {
             v.push(i + 2)
         }
     }
-    
+
     assert_eq!(format!("{:?}",v), format!("{:?}", vec![2, 3, 4, 5, 6]));
 
     println!("Success!")
 }
 
 
-//Another solution 
+//Another solution
 
 fn main() {
     let mut v = Vec::from([1, 2, 3,4,5]);
@@ -142,7 +142,7 @@ fn main() {
     for i in 0..5 {
        v[i] +=1;
     }
-    
+
     assert_eq!(v, vec![2, 3, 4, 5, 6]);
 
     println!("Success!")
@@ -161,9 +161,9 @@ fn main() {
     // out of bounds will cause a panic
     // You must use `v.len` here
     let slice2 = &v[0..v.len()];
-    
+
     assert_eq!(slice1, slice2);
-    
+
     // slice are read only
     // Note: slice and &Vec are different
     let vec_ref: &mut Vec<i32> = &mut v;
@@ -200,7 +200,7 @@ fn main() {
     assert!(vec.capacity() >= 11);
 
 
-    // fill in an appropriate value to make the `for` done without reallocating 
+    // fill in an appropriate value to make the `for` done without reallocating
     let mut vec = Vec::with_capacity(100);
     for i in 0..100 {
         vec.push(i);
