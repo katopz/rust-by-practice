@@ -1,6 +1,7 @@
 # Ownership
 
-1. 🌟🌟 
+1. 🌟🌟
+
 ```rust,editable
 
 fn main() {
@@ -12,6 +13,7 @@ fn main() {
 ```
 
 2. 🌟🌟
+
 ```rust,editable
 // Don't modify code in main!
 fn main() {
@@ -27,8 +29,8 @@ fn take_ownership(s: String) {
 }
 ```
 
-
 3. 🌟🌟
+
 ```rust,editable
 
 fn main() {
@@ -46,6 +48,7 @@ fn give_ownership() -> String {
 ```
 
 4. 🌟🌟
+
 ```rust,editable
 // Fix the error without removing code line
 fn main() {
@@ -61,8 +64,9 @@ fn print_str(s: String)  {
 }
 ```
 
-5. 🌟🌟 
-```rust, editable
+5. 🌟🌟
+
+```rust,editable
 // Don't use clone ,use copy instead
 fn main() {
     let x = (1, 2, (), "hello".to_string());
@@ -72,14 +76,16 @@ fn main() {
 ```
 
 #### Mutability
+
 Mutability can be changed when ownership is transferred.
 
 6. 🌟
+
 ```rust,editable
 
 fn main() {
     let s = String::from("hello, ");
-    
+
     // Modify this line only !
     let s1 = s;
 
@@ -90,15 +96,16 @@ fn main() {
 ```
 
 7. 🌟🌟🌟
+
 ```rust,editable
 
 fn main() {
     let x = Box::new(5);
-    
+
     let ...      // Implement this line, dont change other lines!
-    
+
     *y = 4;
-    
+
     assert_eq!(*x, 5);
 
     println!("Success!");
@@ -106,9 +113,11 @@ fn main() {
 ```
 
 ### Partial move
+
 Within the destructuring of a single variable, both by-move and by-reference pattern bindings can be used at the same time. Doing this will result in a partial move of the variable, which means that parts of the variable will be moved while other parts stay. In such a case, the parent variable cannot be used afterwards as a whole, however the parts that are only referenced (and not moved) can still be used.
 
 #### Example
+
 ```rust,editable
 
 fn main() {
@@ -141,6 +150,7 @@ fn main() {
 #### Exercises
 
 8. 🌟
+
 ```rust,editable
 
 fn main() {
@@ -154,6 +164,7 @@ fn main() {
 ```
 
 9. 🌟🌟
+
 ```rust,editable
 
 fn main() {
@@ -165,6 +176,5 @@ fn main() {
     println!("{:?}, {:?}, {:?}", s1, s2, t); // -> "hello", "world", ("hello", "world")
 }
 ```
-
 
 > You can find the solutions [here](https://github.com/sunface/rust-by-practice)(under the solutions path), but only use it when you need it
