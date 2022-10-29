@@ -27,7 +27,7 @@ fn main() {
 fn main() {
     let boolean = true;
 
-    // fill the blank with an match expression:
+    // Fill the blank with an match expression:
     //
     // boolean = true => binary = 1
     // boolean = false =>  binary = 0
@@ -84,7 +84,7 @@ fn show_message(msg: Message) {
 fn main() {
     let alphabets = ['a', 'E', 'Z', '0', 'x', '9', 'Y'];
 
-    // fill the blank with `matches!` to make the code work
+    // Fill the blank with `matches!` to make the code work
     for ab in alphabets {
         assert!(matches!(ab, 'a'..='z' | 'A'..='Z' | '0'..='9'))
     }
@@ -105,7 +105,7 @@ fn main() {
     let v = vec![MyEnum::Foo, MyEnum::Bar, MyEnum::Foo];
     for e in v {
         if matches!(e, MyEnum::Foo) {
-            // fix the error with changing only this line
+            // Fix the error with changing only this line
             count += 1;
         }
     }

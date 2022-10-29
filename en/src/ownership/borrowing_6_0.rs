@@ -2,7 +2,7 @@ fn main() {
     let c = '中';
 
     let r1 = &c;
-    // fill the blank，dont change other code
+    // Fill the blank，dont change other code
     let ref r2 = c;
 
     assert_eq!(*r1, *r2);

@@ -12,7 +12,7 @@ fn main() {
     let delimiter = r###"A string with "# in it. And even "##!"###;
     println!("{}", delimiter);
 
-    // fill the blank
+    // Fill the blank
     let long_delimiter = r###"Hello, "##""###;
     assert_eq!(long_delimiter, "Hello, \"##\"")
 }

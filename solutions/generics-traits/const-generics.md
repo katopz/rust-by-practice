@@ -42,7 +42,7 @@ where
     //...
 }
 
-// fix the errors in main
+// Fix the errors in main
 fn main() {
     check_size([0u8; 767]);
     check_size([0i32; 191]);

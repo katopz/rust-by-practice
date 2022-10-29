@@ -6,7 +6,7 @@ fn match_number(n: i32) {
     match n {
         // match a single value
         1 => println!("One!"),
-        // fill in the blank with `|`, DON'T use `..` ofr `..=`
+        // Fill in the blank with `|`, DON'T use `..` ofr `..=`
         2 | 3 | 4 | 5 => println!("match 2 -> 5"),
         // match an inclusive range
         6..=10 => {
@@ -28,7 +28,7 @@ struct Point {
 }
 
 fn main() {
-    // fill in the blank to let p match the second arm
+    // Fill in the blank to let p match the second arm
     let p = Point { x: 2, y: 20 }; // x can be [0, 5], y can be 10 20 or 30
 
     match p {

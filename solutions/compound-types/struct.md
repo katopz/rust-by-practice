@@ -32,7 +32,7 @@ fn main() {
     do_something_with_unit(u);
 }
 
-// fill the blank to make the code work
+// Fill the blank to make the code work
 fn do_something_with_unit(u: Unit) {}
 ```
 

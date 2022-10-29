@@ -4,7 +4,7 @@ struct Point {
 }
 
 fn main() {
-    // fill in the blank to let p match the second arm
+    // Fill in the blank to let p match the second arm
     let p = Point { x: 2, y: 20 }; // x can be [0, 5], y can be 10 20 or 30
 
     match p {

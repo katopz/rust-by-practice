@@ -47,7 +47,7 @@ fn main() {
 fn main() {
     let (x, y, z);
 
-    // fill the blank
+    // Fill the blank
     (y, z, x) = (1, 2, 3);
 
     assert_eq!(x, 3);
