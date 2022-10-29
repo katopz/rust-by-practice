@@ -1,9 +1,11 @@
 # Traits
+
 A trait tells the Rust compiler about functionality a particular type has and can share with other types. We can use traits to define shared behavior in an abstract way. We can use trait bounds to specify that a generic type can be any type that has certain behavior.
 
 > Note: Traits are similar to interfaces in other languages, although with some differences.
 
 ## Examples
+
 ```rust,editable
 
 struct Sheep { naked: bool, name: String }
@@ -14,7 +16,7 @@ trait Animal {
 
     // Method signatures; these will return a string.
     fn name(&self) -> String;
-    
+
     fn noise(&self) -> String;
 
     // Traits can provide default method definitions.
@@ -58,7 +60,7 @@ impl Animal for Sheep {
             "baaaaah!".to_string()
         }
     }
-    
+
     // Default trait methods can be overridden.
     fn talk(&self) {
         // For example, we can add some quiet contemplation.
@@ -78,7 +80,9 @@ fn main() {
 ```
 
 ## Exercises
+
 1. 🌟🌟
+
 ```rust,editable
 
 // Fill in the two impl blocks to make the code work.
@@ -112,10 +116,12 @@ fn main() {
 ```
 
 ### Derive
+
 The compiler is capable of providing basic implementations for some traits via
 the `#[derive]` attribute. For more info, please visit [here](https://doc.rust-lang.org/book/appendix-03-derivable-traits.html).
 
 2. 🌟🌟
+
 ```rust,editable
 
 // `Centimeters`, a tuple struct that can be compared
@@ -162,11 +168,12 @@ fn main() {
 }
 ```
 
-
 ### Operator
+
 In Rust, many of the operators can be overloaded via traits. That is, some operators can be used to accomplish different tasks based on their input arguments. This is possible because operators are syntactic sugar for method calls. For example, the + operator in a + b calls the add method (as in a.add(b)). This add method is part of the Add trait. Hence, the + operator can be used by any implementor of the Add trait.
 
 3. 🌟🌟
+
 ```rust,editable
 
 use std::ops;
@@ -185,6 +192,7 @@ fn main() {
 ```
 
 4. 🌟🌟🌟
+
 ```rust,editable
 
 // Fix the errors, DON'T modify the code in `main`.
@@ -227,9 +235,11 @@ fn main() {
 ```
 
 ### Use trait as function parameters
-Instead of a concrete type for the item parameter, we specify the impl keyword and the trait name. This parameter accepts any type that implements the specified trait. 
+
+Instead of a concrete type for the item parameter, we specify the impl keyword and the trait name. This parameter accepts any type that implements the specified trait.
 
 5. 🌟🌟🌟
+
 ```rust,editable
 
 // Implement `fn summary` to make the code work.
@@ -286,11 +296,13 @@ fn main() {
 ```
 
 ### Returning Types that Implement Traits
+
 We can also use the impl Trait syntax in the return position to return a value of some type that implements a trait.
 
 However, you can only use impl Trait if you’re returning a single type, use Trait Objects instead when you really need to return several types.
 
 6. 🌟🌟
+
 ```rust,editable
 
 struct Sheep {}
@@ -330,12 +342,14 @@ fn main() {
 ```
 
 ### Trait bound
+
 The `impl Trait` syntax works for straightforward cases but is actually syntax sugar for a longer form, which is called a trait bound.
 
-When working with generics, the type parameters often must use traits as bounds to stipulate what functionality a type implements. 
+When working with generics, the type parameters often must use traits as bounds to stipulate what functionality a type implements.
 
 7. 🌟🌟
-```rust, editable
+
+```rust,editable
 fn main() {
     assert_eq!(sum(1, 2), 3);
 }
@@ -345,7 +359,9 @@ fn sum<T>(x: T, y: T) -> T {
     x + y
 }
 ```
+
 8. 🌟🌟
+
 ```rust,editable
 
 // FIX the errors.
@@ -386,6 +402,7 @@ fn main() {
 ```
 
 9. 🌟🌟🌟
+
 ```rust,editable
 
 // Fill in the blanks to make it work
