@@ -1,5 +1,6 @@
 fn main() {
-    let x: i32 = 5; // uninitialized but using, ERROR !
-    let y: i32; // uninitialized but also unusing, only warning
+    let x: i32 = 5; // Uninitialized but used, ERROR !
+    let y: i32; // Uninitialized but also unused, only a Warning !
+
     println!("{} is equal to 5", x);
 }
