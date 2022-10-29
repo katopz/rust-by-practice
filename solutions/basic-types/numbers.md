@@ -29,6 +29,8 @@ fn main() {
 fn main() {
     let x = 5;
     assert_eq!("i32".to_string(), type_of(&x));
+
+    println!("Success!");
 }
 
 // Get the type of given variable, return a string representation of the type  , e.g "i8", "u8", "i32", "u32"
@@ -76,6 +78,8 @@ fn main() {
     let x = 1_000.000_1; // f64
     let y: f32 = 0.12; // f32
     let z = 0.01_f64; // f64
+
+    println!("Success!");
 }
 ```
 
@@ -84,12 +88,16 @@ fn main() {
 ```rust
 fn main() {
     assert!(0.1_f32 + 0.2_f32 == 0.3_f32);
+
+    println!("Success!");
 }
 ```
 
 ```rust
 fn main() {
     assert!((0.1_f64+ 0.2 - 0.3).abs() < 0.001);
+
+    println!("Success!");
 }
 ```
 
@@ -117,6 +125,8 @@ use std::ops::{Range, RangeInclusive};
 fn main() {
     assert_eq!((1..5), Range { start: 1, end: 5 });
     assert_eq!((1..=5), RangeInclusive::new(1, 5));
+
+    println!("Success!");
 }
 ```
 

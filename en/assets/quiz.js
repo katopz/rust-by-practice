@@ -57,7 +57,8 @@ window.onload = function () {
 
         // Patch first comment to make hint easy to focus
         if (uncompleted_text.indexOf('//') === 0) {
-          const comments = uncompleted_text.split('\n').filter((e) => e.indexOf('//') === 0)
+          const before_main = uncompleted_text.split('fn main()')[0]
+          const comments = before_main.split('\n').filter((e) => e.indexOf('//') === 0)
           answer_text = comments.join('\n') + '\n' + answer_text
         }
 
