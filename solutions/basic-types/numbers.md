@@ -7,7 +7,9 @@ fn main() {
 
     y = x;
 
-    let z = 10; // type of z : i32
+    let z = 10; // Type of z : i32
+
+    println!("Success!");
 }
 ```
 
@@ -16,6 +18,8 @@ fn main() {
 ```rust
 fn main() {
     let v: u16 = 38_u8 as u16;
+
+    println!("Success!");
 }
 ```
 
@@ -27,7 +31,7 @@ fn main() {
     assert_eq!("i32".to_string(), type_of(&x));
 }
 
-// get the type of given variable, return a string representation of the type  , e.g "i8", "u8", "i32", "u32"
+// Get the type of given variable, return a string representation of the type  , e.g "i8", "u8", "i32", "u32"
 fn type_of<T>(_: &T) -> String {
     format!("{}", std::any::type_name::<T>())
 }
@@ -39,6 +43,8 @@ fn type_of<T>(_: &T) -> String {
 fn main() {
     assert_eq!(i8::MAX, 127);
     assert_eq!(u8::MAX, 255);
+
+    println!("Success!");
 }
 ```
 
@@ -58,6 +64,8 @@ fn main() {
 fn main() {
     let v = 1_024 + 0xff + 0o77 + 0b1111_1111;
     assert!(v == 1597);
+
+    println!("Success!");
 }
 ```
 
