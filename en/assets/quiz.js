@@ -56,10 +56,11 @@ window.onload = function () {
         let answer_text = answer.firstChild.textContent
 
         // Patch first comment to make hint easy to focus
-        if (uncompleted_text.indexOf('//') === 0) {
-          const before_main = uncompleted_text.split('fn main()')[0]
-          const comments = before_main.split('\n').filter((e) => e.indexOf('//') === 0)
-          answer_text = comments.join('\n') + '\n' + answer_text
+        const before_main = uncompleted_text.split('fn main()')[0]
+        if (before_main.length > 0) {
+          const before_mains = before_main.split('\n')
+          const comments = before_mains.filter((e) => e.indexOf('//') === 0 || e === '')
+          answer_text = comments.join('\n') + answer_text
         }
 
         editor.setValue(answer_text)
