@@ -2,8 +2,9 @@
 
 ```rust
 fn main() {
-    let x: i32 = 5; // uninitialized but using, ERROR !
-    let y: i32; // uninitialized but also unusing, only warning
+    let x: i32 = 5; // Uninitialized but used, ERROR !
+    let y: i32; // Uninitialized but also unused, only a Warning !
+
     println!("{} is equal to 5", x);
 }
 ```
@@ -81,12 +82,12 @@ fn main() {
 fn main() {
     let mut x: i32 = 1;
     x = 7;
-    // shadowing and re-binding
+    // Shadowing and re-binding
     let x = x;
     // x += 3;
 
     let y = 4;
-    // shadowing
+    // Shadowing
     let y = "I can also be bound to text!";
 }
 ```
